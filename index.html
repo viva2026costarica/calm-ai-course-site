@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calm AI Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --panel:#12161f; --panel2:#181d29; --line:#252c3b; --line2:#323a4d;
+  --ink:#ffffff; --ink2:#e9ecf3; --muted:#aab2c3;
+  --gold:#f5c76e; --sage:#7fe3b4; --coral:#ff8f70; --sky:#7cc4ff; --violet:#b4a5ff;
+  --gold-soft:rgba(245,199,110,.12); --sage-soft:rgba(127,227,180,.11); --coral-soft:rgba(255,143,112,.12); --sky-soft:rgba(124,196,255,.11); --violet-soft:rgba(180,165,255,.12);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --side:290px;
+}
+*{box-sizing:border-box} html,body{margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink2);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 500px at 85% -10%,rgba(124,196,255,.10),transparent 60%),radial-gradient(700px 500px at 10% 110%,rgba(245,199,110,.07),transparent 60%)}
+a{color:var(--sky)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,4.2vw,3rem);letter-spacing:-.01em}
+h2{font-size:1.6rem;margin:2.4rem 0 .8rem}
+h3{font-size:1.2rem;margin:0 0 .4rem}
+p{margin:.35rem 0 .9rem}
+strong,b{color:var(--ink)}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--gold)}
+ul,ol{margin:.3rem 0 .9rem;padding-left:1.25rem} li{margin:.3rem 0}
+.muted{color:var(--muted)}
+
+/* ---------- layout ---------- */
+.side{position:fixed;top:0;left:0;bottom:0;width:var(--side);background:rgba(13,16,23,.96);border-right:1px solid var(--line);
+  overflow-y:auto;z-index:20;padding:22px 16px 30px;backdrop-filter:blur(8px)}
+.main{position:relative;z-index:1;margin-left:var(--side);min-height:100vh}
+.inner{max-width:860px;margin:0 auto;padding:48px 28px 90px}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.logo{width:40px;height:40px;flex:none}
+.brand b{display:block;font-family:var(--serif);font-weight:600;font-size:1.15rem;letter-spacing:.01em}
+.brand span{font-size:.78rem;color:var(--muted)}
+.prog{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:16px}
+.prog-top{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.prog-top b{color:var(--sage)}
+.bar{height:7px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--sky));border-radius:99px;transition:width .4s}
+.navgroup{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:18px 8px 6px}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;color:var(--ink2);text-decoration:none;font-size:.92rem;line-height:1.3}
+.nav a:hover{background:var(--panel2)}
+.nav a.on{background:var(--panel2);color:var(--ink);box-shadow:inset 3px 0 0 var(--gold)}
+.nav .dot{width:24px;height:24px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:700;background:var(--panel2);border:1px solid var(--line2);color:var(--muted)}
+.nav a.on .dot{border-color:var(--gold);color:var(--gold)}
+.nav a.complete .dot{background:var(--sage);border-color:var(--sage);color:#06210f}
+.nav small{display:block;color:var(--muted);font-size:.74rem}
+.toggles{margin-top:22px;display:grid;gap:10px}
+.tg{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:.85rem}
+.seg{display:flex;background:var(--panel2);border-radius:99px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 .78rem var(--sans);padding:5px 11px;border-radius:99px;cursor:pointer}
+.seg button.on{background:var(--ink);color:#0a0c11}
+.switch{position:relative;width:42px;height:24px;border-radius:99px;background:var(--panel2);border:1px solid var(--line2);cursor:pointer;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--muted);transition:.2s}
+.switch[aria-checked=true]{background:var(--gold-soft);border-color:var(--gold)}
+.switch[aria-checked=true]::after{left:21px;background:var(--gold)}
+.topbar{display:none}
+
+/* ---------- pages ---------- */
+.page{display:none;animation:fade .35s ease}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.lead{font-size:1.18rem;color:var(--ink2);max-width:680px;margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.chip{font-size:.8rem;border:1px solid var(--line2);border-radius:99px;padding:4px 12px;color:var(--ink2);background:var(--panel)}
+.chip.gold{border-color:rgba(245,199,110,.5);color:var(--gold)}
+.chip.sage{border-color:rgba(127,227,180,.45);color:var(--sage)}
+.chip.sky{border-color:rgba(124,196,255,.45);color:var(--sky)}
+.hero{padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:10px}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 22px;margin:16px 0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.mini{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.mini .n{font-family:var(--serif);font-size:2rem;line-height:1;margin-bottom:8px}
+.goal{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,var(--sage-soft),transparent);border:1px solid rgba(127,227,180,.3);border-radius:18px;padding:18px 20px;margin:22px 0}
+.goal .ic{font-size:1.4rem;line-height:1}
+.goal b{display:block;color:var(--sage);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+
+/* split bars 60/30/10 */
+.split{display:flex;height:64px;border-radius:14px;overflow:hidden;margin:16px 0 10px;border:1px solid var(--line2)}
+.split div{display:flex;align-items:center;justify-content:center;font-weight:700;color:#0a0c11;font-size:1.05rem}
+.split .s60{flex:60;background:var(--sky)} .split .s30{flex:30;background:var(--sage)} .split .s10{flex:10;background:var(--gold)}
+.legend{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.legend div{border-left:4px solid;padding:4px 0 4px 12px}
+.legend .l60{border-color:var(--sky)} .legend .l30{border-color:var(--sage)} .legend .l10{border-color:var(--gold)}
+
+/* timeline */
+.agenda{position:relative;margin:14px 0;padding-left:0;list-style:none}
+.agenda li{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--line);margin:0}
+.agenda li:first-child{border-top:0}
+.agenda .t{font-family:var(--mono);font-size:.82rem;color:var(--gold);padding-top:2px}
+
+/* steps */
+.step{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 22px 18px;margin:18px 0;transition:border-color .3s}
+.step.done{border-color:rgba(127,227,180,.45)}
+.step-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:8px}
+.num{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-family:var(--serif);font-size:1.25rem;background:var(--gold-soft);color:var(--gold);border:1px solid rgba(245,199,110,.35)}
+.step.done .num{background:var(--sage);color:#06210f;border-color:var(--sage)}
+.step-head h3{margin:2px 0 4px;font-size:1.3rem}
+.time{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.lbl{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:12px 0 2px}
+.lbl.ex{color:var(--sky)} .lbl.do{color:var(--sage)} .lbl.ck{color:var(--violet)}
+.check{background:var(--violet-soft);border-radius:12px;padding:10px 14px;margin:12px 0 6px;font-size:.95rem}
+.donebtn{margin-top:12px;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line2);background:var(--panel2);color:var(--ink2);border-radius:99px;padding:7px 14px;font:600 .82rem var(--sans);cursor:pointer}
+.donebtn:hover{border-color:var(--sage)}
+.step.done .donebtn{background:var(--sage-soft);border-color:var(--sage);color:var(--sage)}
+
+/* prompt / code */
+.prompt{position:relative;margin:12px 0}
+.prompt .ptitle{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:flex;gap:6px;align-items:center}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.6 var(--mono);background:#070a0f;border:1px solid var(--line2);border-radius:14px;padding:16px 16px;color:#e8f0ff;overflow-x:auto}
+.prompt.cmd pre{color:var(--sage)}
+.prompt.cmd pre::before{content:"$ ";color:var(--muted)}
+.copy{position:absolute;top:26px;right:8px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:4px 10px;font:600 .74rem var(--sans);cursor:pointer;opacity:.85}
+.copy:hover{opacity:1;border-color:var(--sky)}
+.copy.ok{color:var(--sage);border-color:var(--sage)}
+.prompt.notitle .copy{top:8px}
+
+/* boxes */
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid}
+.box.sky{background:var(--sky-soft);border-color:rgba(124,196,255,.3)}
+.box.gold{background:var(--gold-soft);border-color:rgba(245,199,110,.3)}
+.box.coral{background:var(--coral-soft);border-color:rgba(255,143,112,.35)}
+.box.sage{background:var(--sage-soft);border-color:rgba(127,227,180,.3)}
+.box h3{font-family:var(--sans);font-weight:700;font-size:.95rem;margin-bottom:6px}
+.box.sky h3{color:var(--sky)} .box.gold h3{color:var(--gold)} .box.coral h3{color:var(--coral)} .box.sage h3{color:var(--sage)}
+
+/* coach notes */
+.coachnote{display:none;border:1px dashed rgba(245,199,110,.55);background:rgba(245,199,110,.06);border-radius:14px;padding:12px 16px;margin:12px 0;font-size:.94rem}
+.coachnote::before{content:"Coach notes";display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+body.coach .coachnote{display:block}
+.coachonly{display:none!important}
+body.coach .coachonly{display:flex!important}
+body.coach .page.coachpage.on{display:block}
+.os-mac .win{display:none!important} .os-win .mac{display:none!important}
+
+/* tree */
+.tree{font:13.5px/1.75 var(--mono);background:#070a0f;border:1px solid var(--line2);border-radius:14px;padding:16px 18px;white-space:pre;overflow-x:auto;color:#dfe6f3}
+.tree .f{color:var(--sky)} .tree .m{color:var(--gold)} .tree .c{color:var(--muted)} .tree .s{color:var(--sage)}
+
+table{width:100%;border-collapse:collapse;font-size:.93rem;margin:10px 0}
+th{text-align:left;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line2)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td code{white-space:nowrap}
+
+.homework{background:linear-gradient(135deg,rgba(180,165,255,.14),rgba(124,196,255,.06));border:1px solid rgba(180,165,255,.35);border-radius:20px;padding:22px;margin:26px 0}
+.homework .kicker{color:var(--violet)}
+.spot{background:linear-gradient(135deg,rgba(255,143,112,.14),transparent);border:1px solid rgba(255,143,112,.35);border-radius:20px;padding:20px 22px;margin:22px 0}
+.spot .kicker{color:var(--coral)}
+
+.layers{display:grid;gap:12px;margin:14px 0}
+.layer{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.layer .big{font-family:var(--serif);font-size:2rem;text-align:center}
+.layer:nth-child(1) .big{color:var(--sky)} .layer:nth-child(2) .big{color:var(--sage)} .layer:nth-child(3) .big{color:var(--gold)}
+
+.sessions a{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;transition:.2s}
+.sessions a:hover{border-color:var(--gold);transform:translateY(-2px)}
+.sessions .d{font-size:.78rem;color:var(--gold);font-weight:600}
+.sessions h3{margin:6px 0 4px}
+.sessions p{font-size:.88rem;color:var(--muted);margin:0}
+
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:46px;padding-top:24px;border-top:1px solid var(--line)}
+.pager a{flex:1;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;color:var(--ink)}
+.pager a:hover{border-color:var(--gold)}
+.pager small{display:block;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.pager .nx{text-align:right}
+.foot{margin-top:40px;font-size:.82rem;color:var(--muted)}
+
+@media (max-width:980px){
+  .side{transform:translateX(-100%);transition:transform .25s;box-shadow:0 0 60px rgba(0,0,0,.6)}
+  body.menu .side{transform:none}
+  .main{margin-left:0}
+  .topbar{display:flex;position:sticky;top:0;z-index:15;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(10,12,17,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .topbar button{border:1px solid var(--line2);background:var(--panel);color:var(--ink);border-radius:10px;padding:7px 12px;font:600 .85rem var(--sans)}
+  .topbar b{font-family:var(--serif);font-weight:600}
+  .inner{padding:28px 16px 70px}
+}
+@media (max-width:560px){
+  .agenda li{grid-template-columns:62px 1fr;gap:10px}
+  .step,.card,.homework,.spot{padding:18px 16px}
+  .layer{grid-template-columns:40px 1fr}
+  .pager{flex-direction:column}
+}
+@media print{
+  .side,.topbar,.donebtn,.copy,.pager{display:none!important}
+  .main{margin:0} body{background:#fff;color:#111} .page{display:block!important} .coachnote{display:none!important}
+}
+</style>
+</head>
+<body class="os-mac">
+
+<div class="topbar"><button type="button" id="menuBtn" aria-label="Open lessons">☰ Lessons</button><b>Calm AI</b><span class="muted" id="topProg" style="font-size:.8rem"></span></div>
+
+<aside class="side" id="side">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cc4ff"/><stop offset="1" stop-color="#f5c76e"/></linearGradient></defs><circle cx="20" cy="20" r="18" fill="none" stroke="url(#lg)" stroke-width="2"/><path d="M20 7 L32 28 L8 28 Z" fill="none" stroke="#7cc4ff" stroke-width="1.6"/><path d="M20 33 L8 12 L32 12 Z" fill="none" stroke="#f5c76e" stroke-width="1.6"/><circle cx="20" cy="20" r="2.4" fill="#fff"/></svg>
+    <div><b>Calm AI</b><span>Your work as folders. AI on top.</span></div>
+  </div>
+  <div class="prog"><div class="prog-top"><span>Your progress</span><b id="progTxt">0%</b></div><div class="bar"><i id="progBar"></i></div></div>
+  <nav class="nav" id="nav">
+    <div class="navgroup">Begin</div>
+    <a href="#start"><span class="dot">★</span><span>Start here<small>The big idea</small></span></a>
+    <div class="navgroup">The five sessions</div>
+    <a href="#s1"><span class="dot">1</span><span>Your week, mapped<small>Wed 11 Nov · Chat</small></span></a>
+    <a href="#s2"><span class="dot">2</span><span>Your first skill<small>Wed 18 Nov · Skills &amp; Projects</small></span></a>
+    <a href="#s3"><span class="dot">3</span><span>Your toolkit<small>Wed 25 Nov · VS Code, terminal, Claude Code</small></span></a>
+    <a href="#s4"><span class="dot">4</span><span>Your work, as folders<small>Wed 2 Dec · ICM map + GitHub</small></span></a>
+    <a href="#s5"><span class="dot">5</span><span>Automate &amp; publish<small>Wed 9 Dec · Scripts, Pages, show</small></span></a>
+    <div class="navgroup">Toolkit</div>
+    <a href="#terminal"><span class="dot">›_</span><span>Terminal cheat sheet</span></a>
+    <a href="#github"><span class="dot">⑂</span><span>Git &amp; GitHub</span></a>
+    <a href="#safe"><span class="dot">✓</span><span>Safe-use rules</span></a>
+    <a href="#library"><span class="dot">❝</span><span>Prompt library</span></a>
+    <a href="#glossary"><span class="dot">A</span><span>Words to know</span></a>
+    <div class="navgroup">Beyond</div>
+    <a href="#after"><span class="dot">→</span><span>After the pilot</span></a>
+  </nav>
+  <div class="toggles">
+    <div class="tg"><span>Computer</span><div class="seg" id="osSeg"><button type="button" data-os="mac" class="on">Mac</button><button type="button" data-os="win">Windows</button></div></div>
+  </div>
+</aside>
+
+<main class="main"><div class="inner">
+
+<!-- ===================== START ===================== -->
+<section class="page" id="start" data-title="Start here">
+  <div class="hero">
+    <div class="kicker">Pilot program · Five Wednesdays · Nov–Dec 2026</div>
+    <h1>Organise your work.<br>Let AI do the thin top layer.</h1>
+    <p class="lead">Over five sessions you'll turn your knowledge, tasks and tools into a set of tidy folders on your own computer, then let one AI assistant work inside them. Most of the value comes from the structure. The AI is the last 10%.</p>
+    <div class="chips"><span class="chip gold">90 minutes each</span><span class="chip">Wednesdays 11, 18, 25 Nov · 2, 9 Dec</span><span class="chip sage">No coding needed</span><span class="chip sky">Method: ICM</span></div>
+  </div>
+
+  <h2>The big idea: 60 · 30 · 10</h2>
+  <p>Most people try to make AI do everything, and get messy, unreliable results. We flip it around. Before any AI touches a task, we ask: how much of this is just good organisation, and how much is a step that never changes?</p>
+  <div class="split" role="img" aria-label="60 percent structure, 30 percent code and tools, 10 percent AI"><div class="s60">60%</div><div class="s30">30%</div><div class="s10">10</div></div>
+  <div class="legend">
+    <div class="l60"><b>60% Information and thinking</b><br><span class="muted">Knowing the facts, asking the right questions, understanding what people really need. We keep all of it in clearly named folders, one home for every fact. This is where most people get stuck.</span></div>
+    <div class="l30"><b>30% Tools that already exist</b><br><span class="muted">Your calendar, email, a spreadsheet, and small scripts for steps that should give the same answer every time.</span></div>
+    <div class="l10"><b>10% AI</b><br><span class="muted">The parts that need reading between the lines: drafting in your voice, summarising, sorting the messy stuff. Always checked by you.</span></div>
+  </div>
+
+  <h2>Three ways of working with AI</h2>
+  <p>We climb these one at a time. Each layer reuses what you built in the one before.</p>
+  <div class="layers">
+    <div class="layer"><div class="big">1</div><div><h3>Chat</h3><span class="muted">You and the AI going back and forth. Great for one-off tasks. The AI only knows what you tell it in that conversation. <b>Session 1</b></span></div></div>
+    <div class="layer"><div class="big">2</div><div><h3>Skills and Projects</h3><span class="muted">The instructions you keep retyping, written down once. Projects hold the facts; skills hold the method. <b>Session 2</b></span></div></div>
+    <div class="layer"><div class="big">3</div><div><h3>Folders and one agent</h3><span class="muted">The AI works directly inside folders on your computer, guided by a short map file. One sentence can start real work. <b>Sessions 3–5</b></span></div></div>
+  </div>
+
+  <h2>Your route</h2>
+  <div class="grid g3 sessions">
+    <a href="#s1"><span class="d">Session 1 · 11 Nov</span><h3>Your week, mapped</h3><p>Claude set up, a first real task, and a list of everything you repeat.</p></a>
+    <a href="#s2"><span class="d">Session 2 · 18 Nov</span><h3>Your first skill</h3><p>Turn your corrections into a saved instruction. Projects for facts.</p></a>
+    <a href="#s3"><span class="d">Session 3 · 25 Nov</span><h3>Your toolkit</h3><p>VS Code, the terminal and Claude Code, installed and used safely.</p></a>
+    <a href="#s4"><span class="d">Session 4 · 2 Dec</span><h3>Your work, as folders</h3><p>Data, tasks and tools become folders. Write the map. Save points on GitHub.</p></a>
+    <a href="#s5"><span class="d">Session 5 · 9 Dec</span><h3>Automate &amp; publish</h3><p>Turn a steady step into a script, publish a web page, show what you built.</p></a>
+  </div>
+
+  <h2>The four levels</h2>
+  <div class="grid g2">
+    <div class="mini"><div class="n" style="color:var(--sky)">1</div><b>First win</b><p class="muted">Claude set up, one repetitive task done with AI.</p></div>
+    <div class="mini"><div class="n" style="color:var(--sage)">2</div><b>Daily helper</b><p class="muted">A few tasks handled every week by saved helpers.</p></div>
+    <div class="mini"><div class="n" style="color:var(--gold)">3</div><b>Personal system</b><p class="muted">Your business organised as folders, so AI works with your expertise.</p></div>
+    <div class="mini"><div class="n" style="color:var(--violet)">4</div><b>Independent builder</b><p class="muted">Comfortable with Claude Code and GitHub, building new automations alone.</p></div>
+  </div>
+  <p class="muted">Everyone reaches levels 1 and 2 in the pilot. Sessions 3–5 give you a real first step into 3 and 4.</p>
+
+  <h2>Every session has the same rhythm</h2>
+  <div class="card">
+    <ol class="agenda">
+      <li><span class="t">0–5</span><span><b>Calm opening (optional).</b> A few breaths, eyes resting on the Sri Yantra. Skip it any time.</span></li>
+      <li><span class="t">5–15</span><span><b>Check-in.</b> What worked since last week? Where did you get stuck?</span></li>
+      <li><span class="t">15–55</span><span><b>Learn and do.</b> One idea, shown first, then everyone tries it on their own real work.</span></li>
+      <li><span class="t">55–80</span><span><b>Spotlight.</b> One person's real project, worked on together. Rotates weekly.</span></li>
+      <li><span class="t">80–90</span><span><b>Homework and two questions.</b> "What was most useful?" and "What was confusing?"</span></li>
+    </ol>
+  </div>
+
+  <h2>What you need</h2>
+  <div class="grid g2">
+    <div class="mini"><b>For sessions 1–2</b><p class="muted">A Claude account on claude.ai and a laptop or desktop (not only a phone).</p></div>
+    <div class="mini"><b>From session 3</b><p class="muted">A paid Claude plan, a Mac or Windows computer you're allowed to install programs on, and about 30 minutes for setup.</p></div>
+  </div>
+  <div class="box gold"><h3>How to use this page</h3>Pick your computer (Mac or Windows) in the menu, so the commands match yours. Every grey box with a <b>Copy</b> button is something you can paste straight into Claude or the terminal. Tick <b>Mark step done</b> as you go; your progress stays on this device.</div>
+  <div class="pager"><span></span><a class="nx" href="#s1"><small>Next</small>Session 1 · Your week, mapped →</a></div>
+</section>
+
+<!-- ===================== SESSION 1 ===================== -->
+<section class="page" id="s1" data-title="Session 1">
+  <div class="hero">
+    <div class="kicker">Session 1 · Wednesday 11 November</div>
+    <h1>Your week, mapped</h1>
+    <p class="lead">Get Claude working, learn the one rule that explains most AI mistakes, and leave with a list of everything you do more than once.</p>
+    <div class="chips"><span class="chip sky">Layer 1 · Chat</span><span class="chip gold">Level 1 begins</span><span class="chip">Follows Foundations 1.1</span></div>
+  </div>
+  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>You've had a useful conversation about your own business, corrected the AI until a real task was right, and started your three lists: your data, your tasks, your tools.</div></div>
+
+  <div class="step" data-key="s1-0">
+    <div class="step-head"><div class="num">0</div><div><h3>Calm opening and welcome</h3><span class="time">0–15 min</span></div></div>
+    <p>A few breaths together (optional). Then a quick round: your name, what you do, and the one task you'd love to never do by hand again.</p>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-1">
+    <div class="step-head"><div class="num">1</div><div><h3>The big picture in ten minutes</h3><span class="time">15–25 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>Show the 60 · 30 · 10 picture and the three layers from <a href="#start">Start here</a>. The message: AI is not magic and it can be wrong. It's a very capable assistant that needs good instructions and good information. Over five weeks we build the information first.</p>
+    <div class="check"><b>Ask the group:</b> "Which of your tasks is mostly about finding the right information, not writing?" Almost every hand goes up. That's the 60%.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-2">
+    <div class="step-head"><div class="num">2</div><div><h3>Everyone in, everyone comfortable</h3><span class="time">25–32 min</span></div></div>
+    <span class="lbl do">Do</span>
+    <ol>
+      <li>Open <b>claude.ai</b> on your laptop and log in.</li>
+      <li>If you have more than one Claude account, choose the one you'll use for this course and stick to it.</li>
+      <li>Open <b>Settings</b> and look at the privacy options together, so you know what's stored and what you control.</li>
+      <li>Start a <b>new chat</b>.</li>
+    </ol>
+    <div class="check">Done when everyone has an empty new chat open on their own device.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-3">
+    <div class="step-head"><div class="num">3</div><div><h3>The one rule: it only knows what's in front of it</h3><span class="time">32–40 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>The AI doesn't remember your other chats unless you've switched that on, and it can't see your files unless you give them. Each conversation starts from almost nothing. So: <b>one task per conversation</b>, and give it just what that task needs.</p>
+    <span class="lbl do">Try it: the same request, twice</span>
+    <div class="prompt" data-title="Without context"><div class="ptitle">Without context</div><pre>Write a short welcome email for a new client.</pre></div>
+    <div class="prompt" data-title="With context"><div class="ptitle">With context</div><pre>I run [your business] for [who you serve]. My tone is warm, short and personal. I never use exclamation marks or sales language.
+Write a short welcome email for a new client who just booked [service]. They need to know: [time, place, what to bring].
+Keep it under 120 words and sign it [your name].</pre></div>
+    <div class="check">Compare the two answers side by side. The difference is the whole course in miniature.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-4">
+    <div class="step-head"><div class="num">4</div><div><h3>Let the AI interview you</h3><span class="time">40–48 min</span></div></div>
+    <p>Instead of writing a long explanation of your business, let the AI ask the questions. At the end it writes a summary you'll keep. This summary becomes the first file in your folder system in session 3.</p>
+    <div class="prompt" data-title="The interview"><div class="ptitle">The interview</div><pre>I'd like you to understand my work so you can help me well.
+Ask me questions one at a time about my business: what I do, who for, my offers and prices, my tone of voice, my weekly routine and what frustrates me.
+Wait for each answer before asking the next. After about 10 questions, write a one-page summary called "about-me" in plain text with clear headings.
+Only use what I told you. Mark anything you're unsure about with [check].</pre></div>
+    <div class="check">Copy the summary into a document or a note and save it. You'll need it again.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-5">
+    <div class="step-head"><div class="num">5</div><div><h3>One real task, corrected until it's right</h3><span class="time">48–55 min</span></div></div>
+    <p>Pick a small real task: a reply, a post, a list. Ask for it, then keep correcting until it's genuinely good. Notice: <b>every correction is a decision about how you work.</b> Those decisions are gold, so we keep them.</p>
+    <div class="prompt" data-title="Collect your corrections"><div class="ptitle">At the end, ask</div><pre>Before we finish: list every correction I gave you in this conversation as a short rule, starting with "Always" or "Never". Leave out anything that only applied to this one task.</pre></div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s1-6">
+    <div class="step-head"><div class="num">6</div><div><h3>Map your week: data, tasks, tools</h3><span class="time">55–80 min</span></div></div>
+    <p>This replaces the spotlight this week. Walk through a typical week together and start three lists. These lists become your folders in session 4.</p>
+    <div class="grid g3">
+      <div class="mini"><b style="color:var(--sky)">Data</b><p class="muted">Where does your information live? Drive, Gmail, paper notebooks, websites, your head.</p></div>
+      <div class="mini"><b style="color:var(--sage)">Tasks</b><p class="muted">What do you do more than once? Replies, planning, invoices, posts, to-do lists.</p></div>
+      <div class="mini"><b style="color:var(--gold)">Tools</b><p class="muted">What do you use? Gmail, Drive, Canva, a spreadsheet, a booking system.</p></div>
+    </div>
+    <div class="prompt" data-title="Map my week"><div class="ptitle">Map my week</div><pre>Help me map my working week. Ask me, one question at a time, to walk you through a normal Monday to Friday.
+Then make three lists:
+1. DATA: every place my information lives.
+2. TASKS: everything I do more than once, with roughly how often and how long it takes.
+3. TOOLS: every app or program I use.
+Finally, mark the three tasks that cost me the most time or energy.</pre></div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="homework">
+    <div class="kicker">Homework · before 18 Nov</div>
+    <h3>Notice, try, write it down</h3>
+    <ul>
+      <li>Keep your task list open all week. Add every task you did more than once. Star the three that annoy you most.</li>
+      <li>Do one of the starred tasks with AI, using a fresh conversation and good context.</li>
+      <li>Write down every correction you had to give (or use the "collect your corrections" prompt).</li>
+      <li>Bring: your about-me summary, your three lists, your corrections.</li>
+    </ul>
+    <p class="muted">Stuck? Send a message. A quick question beats a stuck week.</p>
+  </div>
+  <div class="pager"><a href="#start"><small>Back</small>← Start here</a><a class="nx" href="#s2"><small>Next</small>Session 2 · Your first skill →</a></div>
+</section>
+
+<!-- ===================== SESSION 2 ===================== -->
+<section class="page" id="s2" data-title="Session 2">
+  <div class="hero">
+    <div class="kicker">Session 2 · Wednesday 18 November</div>
+    <h1>Your first skill</h1>
+    <p class="lead">Stop retyping the same corrections. Turn them into a saved instruction the AI uses by itself, and learn the difference between facts and methods.</p>
+    <div class="chips"><span class="chip sage">Layer 2 · Skills &amp; Projects</span><span class="chip gold">Level 1: first win</span><span class="chip">Follows Foundations 1.2</span></div>
+  </div>
+  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has one working skill built from their own corrections, tested in a fresh conversation, and a Project holding the facts about one area of their work.</div></div>
+
+  <div class="step" data-key="s2-1">
+    <div class="step-head"><div class="num">1</div><div><h3>Check-in: what did your corrections teach you?</h3><span class="time">5–15 min</span></div></div>
+    <p>Everyone reads two of their corrections aloud. Listen for the pattern: most corrections are about <b>tone</b>, <b>length</b>, <b>facts it didn't have</b>, or <b>format</b>.</p>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s2-2">
+    <div class="step-head"><div class="num">2</div><div><h3>The four parts of a good request</h3><span class="time">15–22 min</span></div></div>
+    <div class="grid g2">
+      <div class="mini"><b>1 · Who you are</b><p class="muted">Your work, your audience, your tone.</p></div>
+      <div class="mini"><b>2 · What you need</b><p class="muted">The task, and what the reader should do next.</p></div>
+      <div class="mini"><b>3 · An example of good</b><p class="muted">Paste something you wrote that you're proud of.</p></div>
+      <div class="mini"><b>4 · How to check it</b><p class="muted">Length, must-include, must-avoid.</p></div>
+    </div>
+    <div class="prompt" data-title="Four-part request template"><div class="ptitle">Template</div><pre>WHO I AM: [your work, who you serve, your tone]
+WHAT I NEED: [the task] so that [what the reader does next]
+EXAMPLE OF GOOD: [paste an example you like]
+CHECK: [max length] · must include [...] · never [...]</pre></div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s2-3">
+    <div class="step-head"><div class="num">3</div><div><h3>Build your first skill</h3><span class="time">22–45 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>A skill is a short written instruction, like a note for a new colleague: "Here's how I do this kind of job." Claude picks it up whenever that job comes up. A skill holds the <b>method</b>, never the facts about one client, so it keeps working for the next one.</p>
+    <span class="lbl do">Do</span>
+    <div class="prompt" data-title="Turn corrections into a skill"><div class="ptitle">Turn your corrections into a skill</div><pre>I want to turn my corrections into a reusable skill for this task: [task name].
+Here are my corrections and rules:
+[paste your list]
+
+Write a skill file with:
+- a name (short, lowercase, with dashes)
+- a one-sentence description of when to use it
+- the steps, in order
+- the rules (always / never)
+- one short example of a good result
+Keep it under one page. Use only what I gave you; ask me if something is missing.</pre></div>
+    <ol>
+      <li><b>Read it slowly.</b> Fix anything it got wrong or invented.</li>
+      <li>Save it as a skill in your Claude app's skills settings (I'll show you where on screen).</li>
+      <li><b>Test it in a brand new conversation</b> with a real request. Did it follow your rules without you repeating them?</li>
+    </ol>
+    <div class="check">Done when a fresh conversation produces a result you'd send with only small edits.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s2-4">
+    <div class="step-head"><div class="num">4</div><div><h3>Projects hold facts, skills hold methods</h3><span class="time">45–52 min</span></div></div>
+    <table>
+      <tr><th></th><th>Skill</th><th>Project</th></tr>
+      <tr><td><b>Holds</b></td><td><i>How</i> you do a kind of job</td><td>The <i>facts</i> about one area</td></tr>
+      <tr><td><b>Example</b></td><td>"How I write a newsletter"</td><td>"Everything about my retreat business"</td></tr>
+      <tr><td><b>Works</b></td><td>Everywhere</td><td>Inside that project</td></tr>
+    </table>
+    <span class="lbl do">Do</span>
+    <p>Create one Project for one area of your work. Upload what stays the same: your about-me summary, offers, prices, tone, frequent questions.</p>
+    <div class="box sky"><h3>This is ICM thinking already</h3>Keeping facts apart from methods is the first rule of the folder system you'll build. In session 4, the Project becomes a <code>references/</code> folder and the skill becomes a file in <code>skills/</code>.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s2-5">
+    <div class="step-head"><div class="num">5</div><div><h3>Four ICM ideas, in plain words</h3><span class="time">52–55 min</span></div></div>
+    <ul>
+      <li><b>One job per helper.</b> A helper that does one thing well beats one that does everything badly.</li>
+      <li><b>One home for every fact.</b> Your prices live in one place. Change them there, and everything uses the new price.</li>
+      <li><b>Check before you trust.</b> Every result gets a quick human look before it's used.</li>
+      <li><b>Structure first, AI last.</b> If a task fails, fix the information or the instructions before blaming the AI.</li>
+    </ul>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>Which task brings the most relief?</h3><p>One participant's task list, worked through together. Score each task by time per week and annoyance. Pick one to carry through the rest of the course, and answer the four outcome questions below together, as an example for everyone's homework.</p></div>
+
+  <div class="homework">
+    <div class="kicker">Homework · before 25 Nov</div>
+    <h3>Use it, improve it, and think about the outcome</h3>
+    <ul>
+      <li>Use your skill at least three times. Each time it gets something wrong, update the skill, not just the chat.</li>
+      <li>For your one chosen task, write short answers to:
+        <ol><li>Who is the result for?</li><li>What do they need to do next?</li><li>Where does the information come from?</li><li>What breaks now, and who feels it when it does?</li></ol></li>
+      <li><b>Get ready for next week:</b> confirm you have a paid Claude plan and your laptop with its charger. If you feel confident, install <b>VS Code</b> from code.visualstudio.com (free). If not, we'll do it together.</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#s1"><small>Back</small>← Session 1</a><a class="nx" href="#s3"><small>Next</small>Session 3 · Your toolkit →</a></div>
+</section>
+
+<!-- ===================== SESSION 3 ===================== -->
+<section class="page" id="s3" data-title="Session 3">
+  <div class="hero">
+    <div class="kicker">Session 3 · Wednesday 25 November</div>
+    <h1>Your toolkit</h1>
+    <p class="lead">Start from the outcome, then set up the three tools that let AI work inside your own folders: VS Code to see them, the terminal to give commands, and Claude Code to do the work.</p>
+    <div class="chips"><span class="chip gold">Layer 3 begins</span><span class="chip sage">Level 2: daily helper</span><span class="chip">Follows Foundations 2.1 + 1.4</span></div>
+  </div>
+  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has VS Code and Claude Code installed, a practice folder called <code>calm-ai</code>, and has safely asked Claude Code to create their first file.</div></div>
+
+  <div class="step" data-key="s3-1">
+    <div class="step-head"><div class="num">1</div><div><h3>Start from the outcome, not the tool</h3><span class="time">5–20 min</span></div></div>
+    <p>Before anyone opens a chat: what are you doing for people right now, and how would you do it by hand? Whatever you make, you're helping someone <b>decide or do something</b>. Go through everyone's four homework answers (who it's for, their next step, where the information comes from, what breaks and who feels it). Then split their task three ways, right there on screen:</p>
+    <div class="grid g3">
+      <div class="mini" style="border-color:rgba(124,196,255,.4)"><b style="color:var(--sky)">Structure</b><p class="muted">Which information must be ready and findable? (Usually the biggest part.)</p></div>
+      <div class="mini" style="border-color:rgba(127,227,180,.4)"><b style="color:var(--sage)">Code &amp; tools</b><p class="muted">Which steps never change? Calendar, spreadsheet, a filter, a script.</p></div>
+      <div class="mini" style="border-color:rgba(245,199,110,.4)"><b style="color:var(--gold)">AI</b><p class="muted">What needs judgment or your voice? Usually the smallest part.</p></div>
+    </div>
+    <div class="check">The aha: the AI's writing is rarely the hard part. Knowing the right information is.</div>
+    <div class="box sky"><h3>How you frame it shapes what you build</h3>Frame a job as "write my emails" and you build an email writer. Frame it as "my clients need clear answers about dates" and you might fix your calendar first, and need far fewer emails.</div>
+    <div class="box sage"><h3>Solve the problem first, smallest version</h3>Check what the app already does before building anything: a chat already reads spreadsheets, a Project already holds your files, a skill already remembers your corrections. Add the next piece only when you hit a real need: the files keep changing, it's the same steps every week, or someone else needs to use it.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s3-2">
+    <div class="step-head"><div class="num">2</div><div><h3>Pick your setup</h3><span class="time">20–23 min</span></div></div>
+    <table>
+      <tr><th>Setup</th><th>Good for</th></tr>
+      <tr><td><b>Claude in the browser or app</b></td><td>Chat, skills and projects (layers 1–2). What you've used so far.</td></tr>
+      <tr><td><b>Claude desktop app</b></td><td>Claude Code without typing commands: in the Code tab, choose Local and pick your folder. Needs a paid plan. A gentle option if the terminal feels like too much. Set the permission mode to the one that asks before every change.</td></tr>
+      <tr><td><b>VS Code + terminal + Claude Code</b></td><td>Layer 3. You see every folder and file, and watch exactly what the AI reads and changes. <b>This is what we'll use.</b></td></tr>
+    </table>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s3-3">
+    <div class="step-head"><div class="num">3</div><div><h3>Install VS Code and make your practice folder</h3><span class="time">23–32 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>VS Code is a free program for looking at folders and text files. Think of it as a window into your folder system: files on the left, the open file in the middle, and a terminal at the bottom.</p>
+    <span class="lbl do">Do</span>
+    <ol>
+      <li>Go to <b>code.visualstudio.com</b> and download VS Code for your computer.</li>
+      <li class="mac">Open the download and drag <b>Visual Studio Code</b> into your <b>Applications</b> folder. Open it from there.</li>
+      <li class="win">Run the installer. Tick <b>"Add to PATH"</b> and <b>"Add 'Open with Code' action"</b> when you see them.</li>
+      <li>In your <b>Documents</b> folder, create a new folder called <code>calm-ai</code>.</li>
+      <li>In VS Code: <b>File → Open Folder…</b> and choose <code>calm-ai</code>. If it asks whether you trust the folder, choose <b>Yes</b> (it's yours).</li>
+      <li>Open the terminal: <b>Terminal → New Terminal</b>. A panel appears at the bottom.</li>
+    </ol>
+    <div class="check">Done when you can see <code>CALM-AI</code> in the left sidebar and a terminal at the bottom.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s3-4">
+    <div class="step-head"><div class="num">4</div><div><h3>Six terminal words</h3><span class="time">32–40 min</span></div></div>
+    <p>The terminal is just a place to type instructions instead of clicking. You only need six words today. Type each one and press Enter.</p>
+    <table>
+      <tr><th>Type</th><th>It means</th></tr>
+      <tr><td><code>pwd</code></td><td>Where am I? (shows the folder you're in)</td></tr>
+      <tr><td><code>ls</code></td><td>What's in here?</td></tr>
+      <tr><td><code>mkdir notes</code></td><td>Make a new folder called notes</td></tr>
+      <tr><td><code>cd notes</code></td><td>Go into the notes folder</td></tr>
+      <tr><td><code>cd ..</code></td><td>Go back up one folder</td></tr>
+      <tr><td class="mac"><code>open .</code></td><td class="mac">Show this folder in Finder</td></tr>
+      <tr><td class="win"><code>explorer .</code></td><td class="win">Show this folder in File Explorer</td></tr>
+    </table>
+    <div class="check">Watch the new <code>notes</code> folder appear in VS Code's sidebar when you type <code>mkdir notes</code>. The terminal and the sidebar are two views of the same folder.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s3-5">
+    <div class="step-head"><div class="num">5</div><div><h3>Install Claude Code</h3><span class="time">40–48 min</span></div></div>
+    <p>Copy this into the VS Code terminal and press Enter. It downloads Claude Code and keeps it up to date by itself.</p>
+    <div class="prompt cmd mac" data-title="Install Claude Code (Mac)"><div class="ptitle">Mac · in the terminal</div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+    <div class="prompt cmd win" data-title="Install Claude Code (Windows)"><div class="ptitle">Windows · in PowerShell (VS Code's default terminal)</div><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+    <p class="win muted">Windows tip: also install <b>Git for Windows</b> from git-scm.com. Claude Code works better with it, and you'll need it for GitHub next week.</p>
+    <p>Then <b>close the terminal</b> (the bin icon), open a new one, and check it worked:</p>
+    <div class="prompt cmd" data-title="Check Claude Code is installed"><div class="ptitle">Check</div><pre>claude --version</pre></div>
+    <div class="box coral"><h3>If it says "command not found"</h3>Close VS Code completely and open it again. Still not working? Raise your hand; we'll fix it together. Never paste fixes from random websites, and never use <code>sudo</code>.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s3-6">
+    <div class="step-head"><div class="num">6</div><div><h3>First run, the safe way</h3><span class="time">48–55 min</span></div></div>
+    <p>Make sure the terminal is inside <code>calm-ai</code> (type <code>pwd</code> to check). Then start Claude Code:</p>
+    <div class="prompt cmd" data-title="Start Claude Code"><div class="ptitle">Start</div><pre>claude</pre></div>
+    <p>The first time, it opens your browser to log in with your paid Claude account. Then try:</p>
+    <div class="prompt" data-title="First request in Claude Code"><div class="ptitle">Type this to Claude Code</div><pre>Create a file called about-me.md in this folder with the text I paste below. Use clear markdown headings. Don't change my words.
+
+[paste your about-me summary from session 1]</pre></div>
+    <div class="box gold"><h3>Watch for the permission question</h3>Claude Code will ask before it creates the file. <b>Read what it wants to do</b>, then approve. This is the habit that keeps you safe: it asks, you read, you decide.</div>
+    <div class="box coral"><h3>If you see "auto mode" at the bottom</h3>Claude Code has modes. In auto mode it stops asking and just acts. Press <b>Shift+Tab</b> to cycle through the modes until "auto mode" no longer shows. If a permission question offers "Yes, and switch to auto mode", choose plain <b>Yes</b> instead.</div>
+    <div class="check">Done when <code>about-me.md</code> appears in the sidebar, and you've clicked it and read it. Type <code>/exit</code> to leave Claude Code.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>From a big vision to one findable place</h3><p>Take one participant's big project and the information that's scattered around it. On screen, list its parts and where each piece of information lives today. Sketch the folders that would hold it. Next week everyone builds their own version of exactly this.</p></div>
+
+  <div class="homework">
+    <div class="kicker">Homework · before 2 Dec</div>
+    <h3>Get comfortable with the tools</h3>
+    <ul>
+      <li>Open VS Code and Claude Code in <code>calm-ai</code> at least three times this week. Ask it small things: "What's in this folder?", "Make a folder called drafts", "Turn my skill from session 2 into a file called skills/[name].md".</li>
+      <li>Create a free account at <b>github.com</b>.</li>
+      <li>Install <b>GitHub Desktop</b> from desktop.github.com (the friendly way to use GitHub). <span class="win">On Windows, make sure Git for Windows is installed too.</span></li>
+      <li>Look at your three lists from session 1 again. Add anything missing.</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#s2"><small>Back</small>← Session 2</a><a class="nx" href="#s4"><small>Next</small>Session 4 · Your work, as folders →</a></div>
+</section>
+
+<!-- ===================== SESSION 4 ===================== -->
+<section class="page" id="s4" data-title="Session 4">
+  <div class="hero">
+    <div class="kicker">Session 4 · Wednesday 2 December</div>
+    <h1>Your work, as folders</h1>
+    <p class="lead">The heart of ICM. Your data, tasks and tools become a folder structure with a short map at the top, so one AI can find exactly what each job needs. Then GitHub gives you save points so nothing is ever lost.</p>
+    <div class="chips"><span class="chip gold">Layer 3 · Folders and one agent</span><span class="chip sky">Level 3 · first step</span><span class="chip">Follows Foundations 1.3 · 2.2 · 2.3</span></div>
+  </div>
+  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has a workspace folder with a map file and routing table, has run a real task through it, and has saved it to GitHub.</div></div>
+
+  <div class="step" data-key="s4-1">
+    <div class="step-head"><div class="num">1</div><div><h3>What an agent really is</h3><span class="time">15–20 min</span></div></div>
+    <p>An "agent" sounds mysterious. It isn't. It's the AI using tools (open a file, save a file, check something) in a loop until the job is done. What it reads decides how good the result is. So our job is to make sure it reads the <b>right</b> files, and only those.</p>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s4-2">
+    <div class="step-head"><div class="num">2</div><div><h3>Three parts: map, rooms, tools</h3><span class="time">20–25 min</span></div></div>
+    <div class="grid g3">
+      <div class="mini"><div class="n" style="color:var(--gold)">Map</div><p class="muted">One short file at the top (<code>CLAUDE.md</code>). What this folder is, where things go, and a table saying which files to read for each job.</p></div>
+      <div class="mini"><div class="n" style="color:var(--sky)">Rooms</div><p class="muted">One folder per kind of work, each with a short <code>CONTEXT.md</code> explaining how that work is done.</p></div>
+      <div class="mini"><div class="n" style="color:var(--sage)">Tools</div><p class="muted">Skills and small scripts, connected only to the rooms that need them.</p></div>
+    </div>
+    <p>A workspace can take different shapes, all built with the same ICM thinking:</p>
+    <div class="grid g3">
+      <div class="mini"><b style="color:var(--gold)">Stages</b><p class="muted">One step after another: ideas → draft → final. Good for anything you produce, like a newsletter or a video.</p></div>
+      <div class="mini"><b style="color:var(--sky)">Records</b><p class="muted">One folder per client, event or project. Good for replies, follow-ups and anything you track per person.</p></div>
+      <div class="mini"><b style="color:var(--sage)">Knowledge library</b><p class="muted">Your raw sources in one folder, and the pages the AI writes and links from them in another. Good for turning notes, documents and experience into one searchable body of knowledge.</p></div>
+    </div>
+    <p>Here's an example for a small wellness business that mixes records and stages. Yours will look different; the way of thinking stays the same.</p>
+<div class="tree"><span class="f">sunrise-studio/</span>
+  <span class="m">CLAUDE.md</span>              <span class="c">← the map: what's here, where things go, what to read</span>
+  <span class="f">_shared/</span>               <span class="c">← facts used everywhere (one home for every fact)</span>
+    about-me.md
+    offers-and-prices.md
+    voice.md
+  <span class="f">skills/</span>                <span class="c">← methods: how you do each kind of job</span>
+    weekly-newsletter.md
+    client-reply.md
+  <span class="f">01_inbox/</span>              <span class="c">← new stuff lands here, sorted weekly</span>
+  <span class="f">02_clients/</span>            <span class="c">← room: bookings, replies, follow-ups</span>
+    <span class="m">CONTEXT.md</span>
+  <span class="f">03_marketing/</span>          <span class="c">← room: newsletter, posts, events</span>
+    <span class="m">CONTEXT.md</span>
+    <span class="f">drafts/</span>  <span class="f">final/</span>
+  <span class="f">04_money/</span>              <span class="c">← room: budget, invoices, expenses</span>
+    <span class="m">CONTEXT.md</span>
+  <span class="f">scripts/</span>               <span class="c">← steps that never change (session 5)</span>
+  <span class="f">archive/</span>               <span class="c">← finished or old, out of the way</span></div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s4-3">
+    <div class="step-head"><div class="num">3</div><div><h3>Turn your data, tasks and tools into folders</h3><span class="time">25–35 min</span></div></div>
+    <p><b>First, list your jobs.</b> Write down the jobs that get you to the outcome you chose in session 3. For each one, note what it <b>reads</b> and what it <b>makes</b>. That short list is already most of your folder.</p>
+    <table>
+      <tr><th>Job</th><th>Reads</th><th>Makes</th></tr>
+      <tr><td>Reply to a client</td><td>their email, my prices, my voice</td><td>a draft reply</td></tr>
+      <tr><td>Monthly newsletter</td><td>this month's notes, upcoming events, my voice</td><td>a newsletter draft</td></tr>
+    </table>
+    <p><b>Then sort everything into four kinds:</b> <b>method</b> (how you do a job: skills), <b>facts</b> (clients, prices, sources), <b>work</b> (in progress) and <b>outputs</b> (finished). The method travels to the next client; the facts stay with this one. Bring out your three lists from session 1 and sort them like this:</p>
+    <table>
+      <tr><th>From your list</th><th>Becomes</th></tr>
+      <tr><td><b style="color:var(--sky)">Data</b> that stays the same</td><td>A file in <code>_shared/</code> (about you, prices, voice, FAQ)</td></tr>
+      <tr><td><b style="color:var(--sage)">Tasks</b>, grouped by kind</td><td>A room folder each (clients, marketing, money…)</td></tr>
+      <tr><td>How you do a task</td><td>A file in <code>skills/</code></td></tr>
+      <tr><td><b style="color:var(--gold)">Tools</b> you already use</td><td>A line in the room's CONTEXT.md: "the calendar handles bookings", "invoices go out from [app]"</td></tr>
+      <tr><td>Steps that never change</td><td>Later: a script in <code>scripts/</code></td></tr>
+    </table>
+    <div class="prompt" data-title="Design my workspace"><div class="ptitle">Type this to Claude Code, inside your workspace folder</div><pre>Help me design a folder structure for my work. Here are my three lists:
+
+DATA: [paste]
+TASKS: [paste]
+TOOLS: [paste]
+
+Rules:
+- One home for every fact: facts used everywhere go in _shared/
+- Methods go in skills/, one file per kind of job
+- One room folder per kind of work, numbered (01_, 02_...), each with a short CONTEXT.md
+- Keep work in progress (drafts/) apart from finished work (final/)
+- Add 01_inbox/ and archive/
+
+First show me the plan as a tree and wait for my OK. Don't create anything until I say yes.</pre></div>
+    <div class="check">Read the plan. Rename, merge or remove folders until it feels like <i>your</i> work. <b>Start with the smallest version that does today's job</b>, and add a folder only when the work actually asks for one. Only then say yes.</div>
+    <div class="box sky"><h3>A quick check on every file</h3>Each file should be either <b>instructions</b> (how to do something: the map, CONTEXT files, skills) or <b>information</b> (facts and work the AI reads and updates), or both. A file that's neither is the first one to question: move it to archive or delete it.</div>
+    <div class="box gold"><h3>Shortcut: the ICM Architect skill</h3>There's a free skill called ICM Architect that does a first draft for you: point Claude Code at a messy folder and say "make this an ICM". It looks at what's there, asks about your work and proposes a structure and a map. Always read the proposal and trim it: it may suggest rooms you don't need yet.</div>
+    <div class="box gold"><h3>Use a copy the first time</h3>If you're bringing in a folder of real work, make a copy and use that the first time. Nothing can go wrong with your originals while you're learning.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s4-4">
+    <div class="step-head"><div class="num">4</div><div><h3>Write the map and the routing table</h3><span class="time">35–45 min</span></div></div>
+    <p>The map is the most important file. It's like the floor plan by the front door of a building. The routing table inside it says, for each job: read these, skip those, use this skill.</p>
+    <div class="prompt" data-title="Example CLAUDE.md"><div class="ptitle">What a good map looks like</div><pre># Sunrise Studio · map
+
+## What this is
+My yoga and wellness studio: classes, retreats and a monthly newsletter.
+
+## Folders
+- _shared/  facts used everywhere (about me, prices, voice)
+- skills/   how I do each kind of job
+- 01_inbox/ new stuff, sorted every Friday
+- 02_clients/, 03_marketing/, 04_money/  one room per kind of work
+- archive/  old or finished work
+
+## Routing
+| Job            | Read                                          | Skip           | Use skill          | Save to                          |
+|----------------|-----------------------------------------------|----------------|--------------------|----------------------------------|
+| Client reply   | 02_clients/CONTEXT.md, that client's notes,   | other clients, | client-reply       | 02_clients/drafts/               |
+|                | _shared/voice.md                              | 04_money/      |                    | named date_client.md             |
+| Newsletter     | 03_marketing/CONTEXT.md, _shared/voice.md     | 02_clients/    | weekly-newsletter  | 03_marketing/drafts/             |
+| Monthly budget | 04_money/CONTEXT.md                           | 03_marketing/  | (script, session 5)| 04_money/                        |
+
+## Rules
+- Work only inside this folder.
+- Ask before moving, renaming or deleting anything.
+- New drafts go in drafts/. Never overwrite anything in final/.
+- No client personal details, passwords or bank numbers in any file.
+- Never send anything. I read and send every message myself.
+- If my notes don't confirm a fact (a date, a price), say so in the draft instead of guessing.
+- Name files: topic_stage.md (e.g. december-retreat_draft.md).</pre></div>
+    <div class="prompt" data-title="Draft my map"><div class="ptitle">Ask Claude Code to draft yours</div><pre>Now write CLAUDE.md for this workspace, following the structure we just made.
+Include: what this is (2 sentences), the folders, a routing table (job · read · skip · use skill) for my three most frequent jobs, and these rules: work only inside this folder; ask before moving, renaming or deleting; drafts go in drafts/; never overwrite final/; no client personal details, passwords or bank numbers.
+Then write a short CONTEXT.md in each room: what this room is for, the steps of the work, and which tools I already use for it.</pre></div>
+    <div class="check">Open CLAUDE.md and read every line. Fix it by hand in VS Code if needed. It's just text. Drafts it saves are just files too: open them, change a word, delete the one you don't like, send the good one yourself.</div>
+    <div class="box coral"><h3>The map is advice, not a lock</h3>The AI reads the map and usually follows it, but for anything that must <b>never</b> happen (sending an email, deleting files), don't rely on the map alone. Keep the permission questions on, so it has to ask you first.</div>
+    <div class="box coral"><h3>Keep the map short</h3>The most common mistake is a giant map with everything crammed in. That puts the whole drawer back on the desk, and the AI gets lost again. A good map fits on one screen: what's here, where things go, naming rules, and the routing table. Details belong in the rooms' CONTEXT files.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s4-5">
+    <div class="step-head"><div class="num">5</div><div><h3>Test the routing: one model, different jobs</h3><span class="time">45–52 min</span></div></div>
+    <p>When people say they need "a writing agent, a research agent and an email agent", what they usually need is the instructions for each job written down, and a map that sends each request to the right ones. A name on the door adds no instructions and no access. The role comes from what it reads.</p>
+    <p>Same AI, different room, different job. Start a <b>new session</b> (type <code>/exit</code>, then <code>claude</code> again) so it begins fresh from the map. Give it a short real request and then ask what it read.</p>
+    <div class="prompt" data-title="Test the routing"><div class="ptitle">Try it</div><pre>[A short real request, e.g. "Draft a reply to this client question: ..."]
+
+When you're done, list every file you read and why. Save the draft in the right drafts/ folder.</pre></div>
+    <div class="check">If it opened the right few files and skipped the rest, your routing works. If it wandered around reading everything, that row in the map is too vague: tighten it and try again. Nobody gets it right the first time. And always <b>fix the map, not the chat</b>: that fix works forever; a chat correction is gone next time.</div>
+    <div class="prompt" data-title="Two jobs back to back"><div class="ptitle">Then try two different jobs back to back</div><pre>[First job, e.g. "Draft a reply to this client email: ..."]
+List the files you read.
+
+[Second job, e.g. "Make me a table of everything I have planned this month"]
+List the files you read.</pre></div>
+    <div class="box sky"><h3>Not every job is the AI's</h3>The AI reads the situation and decides; tools do the doing. Your calendar sends reminders, a script makes the table, your mail program sends the email. In session 5 you turn one of your own steps into a tool.</div>
+    <div class="box gold"><h3>When is a second agent worth it?</h3>Rarely, at first. Only when there's lots of independent work that can run at the same time (researching ten venues at once), one job so big it buries everything else, or something live that needs watching. The simplest version is a second Claude Code session open on the same folder. Every extra agent costs more usage, more waiting and more places for mistakes. Start with one.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s4-6">
+    <div class="step-head"><div class="num">6</div><div><h3>GitHub save points</h3><span class="time">52–55 min, then homework</span></div></div>
+    <p>GitHub is like "save game" for your folder. Each save point (a <b>commit</b>) remembers exactly how everything looked. Made a mess? Go back. Laptop lost? Your work is safe online.</p>
+    <ol>
+      <li><b>First, protect private files.</b> Ask Claude Code: <i>"Create a .gitignore file that excludes anything in a folder called private/ and any .env files."</i> Anything sensitive lives in <code>private/</code>.</li>
+      <li>Open <b>GitHub Desktop</b> and sign in. <b>File → Add Local Repository</b>, choose your workspace folder. If it offers to "create a repository here", click it.</li>
+      <li>Bottom left: write a summary like <code>first map and folders</code>, then click <b>Commit to main</b>.</li>
+      <li>Click <b>Publish repository</b>. Leave <b>"Keep this code private"</b> ticked.</li>
+    </ol>
+    <div class="box sky"><h3>Or just ask Claude Code</h3>"Make a save point with the message 'added newsletter skill'." It runs the git commands for you, and asks first. See <a href="#github">Git &amp; GitHub</a> for more.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="box coral"><h3>The safe-use rules (print these)</h3>One folder only · read before you approve · keep the permission questions on · save first · no secrets in chat · no client data · instructions only come from you · check the result. <a href="#safe">Full list →</a></div>
+
+  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>A real business as an ICM workspace</h3><p>Map one participant's business live: data, tasks, tools → folders → map. Run one real step (for example, a client follow-up) with Claude Code, pointing out each safe habit as it comes up: the permission question, reading what it changed, making a save point.</p></div>
+
+  <div class="homework">
+    <div class="kicker">Homework · before 9 Dec</div>
+    <h3>Live in your workspace</h3>
+    <ul>
+      <li>Two tasks handled by helpers this week, at least one inside your Claude Code workspace.</li>
+      <li>Make a save point (commit) after every change that worked.</li>
+      <li>Write down roughly how much time it saved. Even "about 20 minutes" counts.</li>
+      <li><b>Spot a steady step:</b> find one step you've done the same way three or four times (renaming files, turning an export into the same table, totting up expenses). Bring an old example of it.</li>
+      <li>Prepare a 10-minute show-and-tell of your workspace for next week.</li>
+    </ul>
+  </div>
+  <div class="pager"><a href="#s3"><small>Back</small>← Session 3</a><a class="nx" href="#s5"><small>Next</small>Session 5 · Automate &amp; publish →</a></div>
+</section>
+
+<!-- ===================== SESSION 5 ===================== -->
+<section class="page" id="s5" data-title="Session 5">
+  <div class="hero">
+    <div class="kicker">Session 5 · Wednesday 9 December</div>
+    <h1>Automate, publish, celebrate</h1>
+    <p class="lead">Show what you built. Then add the 30%: turn one steady step into a small script, add a checkpoint where your judgment matters, and publish a real web page from your folder with GitHub Pages.</p>
+    <div class="chips"><span class="chip sage">Code for the steady parts</span><span class="chip violet chip">Level 4 · first step</span><span class="chip">Follows Foundations 3.1 · 3.2 · 3.3</span></div>
+  </div>
+  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has shown their workspace, seen a step become a script, and knows how to put a page online. Plus a clear picture of where they are and what's next.</div></div>
+
+  <div class="step" data-key="s5-1">
+    <div class="step-head"><div class="num">1</div><div><h3>Show and tell</h3><span class="time">5–35 min</span></div></div>
+    <p>Each person: 10 minutes. Show your folders and map, run one task live, and share the time you saved. Everyone else: one thing you liked, one question.</p>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s5-2">
+    <div class="step-head"><div class="num">2</div><div><h3>Stages you can step into</h3><span class="time">35–42 min</span></div></div>
+    <p>Bigger jobs work better in stages, each with a clear output, and a stop where your judgment counts. The AI does the stage, then waits for you.</p>
+<div class="tree"><span class="f">03_marketing/newsletter/</span>
+  <span class="f">01_ideas/</span>     <span class="c">→ AI lists 5 topic ideas from this month's notes</span>
+  <span class="s">   ✋ you pick one</span>
+  <span class="f">02_draft/</span>     <span class="c">→ AI drafts with the newsletter skill</span>
+  <span class="s">   ✋ you edit and approve</span>
+  <span class="f">03_final/</span>     <span class="c">→ ready to paste into your mail program</span></div>
+    <div class="prompt" data-title="Add a checkpoint to a room"><div class="ptitle">Add to a room's CONTEXT.md</div><pre>Add stages to 03_marketing/CONTEXT.md: 01_ideas, 02_draft, 03_final.
+After each stage, stop, show me the result and wait for my OK before starting the next one.</pre></div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s5-3">
+    <div class="step-head"><div class="num">3</div><div><h3>Turn a steady step into code</h3><span class="time">42–55 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>If the same input should always give the same output (totalling expenses, renaming files, building the same weekly table), that's a job for a small script, not for AI. A script does it identically on the hundredth run. You don't need to read code: Claude Code writes it, runs it, and explains it line by line if you ask.</p>
+    <span class="lbl do">Do (with the practice file first)</span>
+    <div class="prompt" data-title="Make a script"><div class="ptitle">Ask Claude Code</div><pre>Write a small script that turns this expenses export (CSV) into a monthly table: total per category, and the grand total.
+Put it in scripts/, run it on the file in 04_money/sample-expenses.csv, and show me the result.
+Then add a line to CLAUDE.md: "For the monthly budget table, run the script in scripts/ on the newest export in 04_money/."</pre></div>
+    <ol>
+      <li><b>Test it against something you already did by hand.</b> Do the numbers match? A wrong script is wrong the same way every time, so check it properly once.</li>
+      <li>Next month you only say: <i>"Make this month's budget table."</i></li>
+      <li>Make a save point.</li>
+    </ol>
+    <div class="box sage"><h3>Two tips</h3>You don't have to plan every automation up front. Keep doing the work by hand and automate one piece at a time; the work shows you the next one. And whenever a tool offers an export (a CSV, a report download), use that instead of having the AI click around a website.</div>
+    <div class="box coral"><h3>Real money files</h3>Use the sample file in class. Before using real exports, remove account numbers and anything that identifies other people. You decide what goes in.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s5-4">
+    <div class="step-head"><div class="num">4</div><div><h3>Publish a page with GitHub Pages</h3><span class="time">55–68 min</span></div></div>
+    <p>Anything Claude Code builds as a web page (an event page, a price list, a little guide for clients) can go online for free from a GitHub repository.</p>
+    <div class="prompt" data-title="Build a web page"><div class="ptitle">1 · Ask Claude Code, in a new folder called my-page</div><pre>Build a single web page called index.html for [my workshop on ...].
+Use the facts in [file], my tone from voice.md, a calm dark design, and make it look good on a phone.
+Open it in my browser so I can see it.</pre></div>
+    <ol>
+      <li>Read the page carefully. Ask for changes until you're happy.</li>
+      <li>In <b>GitHub Desktop</b>: add the <code>my-page</code> folder, commit, then <b>Publish repository</b> with <b>"Keep this code private" unticked</b>.</li>
+      <li>On github.com, open the repository → <b>Settings</b> → <b>Pages</b>. Under "Build and deployment", choose <b>Deploy from a branch</b>, branch <b>main</b>, folder <b>/ (root)</b>, then <b>Save</b>.</li>
+      <li>Wait a minute or two, refresh, and your link appears: <code>yourname.github.io/my-page</code>.</li>
+      <li>Every new commit you publish updates the page.</li>
+    </ol>
+    <div class="box coral"><h3>Public means public</h3>A free GitHub Pages site comes from a public repository. Everything in that folder can be seen by anyone. Keep pages in their own folder, separate from your private workspace.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s5-5">
+    <div class="step-head"><div class="num">5</div><div><h3>Keep it useful, and hand it on</h3><span class="time">68–75 min</span></div></div>
+    <span class="lbl ex">Explain</span>
+    <p>AI makes it easy to produce lots of stuff: drafts, versions, notes about notes. A folder that feels great in week one can be a swamp by week six, where the AI finds three different prices and picks the old one. Three checks keep it healthy.</p>
+    <ul>
+      <li><b>The fresh-session test:</b> start a brand new Claude Code session and ask "What is this folder, what's in progress, and what's next?" If it gets that wrong, your map is out of date. Better to find out now than from a confused client.</li>
+      <li><b>One home for every fact:</b> prices in three files will drift apart. Keep each fact in one place and point to it. When your way of working changes, fix the skill file, and every job that uses it picks up the change.</li>
+      <li><b>Clear stuff out:</b> retired work goes in <code>archive/</code>, and the map says "never read it". Delete generated drafts nobody will use; they're quick to make again. Never touch your originals, your sources, or anything that belongs to someone else.</li>
+    </ul>
+    <div class="prompt" data-title="Fresh-session test"><div class="ptitle">The fresh-session test · in a brand new session</div><pre>What is this folder, what's in progress right now, and what should I do next? Answer only from the files here.</pre></div>
+    <div class="prompt" data-title="Monthly tidy-up"><div class="ptitle">Monthly tidy-up</div><pre>Review this workspace against CLAUDE.md. List: files in the wrong place, facts that appear in more than one file, finished work that could move to archive/, generated drafts nobody uses, and anything in the map that's out of date.
+Don't change anything yet; show me the list first.</pre></div>
+    <span class="lbl do">Hand it on</span>
+    <p>The map that tells the AI where everything is tells a new person the same thing. To share: zip a copy (great for templates), or work together in one shared place like a synced drive or a GitHub repo. Who may open it is a permissions choice you make; the folder doesn't decide that for you.</p>
+    <div class="check"><b>The real test:</b> if the AI disappeared tomorrow, could you still find your way around these files and do the work? If yes, you've built a good structure.</div>
+    <div class="box sky"><h3>Why folders last</h3>Files and folders have survived every big change in computing for over fifty years. AI models will keep changing; next year another one may be better. What stays yours is your files, your knowledge and your structure. Point the new model at the same folder, maybe rename the map file, and carry on.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="step" data-key="s5-6">
+    <div class="step-head"><div class="num">6</div><div><h3>Where are you now, and what's next?</h3><span class="time">75–90 min</span></div></div>
+    <ul>
+      <li>Look back at the <a href="#start">four levels</a>. Where is each person now?</li>
+      <li>Feedback form, the short testimonial, and two introductions each.</li>
+      <li>The next step: the weekly group and one-on-one packs (see <a href="#after">After the pilot</a>).</li>
+    </ul>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+  <div class="pager"><a href="#s4"><small>Back</small>← Session 4</a><a class="nx" href="#terminal"><small>Toolkit</small>Terminal cheat sheet →</a></div>
+</section>
+
+<!-- ===================== TERMINAL ===================== -->
+<section class="page" id="terminal" data-title="Terminal">
+  <div class="hero"><div class="kicker">Toolkit</div><h1>Terminal cheat sheet</h1><p class="lead">You'll rarely need more than this. And you can always ask Claude Code: "What does this command do?"</p></div>
+  <div class="card">
+    <table>
+      <tr><th>Type</th><th>Meaning</th></tr>
+      <tr><td><code>pwd</code></td><td>Where am I?</td></tr>
+      <tr><td><code>ls</code></td><td>What's in this folder?</td></tr>
+      <tr><td><code>cd foldername</code></td><td>Go into a folder</td></tr>
+      <tr><td><code>cd ..</code></td><td>Go up one folder</td></tr>
+      <tr><td><code>cd ~/Documents/calm-ai</code></td><td>Go straight to your practice folder</td></tr>
+      <tr><td><code>mkdir name</code></td><td>Make a new folder</td></tr>
+      <tr class="mac"><td><code>open .</code></td><td>Show this folder in Finder</td></tr>
+      <tr class="win"><td><code>explorer .</code></td><td>Show this folder in File Explorer</td></tr>
+      <tr><td><code>code .</code></td><td>Open this folder in VS Code</td></tr>
+      <tr><td><code>claude</code></td><td>Start Claude Code in this folder</td></tr>
+      <tr><td><code>/exit</code></td><td>Leave Claude Code (inside Claude Code)</td></tr>
+      <tr><td><code>clear</code></td><td>Clean up the screen</td></tr>
+      <tr><td>↑ arrow key</td><td>Bring back your last command</td></tr>
+      <tr><td><b>Tab</b> key</td><td>Finish a folder name for you</td></tr>
+      <tr class="mac"><td><b>Control + C</b></td><td>Stop whatever is running</td></tr>
+      <tr class="win"><td><b>Ctrl + C</b></td><td>Stop whatever is running</td></tr>
+    </table>
+  </div>
+  <div class="box gold"><h3>Always start in the right folder</h3>Type <code>pwd</code> before <code>claude</code>. You should see your work folder, never just your home folder.</div>
+  <div class="pager"><a href="#s5"><small>Back</small>← Session 5</a><a class="nx" href="#github"><small>Next</small>Git &amp; GitHub →</a></div>
+</section>
+
+<!-- ===================== GITHUB ===================== -->
+<section class="page" id="github" data-title="Git & GitHub">
+  <div class="hero"><div class="kicker">Toolkit</div><h1>Git &amp; GitHub, in plain words</h1><p class="lead">Git keeps save points of your folder on your computer. GitHub keeps a copy online. GitHub Desktop lets you do both with buttons.</p></div>
+  <div class="card">
+    <table>
+      <tr><th>Word</th><th>Means</th><th>In GitHub Desktop</th></tr>
+      <tr><td><b>Repository</b> (repo)</td><td>A folder that Git keeps track of</td><td>File → Add Local Repository</td></tr>
+      <tr><td><b>Commit</b></td><td>A save point with a short note</td><td>Write a summary → Commit to main</td></tr>
+      <tr><td><b>Push</b></td><td>Send your save points to GitHub</td><td>Push origin (top bar)</td></tr>
+      <tr><td><b>Pull</b></td><td>Get the latest from GitHub</td><td>Fetch / Pull origin</td></tr>
+      <tr><td><b>History</b></td><td>All your save points</td><td>History tab</td></tr>
+      <tr><td><b>Revert</b></td><td>Undo a save point</td><td>History → right-click → Revert</td></tr>
+      <tr><td><b>.gitignore</b></td><td>A list of files Git must never save</td><td>(a text file in your folder)</td></tr>
+    </table>
+  </div>
+  <h2>Or ask Claude Code in plain English</h2>
+  <div class="prompt" data-title="Git: save point"><div class="ptitle">Save point</div><pre>Make a save point with the message "added newsletter skill".</pre></div>
+  <div class="prompt" data-title="Git: what changed"><div class="ptitle">What changed?</div><pre>What has changed since my last save point? Explain it in plain words.</pre></div>
+  <div class="prompt" data-title="Git: undo"><div class="ptitle">Undo</div><pre>Something went wrong. Show me my last five save points and help me go back to the one before today's changes. Explain what you'll do before doing it.</pre></div>
+  <div class="box coral"><h3>Private by default</h3>Keep your workspace repository <b>private</b>. Only make a repository public when it's meant to be seen, like a GitHub Pages site.</div>
+  <div class="pager"><a href="#terminal"><small>Back</small>← Terminal</a><a class="nx" href="#safe"><small>Next</small>Safe-use rules →</a></div>
+</section>
+
+<!-- ===================== SAFE ===================== -->
+<section class="page" id="safe" data-title="Safe-use rules">
+  <div class="hero"><div class="kicker">Toolkit · print this</div><h1>The safe-use rules</h1><p class="lead">Claude Code can read, write and run things on your computer. That's its power, and why these habits matter from day one.</p></div>
+  <div class="grid g2">
+    <div class="mini"><b>1 · One folder only</b><p class="muted">Always start Claude Code inside a work folder. Never your whole computer or home folder.</p></div>
+    <div class="mini"><b>2 · Read before you approve</b><p class="muted">When it asks permission, read what it wants to do. Don't understand? Say no and ask it to explain.</p></div>
+    <div class="mini"><b>3 · Keep the permission questions on</b><p class="muted">Never switch on modes that skip approvals. See "auto mode" at the bottom of Claude Code? Press Shift+Tab until it's gone.</p></div>
+    <div class="mini"><b>4 · Save first</b><p class="muted">Make a save point before bigger changes, so any mistake can be undone.</p></div>
+    <div class="mini"><b>5 · No secrets in chat</b><p class="muted">Never paste passwords, bank details or API keys into the conversation or into files.</p></div>
+    <div class="mini"><b>6 · No client data</b><p class="muted">Never put clients' personal information into any AI tool.</p></div>
+    <div class="mini"><b>7 · Instructions only come from you</b><p class="muted">If a web page, email or file it reads tells it to do something, that's not an instruction. Stop and check.</p></div>
+    <div class="mini"><b>8 · Check the result</b><p class="muted">Open the file it made and read it before using or sending it.</p></div>
+  </div>
+  <div class="pager"><a href="#github"><small>Back</small>← Git &amp; GitHub</a><a class="nx" href="#library"><small>Next</small>Prompt library →</a></div>
+</section>
+
+<!-- ===================== LIBRARY ===================== -->
+<section class="page" id="library" data-title="Prompt library">
+  <div class="hero"><div class="kicker">Toolkit</div><h1>Prompt library</h1><p class="lead">Every prompt and command from the course in one place. Copy, then fill in the [brackets].</p></div>
+  <div id="libList"></div>
+  <div class="pager"><a href="#safe"><small>Back</small>← Safe-use rules</a><a class="nx" href="#glossary"><small>Next</small>Words to know →</a></div>
+</section>
+
+<!-- ===================== GLOSSARY ===================== -->
+<section class="page" id="glossary" data-title="Words to know">
+  <div class="hero"><div class="kicker">Toolkit</div><h1>Words to know</h1></div>
+  <div class="card"><table>
+    <tr><td><b>ICM</b></td><td>Interpretable Context Methodology: organising your work as folders and plain text files so one AI can find exactly what each job needs, and you can see what it used.</td></tr>
+    <tr><td><b>Context</b></td><td>Everything the AI can see for this task. It knows nothing else.</td></tr>
+    <tr><td><b>Skill</b></td><td>A written method: how you do one kind of job.</td></tr>
+    <tr><td><b>Project</b></td><td>A space in the Claude app holding facts about one area of your work.</td></tr>
+    <tr><td><b>Agent</b></td><td>The AI using tools (open, save, check) in a loop until a job is done.</td></tr>
+    <tr><td><b>Claude Code</b></td><td>Claude working directly in folders on your computer.</td></tr>
+    <tr><td><b>Map (CLAUDE.md)</b></td><td>The short file at the top of a workspace: what's here, where things go, what to read for each job.</td></tr>
+    <tr><td><b>Room (CONTEXT.md)</b></td><td>A folder for one kind of work, with a file explaining how it's done.</td></tr>
+    <tr><td><b>Routing table</b></td><td>The table in the map: for this job, read these files, skip those, use this skill.</td></tr>
+    <tr><td><b>Markdown (.md)</b></td><td>Plain text with a few symbols: # for headings, - for bullets, ** for bold.</td></tr>
+    <tr><td><b>Terminal</b></td><td>A place to type instructions to your computer.</td></tr>
+    <tr><td><b>VS Code</b></td><td>A free program to see and edit folders and text files.</td></tr>
+    <tr><td><b>Script</b></td><td>A small program that does a fixed step the same way every time.</td></tr>
+    <tr><td><b>Git / GitHub</b></td><td>Save points for your folder / an online home for them.</td></tr>
+    <tr><td><b>GitHub Pages</b></td><td>Free web hosting for pages kept in a public GitHub repository.</td></tr>
+  </table></div>
+  <div class="pager"><a href="#library"><small>Back</small>← Prompt library</a><a class="nx" href="#after"><small>Next</small>After the pilot →</a></div>
+</section>
+
+<!-- ===================== AFTER ===================== -->
+<section class="page" id="after" data-title="After the pilot">
+  <div class="hero"><div class="kicker">Beyond the five sessions</div><h1>After the pilot</h1><p class="lead">The pilot gets you to a working daily helper and a first real workspace. Here's where it goes next.</p></div>
+  <div class="grid g2">
+    <div class="mini"><b style="color:var(--gold)">Weekly group (levels 3–4)</b><p class="muted">One AI doing many jobs from one folder; stages with checkpoints; "ask first" and plan modes; more scripts for steady steps; scheduled tasks that run on their own; keeping the system tidy; handing it on; when more than one agent is worth it; and a full knowledge graph of your own expertise.</p></div>
+    <div class="mini"><b style="color:var(--sky)">One-on-one</b><p class="muted">Prepaid hour packs to build your own system together, at your pace.</p></div>
+  </div>
+  <div class="box sky"><h3>Scheduled tasks, a preview</h3>The Claude desktop app can run a task on a schedule (say, every Monday morning: "make this week's table and tidy the inbox"). Tasks that work on files on your computer need the app open and the computer awake. Menus change often, so we'll set this up together with the current version.</div>
+  <div class="foot">Method: Interpretable Context Methodology (ICM) by Jake Van Clief and McDermott, open under the MIT licence. Course structure inspired by the Clief Notes Foundations course; written for this pilot in our own words.</div>
+  <div class="pager"><a href="#glossary"><small>Back</small>← Words to know</a><a class="nx" href="#start"><small>Back to</small>Start here ↺</a></div>
+</section>
+
+</div></main>
+
+<script>
+(function(){
+  var store = {
+    get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  };
+  var KEY='calm-ai-course-v1';
+  var state=store.get(KEY,{done:{},os:'mac',coach:false});
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var navLinks=[].slice.call(document.querySelectorAll('#nav a'));
+
+  /* OS + coach toggles */
+  function applyOS(){document.body.classList.toggle('os-mac',state.os==='mac');document.body.classList.toggle('os-win',state.os==='win');
+    [].forEach.call(document.querySelectorAll('#osSeg button'),function(b){b.classList.toggle('on',b.dataset.os===state.os);});}
+  function applyCoach(){}
+  document.getElementById('osSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;state.os=b.dataset.os;store.set(KEY,state);applyOS();});
+
+
+  /* routing */
+  function show(){
+    var id=(location.hash||'#start').slice(1);
+    var target=document.getElementById(id);
+    if(!target||!target.classList.contains('page')){id='start';target=document.getElementById('start');}
+
+    pages.forEach(function(p){p.classList.toggle('on',p===target);});
+    navLinks.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});
+    document.body.classList.remove('menu');
+    window.scrollTo(0,0);
+    document.title=(target.dataset.title||'Calm AI')+' · Calm AI Course';
+  }
+  window.addEventListener('hashchange',show);
+
+  /* steps */
+  var steps=[].slice.call(document.querySelectorAll('.step[data-key]'));
+  function paintStep(s){var d=!!state.done[s.dataset.key];s.classList.toggle('done',d);var b=s.querySelector('.donebtn');if(b)b.textContent=d?'✓ Done':'○ Mark step done';}
+  function progress(){
+    var n=steps.filter(function(s){return state.done[s.dataset.key];}).length;
+    var pct=steps.length?Math.round(n/steps.length*100):0;
+    document.getElementById('progTxt').textContent=pct+'% · '+n+'/'+steps.length+' steps';
+    document.getElementById('progBar').style.width=pct+'%';
+    document.getElementById('topProg').textContent=pct+'%';
+    ['s1','s2','s3','s4','s5'].forEach(function(sid){
+      var ss=steps.filter(function(s){return s.dataset.key.indexOf(sid+'-')===0;});
+      var all=ss.length&&ss.every(function(s){return state.done[s.dataset.key];});
+      var a=document.querySelector('#nav a[href="#'+sid+'"]');if(a)a.classList.toggle('complete',!!all);
+    });
+  }
+  steps.forEach(function(s){paintStep(s);var b=s.querySelector('.donebtn');if(b)b.addEventListener('click',function(){var k=s.dataset.key;if(state.done[k])delete state.done[k];else state.done[k]=true;store.set(KEY,state);paintStep(s);progress();});});
+
+  /* copy buttons */
+  function addCopy(box){
+    var pre=box.querySelector('pre');if(!pre)return;
+    if(!box.querySelector('.ptitle'))box.classList.add('notitle');
+    var btn=document.createElement('button');btn.type='button';btn.className='copy';btn.textContent='Copy';
+    btn.addEventListener('click',function(){
+      var txt=pre.textContent;
+      var ok=function(){btn.textContent='Copied ✓';btn.classList.add('ok');setTimeout(function(){btn.textContent='Copy';btn.classList.remove('ok');},1600);};
+      var fb=function(){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(t);};
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(ok,fb);}else fb();
+    });
+    box.appendChild(btn);
+  }
+
+  /* prompt library */
+  var lib=document.getElementById('libList');
+  pages.forEach(function(p){
+    if(p.id==='library')return;
+    var ps=[].slice.call(p.querySelectorAll('.prompt'));if(!ps.length)return;
+    var h=document.createElement('h2');h.textContent=p.dataset.title;lib.appendChild(h);
+    ps.forEach(function(orig){var c=orig.cloneNode(true);var t=c.querySelector('.ptitle');if(t)t.textContent=orig.dataset.title||t.textContent;lib.appendChild(c);});
+  });
+  [].forEach.call(document.querySelectorAll('.prompt'),addCopy);
+
+  /* mobile menu */
+  document.getElementById('menuBtn').addEventListener('click',function(e){e.stopPropagation();document.body.classList.toggle('menu');});
+  document.querySelector('.main').addEventListener('click',function(){document.body.classList.remove('menu');});
+
+  /* keyboard: arrows move between pages */
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest('input,textarea'))return;
+    var cur=document.querySelector('.page.on');if(!cur)return;
+    var pager=cur.querySelector('.pager');if(!pager)return;
+    if(e.key==='ArrowRight'){var n=pager.querySelector('.nx');if(n)location.hash=n.getAttribute('href');}
+    if(e.key==='ArrowLeft'){var a=pager.querySelector('a:not(.nx)');if(a)location.hash=a.getAttribute('href');}
+  });
+
+  applyOS();applyCoach();progress();show();
+})();
+</script>
+</body>
+</html>
