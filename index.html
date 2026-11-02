@@ -199,6 +199,16 @@ td code{white-space:nowrap}
   .side,.topbar,.donebtn,.copy,.pager{display:none!important}
   .main{margin:0} body{background:#fff;color:#111} .page{display:block!important} .coachnote{display:none!important}
 }
+
+/* week-by-week locks */
+.lockcard{text-align:center;background:var(--panel);border:1px solid var(--line2);border-radius:20px;padding:34px 22px;margin:26px 0}
+.lockic{font-size:2.2rem;line-height:1;margin-bottom:10px}
+.lockform{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.lockform input{background:#070a0f;border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:11px 14px;font:inherit;min-width:220px}
+.lockform input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.lockform button{background:var(--gold);color:#0a0c11;border:0;border-radius:12px;padding:11px 20px;font:700 .95rem var(--sans);cursor:pointer}
+.lockmsg{min-height:1.4em;color:var(--coral);font-size:.92rem;margin-top:10px}
+.nav a.locked{opacity:.6}
 </style>
 </head>
 <body class="os-mac">
@@ -407,92 +417,7 @@ Finally, mark the three tasks that cost me the most time or energy.</pre></div>
     <p class="lead">Stop retyping the same corrections. Turn them into a saved instruction the AI uses by itself, and learn the difference between facts and methods.</p>
     <div class="chips"><span class="chip sage">Layer 2 · Skills &amp; Projects</span><span class="chip gold">Level 1: first win</span><span class="chip">Follows Foundations 1.2</span></div>
   </div>
-  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has one working skill built from their own corrections, tested in a fresh conversation, and a Project holding the facts about one area of their work.</div></div>
-
-  <div class="step" data-key="s2-1">
-    <div class="step-head"><div class="num">1</div><div><h3>Check-in: what did your corrections teach you?</h3><span class="time">5–15 min</span></div></div>
-    <p>Everyone reads two of their corrections aloud. Listen for the pattern: most corrections are about <b>tone</b>, <b>length</b>, <b>facts it didn't have</b>, or <b>format</b>.</p>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s2-2">
-    <div class="step-head"><div class="num">2</div><div><h3>The four parts of a good request</h3><span class="time">15–22 min</span></div></div>
-    <div class="grid g2">
-      <div class="mini"><b>1 · Who you are</b><p class="muted">Your work, your audience, your tone.</p></div>
-      <div class="mini"><b>2 · What you need</b><p class="muted">The task, and what the reader should do next.</p></div>
-      <div class="mini"><b>3 · An example of good</b><p class="muted">Paste something you wrote that you're proud of.</p></div>
-      <div class="mini"><b>4 · How to check it</b><p class="muted">Length, must-include, must-avoid.</p></div>
-    </div>
-    <div class="prompt" data-title="Four-part request template"><div class="ptitle">Template</div><pre>WHO I AM: [your work, who you serve, your tone]
-WHAT I NEED: [the task] so that [what the reader does next]
-EXAMPLE OF GOOD: [paste an example you like]
-CHECK: [max length] · must include [...] · never [...]</pre></div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s2-3">
-    <div class="step-head"><div class="num">3</div><div><h3>Build your first skill</h3><span class="time">22–45 min</span></div></div>
-    <span class="lbl ex">Explain</span>
-    <p>A skill is a short written instruction, like a note for a new colleague: "Here's how I do this kind of job." Claude picks it up whenever that job comes up. A skill holds the <b>method</b>, never the facts about one client, so it keeps working for the next one.</p>
-    <span class="lbl do">Do</span>
-    <div class="prompt" data-title="Turn corrections into a skill"><div class="ptitle">Turn your corrections into a skill</div><pre>I want to turn my corrections into a reusable skill for this task: [task name].
-Here are my corrections and rules:
-[paste your list]
-
-Write a skill file with:
-- a name (short, lowercase, with dashes)
-- a one-sentence description of when to use it
-- the steps, in order
-- the rules (always / never)
-- one short example of a good result
-Keep it under one page. Use only what I gave you; ask me if something is missing.</pre></div>
-    <ol>
-      <li><b>Read it slowly.</b> Fix anything it got wrong or invented.</li>
-      <li>Save it as a skill in your Claude app's skills settings (I'll show you where on screen).</li>
-      <li><b>Test it in a brand new conversation</b> with a real request. Did it follow your rules without you repeating them?</li>
-    </ol>
-    <div class="check">Done when a fresh conversation produces a result you'd send with only small edits.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s2-4">
-    <div class="step-head"><div class="num">4</div><div><h3>Projects hold facts, skills hold methods</h3><span class="time">45–52 min</span></div></div>
-    <table>
-      <tr><th></th><th>Skill</th><th>Project</th></tr>
-      <tr><td><b>Holds</b></td><td><i>How</i> you do a kind of job</td><td>The <i>facts</i> about one area</td></tr>
-      <tr><td><b>Example</b></td><td>"How I write a newsletter"</td><td>"Everything about my retreat business"</td></tr>
-      <tr><td><b>Works</b></td><td>Everywhere</td><td>Inside that project</td></tr>
-    </table>
-    <span class="lbl do">Do</span>
-    <p>Create one Project for one area of your work. Upload what stays the same: your about-me summary, offers, prices, tone, frequent questions.</p>
-    <div class="box sky"><h3>This is ICM thinking already</h3>Keeping facts apart from methods is the first rule of the folder system you'll build. In session 4, the Project becomes a <code>references/</code> folder and the skill becomes a file in <code>skills/</code>.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s2-5">
-    <div class="step-head"><div class="num">5</div><div><h3>Four ICM ideas, in plain words</h3><span class="time">52–55 min</span></div></div>
-    <ul>
-      <li><b>One job per helper.</b> A helper that does one thing well beats one that does everything badly.</li>
-      <li><b>One home for every fact.</b> Your prices live in one place. Change them there, and everything uses the new price.</li>
-      <li><b>Check before you trust.</b> Every result gets a quick human look before it's used.</li>
-      <li><b>Structure first, AI last.</b> If a task fails, fix the information or the instructions before blaming the AI.</li>
-    </ul>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>Which task brings the most relief?</h3><p>One participant's task list, worked through together. Score each task by time per week and annoyance. Pick one to carry through the rest of the course, and answer the four outcome questions below together, as an example for everyone's homework.</p></div>
-
-  <div class="homework">
-    <div class="kicker">Homework · before 25 Nov</div>
-    <h3>Use it, improve it, and think about the outcome</h3>
-    <ul>
-      <li>Use your skill at least three times. Each time it gets something wrong, update the skill, not just the chat.</li>
-      <li>For your one chosen task, write short answers to:
-        <ol><li>Who is the result for?</li><li>What do they need to do next?</li><li>Where does the information come from?</li><li>What breaks now, and who feels it when it does?</li></ol></li>
-      <li><b>Get ready for next week:</b> confirm you have a paid Claude plan and your laptop with its charger. If you feel confident, install <b>VS Code</b> from code.visualstudio.com (free). If not, we'll do it together.</li>
-    </ul>
-  </div>
-  <div class="pager"><a href="#s1"><small>Back</small>← Session 1</a><a class="nx" href="#s3"><small>Next</small>Session 3 · Your toolkit →</a></div>
+  <div class="lockbox" data-sid="s2" data-salt="qMI7SJbLmrgHI8HB/Dq65g==" data-iv="C6oUvlXQdNLE8uXz" data-ct="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"><div class="lockcard"><div class="lockic">🔒</div><h3>This session opens with this week's password</h3><p class="muted">You'll get it in our session on Wednesday 18 November.</p><form class="lockform"><input type="password" placeholder="Password" aria-label="Password" autocomplete="off"><button type="submit">Unlock</button></form><p class="lockmsg" aria-live="polite"></p><p style="margin-top:14px"><a href="#s1">← Back to the previous session</a></p></div></div>
 </section>
 
 <!-- ===================== SESSION 3 ===================== -->
@@ -503,106 +428,7 @@ Keep it under one page. Use only what I gave you; ask me if something is missing
     <p class="lead">Start from the outcome, then set up the three tools that let AI work inside your own folders: VS Code to see them, the terminal to give commands, and Claude Code to do the work.</p>
     <div class="chips"><span class="chip gold">Layer 3 begins</span><span class="chip sage">Level 2: daily helper</span><span class="chip">Follows Foundations 2.1 + 1.4</span></div>
   </div>
-  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has VS Code and Claude Code installed, a practice folder called <code>calm-ai</code>, and has safely asked Claude Code to create their first file.</div></div>
-
-  <div class="step" data-key="s3-1">
-    <div class="step-head"><div class="num">1</div><div><h3>Start from the outcome, not the tool</h3><span class="time">5–20 min</span></div></div>
-    <p>Before anyone opens a chat: what are you doing for people right now, and how would you do it by hand? Whatever you make, you're helping someone <b>decide or do something</b>. Go through everyone's four homework answers (who it's for, their next step, where the information comes from, what breaks and who feels it). Then split their task three ways, right there on screen:</p>
-    <div class="grid g3">
-      <div class="mini" style="border-color:rgba(124,196,255,.4)"><b style="color:var(--sky)">Structure</b><p class="muted">Which information must be ready and findable? (Usually the biggest part.)</p></div>
-      <div class="mini" style="border-color:rgba(127,227,180,.4)"><b style="color:var(--sage)">Code &amp; tools</b><p class="muted">Which steps never change? Calendar, spreadsheet, a filter, a script.</p></div>
-      <div class="mini" style="border-color:rgba(245,199,110,.4)"><b style="color:var(--gold)">AI</b><p class="muted">What needs judgment or your voice? Usually the smallest part.</p></div>
-    </div>
-    <div class="check">The aha: the AI's writing is rarely the hard part. Knowing the right information is.</div>
-    <div class="box sky"><h3>How you frame it shapes what you build</h3>Frame a job as "write my emails" and you build an email writer. Frame it as "my clients need clear answers about dates" and you might fix your calendar first, and need far fewer emails.</div>
-    <div class="box sage"><h3>Solve the problem first, smallest version</h3>Check what the app already does before building anything: a chat already reads spreadsheets, a Project already holds your files, a skill already remembers your corrections. Add the next piece only when you hit a real need: the files keep changing, it's the same steps every week, or someone else needs to use it.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s3-2">
-    <div class="step-head"><div class="num">2</div><div><h3>Pick your setup</h3><span class="time">20–23 min</span></div></div>
-    <table>
-      <tr><th>Setup</th><th>Good for</th></tr>
-      <tr><td><b>Claude in the browser or app</b></td><td>Chat, skills and projects (layers 1–2). What you've used so far.</td></tr>
-      <tr><td><b>Claude desktop app</b></td><td>Claude Code without typing commands: in the Code tab, choose Local and pick your folder. Needs a paid plan. A gentle option if the terminal feels like too much. Set the permission mode to the one that asks before every change.</td></tr>
-      <tr><td><b>VS Code + terminal + Claude Code</b></td><td>Layer 3. You see every folder and file, and watch exactly what the AI reads and changes. <b>This is what we'll use.</b></td></tr>
-    </table>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s3-3">
-    <div class="step-head"><div class="num">3</div><div><h3>Install VS Code and make your practice folder</h3><span class="time">23–32 min</span></div></div>
-    <span class="lbl ex">Explain</span>
-    <p>VS Code is a free program for looking at folders and text files. Think of it as a window into your folder system: files on the left, the open file in the middle, and a terminal at the bottom.</p>
-    <span class="lbl do">Do</span>
-    <ol>
-      <li>Go to <b>code.visualstudio.com</b> and download VS Code for your computer.</li>
-      <li class="mac">Open the download and drag <b>Visual Studio Code</b> into your <b>Applications</b> folder. Open it from there.</li>
-      <li class="win">Run the installer. Tick <b>"Add to PATH"</b> and <b>"Add 'Open with Code' action"</b> when you see them.</li>
-      <li>In your <b>Documents</b> folder, create a new folder called <code>calm-ai</code>.</li>
-      <li>In VS Code: <b>File → Open Folder…</b> and choose <code>calm-ai</code>. If it asks whether you trust the folder, choose <b>Yes</b> (it's yours).</li>
-      <li>Open the terminal: <b>Terminal → New Terminal</b>. A panel appears at the bottom.</li>
-    </ol>
-    <div class="check">Done when you can see <code>CALM-AI</code> in the left sidebar and a terminal at the bottom.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s3-4">
-    <div class="step-head"><div class="num">4</div><div><h3>Six terminal words</h3><span class="time">32–40 min</span></div></div>
-    <p>The terminal is just a place to type instructions instead of clicking. You only need six words today. Type each one and press Enter.</p>
-    <table>
-      <tr><th>Type</th><th>It means</th></tr>
-      <tr><td><code>pwd</code></td><td>Where am I? (shows the folder you're in)</td></tr>
-      <tr><td><code>ls</code></td><td>What's in here?</td></tr>
-      <tr><td><code>mkdir notes</code></td><td>Make a new folder called notes</td></tr>
-      <tr><td><code>cd notes</code></td><td>Go into the notes folder</td></tr>
-      <tr><td><code>cd ..</code></td><td>Go back up one folder</td></tr>
-      <tr><td class="mac"><code>open .</code></td><td class="mac">Show this folder in Finder</td></tr>
-      <tr><td class="win"><code>explorer .</code></td><td class="win">Show this folder in File Explorer</td></tr>
-    </table>
-    <div class="check">Watch the new <code>notes</code> folder appear in VS Code's sidebar when you type <code>mkdir notes</code>. The terminal and the sidebar are two views of the same folder.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s3-5">
-    <div class="step-head"><div class="num">5</div><div><h3>Install Claude Code</h3><span class="time">40–48 min</span></div></div>
-    <p>Copy this into the VS Code terminal and press Enter. It downloads Claude Code and keeps it up to date by itself.</p>
-    <div class="prompt cmd mac" data-title="Install Claude Code (Mac)"><div class="ptitle">Mac · in the terminal</div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
-    <div class="prompt cmd win" data-title="Install Claude Code (Windows)"><div class="ptitle">Windows · in PowerShell (VS Code's default terminal)</div><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
-    <p class="win muted">Windows tip: also install <b>Git for Windows</b> from git-scm.com. Claude Code works better with it, and you'll need it for GitHub next week.</p>
-    <p>Then <b>close the terminal</b> (the bin icon), open a new one, and check it worked:</p>
-    <div class="prompt cmd" data-title="Check Claude Code is installed"><div class="ptitle">Check</div><pre>claude --version</pre></div>
-    <div class="box coral"><h3>If it says "command not found"</h3>Close VS Code completely and open it again. Still not working? Raise your hand; we'll fix it together. Never paste fixes from random websites, and never use <code>sudo</code>.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s3-6">
-    <div class="step-head"><div class="num">6</div><div><h3>First run, the safe way</h3><span class="time">48–55 min</span></div></div>
-    <p>Make sure the terminal is inside <code>calm-ai</code> (type <code>pwd</code> to check). Then start Claude Code:</p>
-    <div class="prompt cmd" data-title="Start Claude Code"><div class="ptitle">Start</div><pre>claude</pre></div>
-    <p>The first time, it opens your browser to log in with your paid Claude account. Then try:</p>
-    <div class="prompt" data-title="First request in Claude Code"><div class="ptitle">Type this to Claude Code</div><pre>Create a file called about-me.md in this folder with the text I paste below. Use clear markdown headings. Don't change my words.
-
-[paste your about-me summary from session 1]</pre></div>
-    <div class="box gold"><h3>Watch for the permission question</h3>Claude Code will ask before it creates the file. <b>Read what it wants to do</b>, then approve. This is the habit that keeps you safe: it asks, you read, you decide.</div>
-    <div class="box coral"><h3>If you see "auto mode" at the bottom</h3>Claude Code has modes. In auto mode it stops asking and just acts. Press <b>Shift+Tab</b> to cycle through the modes until "auto mode" no longer shows. If a permission question offers "Yes, and switch to auto mode", choose plain <b>Yes</b> instead.</div>
-    <div class="check">Done when <code>about-me.md</code> appears in the sidebar, and you've clicked it and read it. Type <code>/exit</code> to leave Claude Code.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>From a big vision to one findable place</h3><p>Take one participant's big project and the information that's scattered around it. On screen, list its parts and where each piece of information lives today. Sketch the folders that would hold it. Next week everyone builds their own version of exactly this.</p></div>
-
-  <div class="homework">
-    <div class="kicker">Homework · before 2 Dec</div>
-    <h3>Get comfortable with the tools</h3>
-    <ul>
-      <li>Open VS Code and Claude Code in <code>calm-ai</code> at least three times this week. Ask it small things: "What's in this folder?", "Make a folder called drafts", "Turn my skill from session 2 into a file called skills/[name].md".</li>
-      <li>Create a free account at <b>github.com</b>.</li>
-      <li>Install <b>GitHub Desktop</b> from desktop.github.com (the friendly way to use GitHub). <span class="win">On Windows, make sure Git for Windows is installed too.</span></li>
-      <li>Look at your three lists from session 1 again. Add anything missing.</li>
-    </ul>
-  </div>
-  <div class="pager"><a href="#s2"><small>Back</small>← Session 2</a><a class="nx" href="#s4"><small>Next</small>Session 4 · Your work, as folders →</a></div>
+  <div class="lockbox" data-sid="s3" data-salt="2FW0aP268vWQwz28DZYjQQ==" data-iv="imc8RIrrcGpye0D3" data-ct="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"><div class="lockcard"><div class="lockic">🔒</div><h3>This session opens with this week's password</h3><p class="muted">You'll get it in our session on Wednesday 25 November.</p><form class="lockform"><input type="password" placeholder="Password" aria-label="Password" autocomplete="off"><button type="submit">Unlock</button></form><p class="lockmsg" aria-live="polite"></p><p style="margin-top:14px"><a href="#s2">← Back to the previous session</a></p></div></div>
 </section>
 
 <!-- ===================== SESSION 4 ===================== -->
@@ -613,175 +439,7 @@ Keep it under one page. Use only what I gave you; ask me if something is missing
     <p class="lead">The heart of ICM. Your data, tasks and tools become a folder structure with a short map at the top, so one AI can find exactly what each job needs. Then GitHub gives you save points so nothing is ever lost.</p>
     <div class="chips"><span class="chip gold">Layer 3 · Folders and one agent</span><span class="chip sky">Level 3 · first step</span><span class="chip">Follows Foundations 1.3 · 2.2 · 2.3</span></div>
   </div>
-  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has a workspace folder with a map file and routing table, has run a real task through it, and has saved it to GitHub.</div></div>
-
-  <div class="step" data-key="s4-1">
-    <div class="step-head"><div class="num">1</div><div><h3>What an agent really is</h3><span class="time">15–20 min</span></div></div>
-    <p>An "agent" sounds mysterious. It isn't. It's the AI using tools (open a file, save a file, check something) in a loop until the job is done. What it reads decides how good the result is. So our job is to make sure it reads the <b>right</b> files, and only those.</p>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s4-2">
-    <div class="step-head"><div class="num">2</div><div><h3>Three parts: map, rooms, tools</h3><span class="time">20–25 min</span></div></div>
-    <div class="grid g3">
-      <div class="mini"><div class="n" style="color:var(--gold)">Map</div><p class="muted">One short file at the top (<code>CLAUDE.md</code>). What this folder is, where things go, and a table saying which files to read for each job.</p></div>
-      <div class="mini"><div class="n" style="color:var(--sky)">Rooms</div><p class="muted">One folder per kind of work, each with a short <code>CONTEXT.md</code> explaining how that work is done.</p></div>
-      <div class="mini"><div class="n" style="color:var(--sage)">Tools</div><p class="muted">Skills and small scripts, connected only to the rooms that need them.</p></div>
-    </div>
-    <p>A workspace can take different shapes, all built with the same ICM thinking:</p>
-    <div class="grid g3">
-      <div class="mini"><b style="color:var(--gold)">Stages</b><p class="muted">One step after another: ideas → draft → final. Good for anything you produce, like a newsletter or a video.</p></div>
-      <div class="mini"><b style="color:var(--sky)">Records</b><p class="muted">One folder per client, event or project. Good for replies, follow-ups and anything you track per person.</p></div>
-      <div class="mini"><b style="color:var(--sage)">Knowledge library</b><p class="muted">Your raw sources in one folder, and the pages the AI writes and links from them in another. Good for turning notes, documents and experience into one searchable body of knowledge.</p></div>
-    </div>
-    <p>Here's an example for a small wellness business that mixes records and stages. Yours will look different; the way of thinking stays the same.</p>
-<div class="tree"><span class="f">sunrise-studio/</span>
-  <span class="m">CLAUDE.md</span>              <span class="c">← the map: what's here, where things go, what to read</span>
-  <span class="f">_shared/</span>               <span class="c">← facts used everywhere (one home for every fact)</span>
-    about-me.md
-    offers-and-prices.md
-    voice.md
-  <span class="f">skills/</span>                <span class="c">← methods: how you do each kind of job</span>
-    weekly-newsletter.md
-    client-reply.md
-  <span class="f">01_inbox/</span>              <span class="c">← new stuff lands here, sorted weekly</span>
-  <span class="f">02_clients/</span>            <span class="c">← room: bookings, replies, follow-ups</span>
-    <span class="m">CONTEXT.md</span>
-  <span class="f">03_marketing/</span>          <span class="c">← room: newsletter, posts, events</span>
-    <span class="m">CONTEXT.md</span>
-    <span class="f">drafts/</span>  <span class="f">final/</span>
-  <span class="f">04_money/</span>              <span class="c">← room: budget, invoices, expenses</span>
-    <span class="m">CONTEXT.md</span>
-  <span class="f">scripts/</span>               <span class="c">← steps that never change (session 5)</span>
-  <span class="f">archive/</span>               <span class="c">← finished or old, out of the way</span></div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s4-3">
-    <div class="step-head"><div class="num">3</div><div><h3>Turn your data, tasks and tools into folders</h3><span class="time">25–35 min</span></div></div>
-    <p><b>First, list your jobs.</b> Write down the jobs that get you to the outcome you chose in session 3. For each one, note what it <b>reads</b> and what it <b>makes</b>. That short list is already most of your folder.</p>
-    <table>
-      <tr><th>Job</th><th>Reads</th><th>Makes</th></tr>
-      <tr><td>Reply to a client</td><td>their email, my prices, my voice</td><td>a draft reply</td></tr>
-      <tr><td>Monthly newsletter</td><td>this month's notes, upcoming events, my voice</td><td>a newsletter draft</td></tr>
-    </table>
-    <p><b>Then sort everything into four kinds:</b> <b>method</b> (how you do a job: skills), <b>facts</b> (clients, prices, sources), <b>work</b> (in progress) and <b>outputs</b> (finished). The method travels to the next client; the facts stay with this one. Bring out your three lists from session 1 and sort them like this:</p>
-    <table>
-      <tr><th>From your list</th><th>Becomes</th></tr>
-      <tr><td><b style="color:var(--sky)">Data</b> that stays the same</td><td>A file in <code>_shared/</code> (about you, prices, voice, FAQ)</td></tr>
-      <tr><td><b style="color:var(--sage)">Tasks</b>, grouped by kind</td><td>A room folder each (clients, marketing, money…)</td></tr>
-      <tr><td>How you do a task</td><td>A file in <code>skills/</code></td></tr>
-      <tr><td><b style="color:var(--gold)">Tools</b> you already use</td><td>A line in the room's CONTEXT.md: "the calendar handles bookings", "invoices go out from [app]"</td></tr>
-      <tr><td>Steps that never change</td><td>Later: a script in <code>scripts/</code></td></tr>
-    </table>
-    <div class="prompt" data-title="Design my workspace"><div class="ptitle">Type this to Claude Code, inside your workspace folder</div><pre>Help me design a folder structure for my work. Here are my three lists:
-
-DATA: [paste]
-TASKS: [paste]
-TOOLS: [paste]
-
-Rules:
-- One home for every fact: facts used everywhere go in _shared/
-- Methods go in skills/, one file per kind of job
-- One room folder per kind of work, numbered (01_, 02_...), each with a short CONTEXT.md
-- Keep work in progress (drafts/) apart from finished work (final/)
-- Add 01_inbox/ and archive/
-
-First show me the plan as a tree and wait for my OK. Don't create anything until I say yes.</pre></div>
-    <div class="check">Read the plan. Rename, merge or remove folders until it feels like <i>your</i> work. <b>Start with the smallest version that does today's job</b>, and add a folder only when the work actually asks for one. Only then say yes.</div>
-    <div class="box sky"><h3>A quick check on every file</h3>Each file should be either <b>instructions</b> (how to do something: the map, CONTEXT files, skills) or <b>information</b> (facts and work the AI reads and updates), or both. A file that's neither is the first one to question: move it to archive or delete it.</div>
-    <div class="box gold"><h3>Shortcut: the ICM Architect skill</h3>There's a free skill called ICM Architect that does a first draft for you: point Claude Code at a messy folder and say "make this an ICM". It looks at what's there, asks about your work and proposes a structure and a map. Always read the proposal and trim it: it may suggest rooms you don't need yet.</div>
-    <div class="box gold"><h3>Use a copy the first time</h3>If you're bringing in a folder of real work, make a copy and use that the first time. Nothing can go wrong with your originals while you're learning.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s4-4">
-    <div class="step-head"><div class="num">4</div><div><h3>Write the map and the routing table</h3><span class="time">35–45 min</span></div></div>
-    <p>The map is the most important file. It's like the floor plan by the front door of a building. The routing table inside it says, for each job: read these, skip those, use this skill.</p>
-    <div class="prompt" data-title="Example CLAUDE.md"><div class="ptitle">What a good map looks like</div><pre># Sunrise Studio · map
-
-## What this is
-My yoga and wellness studio: classes, retreats and a monthly newsletter.
-
-## Folders
-- _shared/  facts used everywhere (about me, prices, voice)
-- skills/   how I do each kind of job
-- 01_inbox/ new stuff, sorted every Friday
-- 02_clients/, 03_marketing/, 04_money/  one room per kind of work
-- archive/  old or finished work
-
-## Routing
-| Job            | Read                                          | Skip           | Use skill          | Save to                          |
-|----------------|-----------------------------------------------|----------------|--------------------|----------------------------------|
-| Client reply   | 02_clients/CONTEXT.md, that client's notes,   | other clients, | client-reply       | 02_clients/drafts/               |
-|                | _shared/voice.md                              | 04_money/      |                    | named date_client.md             |
-| Newsletter     | 03_marketing/CONTEXT.md, _shared/voice.md     | 02_clients/    | weekly-newsletter  | 03_marketing/drafts/             |
-| Monthly budget | 04_money/CONTEXT.md                           | 03_marketing/  | (script, session 5)| 04_money/                        |
-
-## Rules
-- Work only inside this folder.
-- Ask before moving, renaming or deleting anything.
-- New drafts go in drafts/. Never overwrite anything in final/.
-- No client personal details, passwords or bank numbers in any file.
-- Never send anything. I read and send every message myself.
-- If my notes don't confirm a fact (a date, a price), say so in the draft instead of guessing.
-- Name files: topic_stage.md (e.g. december-retreat_draft.md).</pre></div>
-    <div class="prompt" data-title="Draft my map"><div class="ptitle">Ask Claude Code to draft yours</div><pre>Now write CLAUDE.md for this workspace, following the structure we just made.
-Include: what this is (2 sentences), the folders, a routing table (job · read · skip · use skill) for my three most frequent jobs, and these rules: work only inside this folder; ask before moving, renaming or deleting; drafts go in drafts/; never overwrite final/; no client personal details, passwords or bank numbers.
-Then write a short CONTEXT.md in each room: what this room is for, the steps of the work, and which tools I already use for it.</pre></div>
-    <div class="check">Open CLAUDE.md and read every line. Fix it by hand in VS Code if needed. It's just text. Drafts it saves are just files too: open them, change a word, delete the one you don't like, send the good one yourself.</div>
-    <div class="box coral"><h3>The map is advice, not a lock</h3>The AI reads the map and usually follows it, but for anything that must <b>never</b> happen (sending an email, deleting files), don't rely on the map alone. Keep the permission questions on, so it has to ask you first.</div>
-    <div class="box coral"><h3>Keep the map short</h3>The most common mistake is a giant map with everything crammed in. That puts the whole drawer back on the desk, and the AI gets lost again. A good map fits on one screen: what's here, where things go, naming rules, and the routing table. Details belong in the rooms' CONTEXT files.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s4-5">
-    <div class="step-head"><div class="num">5</div><div><h3>Test the routing: one model, different jobs</h3><span class="time">45–52 min</span></div></div>
-    <p>When people say they need "a writing agent, a research agent and an email agent", what they usually need is the instructions for each job written down, and a map that sends each request to the right ones. A name on the door adds no instructions and no access. The role comes from what it reads.</p>
-    <p>Same AI, different room, different job. Start a <b>new session</b> (type <code>/exit</code>, then <code>claude</code> again) so it begins fresh from the map. Give it a short real request and then ask what it read.</p>
-    <div class="prompt" data-title="Test the routing"><div class="ptitle">Try it</div><pre>[A short real request, e.g. "Draft a reply to this client question: ..."]
-
-When you're done, list every file you read and why. Save the draft in the right drafts/ folder.</pre></div>
-    <div class="check">If it opened the right few files and skipped the rest, your routing works. If it wandered around reading everything, that row in the map is too vague: tighten it and try again. Nobody gets it right the first time. And always <b>fix the map, not the chat</b>: that fix works forever; a chat correction is gone next time.</div>
-    <div class="prompt" data-title="Two jobs back to back"><div class="ptitle">Then try two different jobs back to back</div><pre>[First job, e.g. "Draft a reply to this client email: ..."]
-List the files you read.
-
-[Second job, e.g. "Make me a table of everything I have planned this month"]
-List the files you read.</pre></div>
-    <div class="box sky"><h3>Not every job is the AI's</h3>The AI reads the situation and decides; tools do the doing. Your calendar sends reminders, a script makes the table, your mail program sends the email. In session 5 you turn one of your own steps into a tool.</div>
-    <div class="box gold"><h3>When is a second agent worth it?</h3>Rarely, at first. Only when there's lots of independent work that can run at the same time (researching ten venues at once), one job so big it buries everything else, or something live that needs watching. The simplest version is a second Claude Code session open on the same folder. Every extra agent costs more usage, more waiting and more places for mistakes. Start with one.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s4-6">
-    <div class="step-head"><div class="num">6</div><div><h3>GitHub save points</h3><span class="time">52–55 min, then homework</span></div></div>
-    <p>GitHub is like "save game" for your folder. Each save point (a <b>commit</b>) remembers exactly how everything looked. Made a mess? Go back. Laptop lost? Your work is safe online.</p>
-    <ol>
-      <li><b>First, protect private files.</b> Ask Claude Code: <i>"Create a .gitignore file that excludes anything in a folder called private/ and any .env files."</i> Anything sensitive lives in <code>private/</code>.</li>
-      <li>Open <b>GitHub Desktop</b> and sign in. <b>File → Add Local Repository</b>, choose your workspace folder. If it offers to "create a repository here", click it.</li>
-      <li>Bottom left: write a summary like <code>first map and folders</code>, then click <b>Commit to main</b>.</li>
-      <li>Click <b>Publish repository</b>. Leave <b>"Keep this code private"</b> ticked.</li>
-    </ol>
-    <div class="box sky"><h3>Or just ask Claude Code</h3>"Make a save point with the message 'added newsletter skill'." It runs the git commands for you, and asks first. See <a href="#github">Git &amp; GitHub</a> for more.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="box coral"><h3>The safe-use rules (print these)</h3>One folder only · read before you approve · keep the permission questions on · save first · no secrets in chat · no client data · instructions only come from you · check the result. <a href="#safe">Full list →</a></div>
-
-  <div class="spot"><div class="kicker">Spotlight · 55–80 min</div><h3>A real business as an ICM workspace</h3><p>Map one participant's business live: data, tasks, tools → folders → map. Run one real step (for example, a client follow-up) with Claude Code, pointing out each safe habit as it comes up: the permission question, reading what it changed, making a save point.</p></div>
-
-  <div class="homework">
-    <div class="kicker">Homework · before 9 Dec</div>
-    <h3>Live in your workspace</h3>
-    <ul>
-      <li>Two tasks handled by helpers this week, at least one inside your Claude Code workspace.</li>
-      <li>Make a save point (commit) after every change that worked.</li>
-      <li>Write down roughly how much time it saved. Even "about 20 minutes" counts.</li>
-      <li><b>Spot a steady step:</b> find one step you've done the same way three or four times (renaming files, turning an export into the same table, totting up expenses). Bring an old example of it.</li>
-      <li>Prepare a 10-minute show-and-tell of your workspace for next week.</li>
-    </ul>
-  </div>
-  <div class="pager"><a href="#s3"><small>Back</small>← Session 3</a><a class="nx" href="#s5"><small>Next</small>Session 5 · Automate &amp; publish →</a></div>
+  <div class="lockbox" data-sid="s4" data-salt="LsKQUkntt8NYs/1/ValbHQ==" data-iv="R98TeYUrI2gieeLB" data-ct="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"><div class="lockcard"><div class="lockic">🔒</div><h3>This session opens with this week's password</h3><p class="muted">You'll get it in our session on Wednesday 2 December.</p><form class="lockform"><input type="password" placeholder="Password" aria-label="Password" autocomplete="off"><button type="submit">Unlock</button></form><p class="lockmsg" aria-live="polite"></p><p style="margin-top:14px"><a href="#s3">← Back to the previous session</a></p></div></div>
 </section>
 
 <!-- ===================== SESSION 5 ===================== -->
@@ -792,92 +450,7 @@ List the files you read.</pre></div>
     <p class="lead">Show what you built. Then add the 30%: turn one steady step into a small script, add a checkpoint where your judgment matters, and publish a real web page from your folder with GitHub Pages.</p>
     <div class="chips"><span class="chip sage">Code for the steady parts</span><span class="chip violet chip">Level 4 · first step</span><span class="chip">Follows Foundations 3.1 · 3.2 · 3.3</span></div>
   </div>
-  <div class="goal"><span class="ic">◎</span><div><b>By the end</b>Everyone has shown their workspace, seen a step become a script, and knows how to put a page online. Plus a clear picture of where they are and what's next.</div></div>
-
-  <div class="step" data-key="s5-1">
-    <div class="step-head"><div class="num">1</div><div><h3>Show and tell</h3><span class="time">5–35 min</span></div></div>
-    <p>Each person: 10 minutes. Show your folders and map, run one task live, and share the time you saved. Everyone else: one thing you liked, one question.</p>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s5-2">
-    <div class="step-head"><div class="num">2</div><div><h3>Stages you can step into</h3><span class="time">35–42 min</span></div></div>
-    <p>Bigger jobs work better in stages, each with a clear output, and a stop where your judgment counts. The AI does the stage, then waits for you.</p>
-<div class="tree"><span class="f">03_marketing/newsletter/</span>
-  <span class="f">01_ideas/</span>     <span class="c">→ AI lists 5 topic ideas from this month's notes</span>
-  <span class="s">   ✋ you pick one</span>
-  <span class="f">02_draft/</span>     <span class="c">→ AI drafts with the newsletter skill</span>
-  <span class="s">   ✋ you edit and approve</span>
-  <span class="f">03_final/</span>     <span class="c">→ ready to paste into your mail program</span></div>
-    <div class="prompt" data-title="Add a checkpoint to a room"><div class="ptitle">Add to a room's CONTEXT.md</div><pre>Add stages to 03_marketing/CONTEXT.md: 01_ideas, 02_draft, 03_final.
-After each stage, stop, show me the result and wait for my OK before starting the next one.</pre></div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s5-3">
-    <div class="step-head"><div class="num">3</div><div><h3>Turn a steady step into code</h3><span class="time">42–55 min</span></div></div>
-    <span class="lbl ex">Explain</span>
-    <p>If the same input should always give the same output (totalling expenses, renaming files, building the same weekly table), that's a job for a small script, not for AI. A script does it identically on the hundredth run. You don't need to read code: Claude Code writes it, runs it, and explains it line by line if you ask.</p>
-    <span class="lbl do">Do (with the practice file first)</span>
-    <div class="prompt" data-title="Make a script"><div class="ptitle">Ask Claude Code</div><pre>Write a small script that turns this expenses export (CSV) into a monthly table: total per category, and the grand total.
-Put it in scripts/, run it on the file in 04_money/sample-expenses.csv, and show me the result.
-Then add a line to CLAUDE.md: "For the monthly budget table, run the script in scripts/ on the newest export in 04_money/."</pre></div>
-    <ol>
-      <li><b>Test it against something you already did by hand.</b> Do the numbers match? A wrong script is wrong the same way every time, so check it properly once.</li>
-      <li>Next month you only say: <i>"Make this month's budget table."</i></li>
-      <li>Make a save point.</li>
-    </ol>
-    <div class="box sage"><h3>Two tips</h3>You don't have to plan every automation up front. Keep doing the work by hand and automate one piece at a time; the work shows you the next one. And whenever a tool offers an export (a CSV, a report download), use that instead of having the AI click around a website.</div>
-    <div class="box coral"><h3>Real money files</h3>Use the sample file in class. Before using real exports, remove account numbers and anything that identifies other people. You decide what goes in.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s5-4">
-    <div class="step-head"><div class="num">4</div><div><h3>Publish a page with GitHub Pages</h3><span class="time">55–68 min</span></div></div>
-    <p>Anything Claude Code builds as a web page (an event page, a price list, a little guide for clients) can go online for free from a GitHub repository.</p>
-    <div class="prompt" data-title="Build a web page"><div class="ptitle">1 · Ask Claude Code, in a new folder called my-page</div><pre>Build a single web page called index.html for [my workshop on ...].
-Use the facts in [file], my tone from voice.md, a calm dark design, and make it look good on a phone.
-Open it in my browser so I can see it.</pre></div>
-    <ol>
-      <li>Read the page carefully. Ask for changes until you're happy.</li>
-      <li>In <b>GitHub Desktop</b>: add the <code>my-page</code> folder, commit, then <b>Publish repository</b> with <b>"Keep this code private" unticked</b>.</li>
-      <li>On github.com, open the repository → <b>Settings</b> → <b>Pages</b>. Under "Build and deployment", choose <b>Deploy from a branch</b>, branch <b>main</b>, folder <b>/ (root)</b>, then <b>Save</b>.</li>
-      <li>Wait a minute or two, refresh, and your link appears: <code>yourname.github.io/my-page</code>.</li>
-      <li>Every new commit you publish updates the page.</li>
-    </ol>
-    <div class="box coral"><h3>Public means public</h3>A free GitHub Pages site comes from a public repository. Everything in that folder can be seen by anyone. Keep pages in their own folder, separate from your private workspace.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s5-5">
-    <div class="step-head"><div class="num">5</div><div><h3>Keep it useful, and hand it on</h3><span class="time">68–75 min</span></div></div>
-    <span class="lbl ex">Explain</span>
-    <p>AI makes it easy to produce lots of stuff: drafts, versions, notes about notes. A folder that feels great in week one can be a swamp by week six, where the AI finds three different prices and picks the old one. Three checks keep it healthy.</p>
-    <ul>
-      <li><b>The fresh-session test:</b> start a brand new Claude Code session and ask "What is this folder, what's in progress, and what's next?" If it gets that wrong, your map is out of date. Better to find out now than from a confused client.</li>
-      <li><b>One home for every fact:</b> prices in three files will drift apart. Keep each fact in one place and point to it. When your way of working changes, fix the skill file, and every job that uses it picks up the change.</li>
-      <li><b>Clear stuff out:</b> retired work goes in <code>archive/</code>, and the map says "never read it". Delete generated drafts nobody will use; they're quick to make again. Never touch your originals, your sources, or anything that belongs to someone else.</li>
-    </ul>
-    <div class="prompt" data-title="Fresh-session test"><div class="ptitle">The fresh-session test · in a brand new session</div><pre>What is this folder, what's in progress right now, and what should I do next? Answer only from the files here.</pre></div>
-    <div class="prompt" data-title="Monthly tidy-up"><div class="ptitle">Monthly tidy-up</div><pre>Review this workspace against CLAUDE.md. List: files in the wrong place, facts that appear in more than one file, finished work that could move to archive/, generated drafts nobody uses, and anything in the map that's out of date.
-Don't change anything yet; show me the list first.</pre></div>
-    <span class="lbl do">Hand it on</span>
-    <p>The map that tells the AI where everything is tells a new person the same thing. To share: zip a copy (great for templates), or work together in one shared place like a synced drive or a GitHub repo. Who may open it is a permissions choice you make; the folder doesn't decide that for you.</p>
-    <div class="check"><b>The real test:</b> if the AI disappeared tomorrow, could you still find your way around these files and do the work? If yes, you've built a good structure.</div>
-    <div class="box sky"><h3>Why folders last</h3>Files and folders have survived every big change in computing for over fifty years. AI models will keep changing; next year another one may be better. What stays yours is your files, your knowledge and your structure. Point the new model at the same folder, maybe rename the map file, and carry on.</div>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-
-  <div class="step" data-key="s5-6">
-    <div class="step-head"><div class="num">6</div><div><h3>Where are you now, and what's next?</h3><span class="time">75–90 min</span></div></div>
-    <ul>
-      <li>Look back at the <a href="#start">four levels</a>. Where is each person now?</li>
-      <li>Feedback form, the short testimonial, and two introductions each.</li>
-      <li>The next step: the weekly group and one-on-one packs (see <a href="#after">After the pilot</a>).</li>
-    </ul>
-    <button type="button" class="donebtn">○ Mark step done</button>
-  </div>
-  <div class="pager"><a href="#s4"><small>Back</small>← Session 4</a><a class="nx" href="#terminal"><small>Toolkit</small>Terminal cheat sheet →</a></div>
+  <div class="lockbox" data-sid="s5" data-salt="fkg+f5g6wyojbUeuoPCZWQ==" data-iv="MHNnKBcIJTR3j9F7" data-ct="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"><div class="lockcard"><div class="lockic">🔒</div><h3>This session opens with this week's password</h3><p class="muted">You'll get it in our session on Wednesday 9 December.</p><form class="lockform"><input type="password" placeholder="Password" aria-label="Password" autocomplete="off"><button type="submit">Unlock</button></form><p class="lockmsg" aria-live="polite"></p><p style="margin-top:14px"><a href="#s4">← Back to the previous session</a></p></div></div>
 </section>
 
 <!-- ===================== TERMINAL ===================== -->
@@ -993,29 +566,26 @@ Don't change anything yet; show me the list first.</pre></div>
 
 <script>
 (function(){
-  var store = {
+  var ITER=200000;
+  var store={
     get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
     set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
   };
-  var KEY='calm-ai-course-v1';
-  var state=store.get(KEY,{done:{},os:'mac',coach:false});
-  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var KEY='calm-ai-course-v1', PKEY='calm-ai-keys-v1';
+  var state=store.get(KEY,{done:{},os:'mac'}); if(!state.done)state.done={};
+  var keys=store.get(PKEY,{});
+  function pages(){return [].slice.call(document.querySelectorAll('.page'));}
   var navLinks=[].slice.call(document.querySelectorAll('#nav a'));
 
-  /* OS + coach toggles */
-  function applyOS(){document.body.classList.toggle('os-mac',state.os==='mac');document.body.classList.toggle('os-win',state.os==='win');
-    [].forEach.call(document.querySelectorAll('#osSeg button'),function(b){b.classList.toggle('on',b.dataset.os===state.os);});}
-  function applyCoach(){}
+  function applyOS(){document.body.classList.toggle('os-mac',state.os!=='win');document.body.classList.toggle('os-win',state.os==='win');
+    [].forEach.call(document.querySelectorAll('#osSeg button'),function(b){b.classList.toggle('on',b.dataset.os===(state.os||'mac'));});}
   document.getElementById('osSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;state.os=b.dataset.os;store.set(KEY,state);applyOS();});
 
-
-  /* routing */
   function show(){
     var id=(location.hash||'#start').slice(1);
     var target=document.getElementById(id);
     if(!target||!target.classList.contains('page')){id='start';target=document.getElementById('start');}
-
-    pages.forEach(function(p){p.classList.toggle('on',p===target);});
+    pages().forEach(function(p){p.classList.toggle('on',p===target);});
     navLinks.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});
     document.body.classList.remove('menu');
     window.scrollTo(0,0);
@@ -1023,10 +593,11 @@ Don't change anything yet; show me the list first.</pre></div>
   }
   window.addEventListener('hashchange',show);
 
-  /* steps */
-  var steps=[].slice.call(document.querySelectorAll('.step[data-key]'));
+  /* steps + progress */
   function paintStep(s){var d=!!state.done[s.dataset.key];s.classList.toggle('done',d);var b=s.querySelector('.donebtn');if(b)b.textContent=d?'✓ Done':'○ Mark step done';}
+  function allSteps(){return [].slice.call(document.querySelectorAll('.page:not(#library) .step[data-key]'));}
   function progress(){
+    var steps=allSteps();
     var n=steps.filter(function(s){return state.done[s.dataset.key];}).length;
     var pct=steps.length?Math.round(n/steps.length*100):0;
     document.getElementById('progTxt').textContent=pct+'% · '+n+'/'+steps.length+' steps';
@@ -1038,11 +609,17 @@ Don't change anything yet; show me the list first.</pre></div>
       var a=document.querySelector('#nav a[href="#'+sid+'"]');if(a)a.classList.toggle('complete',!!all);
     });
   }
-  steps.forEach(function(s){paintStep(s);var b=s.querySelector('.donebtn');if(b)b.addEventListener('click',function(){var k=s.dataset.key;if(state.done[k])delete state.done[k];else state.done[k]=true;store.set(KEY,state);paintStep(s);progress();});});
+  function wireSteps(root){
+    [].forEach.call(root.querySelectorAll('.step[data-key]'),function(s){
+      if(s.dataset.wired)return; s.dataset.wired='1'; paintStep(s);
+      var b=s.querySelector('.donebtn');
+      if(b)b.addEventListener('click',function(){var k=s.dataset.key;if(state.done[k])delete state.done[k];else state.done[k]=true;store.set(KEY,state);paintStep(s);progress();});
+    });
+  }
 
   /* copy buttons */
   function addCopy(box){
-    var pre=box.querySelector('pre');if(!pre)return;
+    var pre=box.querySelector('pre');if(!pre||box.querySelector('.copy'))return;
     if(!box.querySelector('.ptitle'))box.classList.add('notitle');
     var btn=document.createElement('button');btn.type='button';btn.className='copy';btn.textContent='Copy';
     btn.addEventListener('click',function(){
@@ -1053,22 +630,59 @@ Don't change anything yet; show me the list first.</pre></div>
     });
     box.appendChild(btn);
   }
+  function wireCopy(root){[].forEach.call(root.querySelectorAll('.prompt'),addCopy);}
 
-  /* prompt library */
-  var lib=document.getElementById('libList');
-  pages.forEach(function(p){
-    if(p.id==='library')return;
-    var ps=[].slice.call(p.querySelectorAll('.prompt'));if(!ps.length)return;
-    var h=document.createElement('h2');h.textContent=p.dataset.title;lib.appendChild(h);
-    ps.forEach(function(orig){var c=orig.cloneNode(true);var t=c.querySelector('.ptitle');if(t)t.textContent=orig.dataset.title||t.textContent;lib.appendChild(c);});
+  /* prompt library: only sessions that are open */
+  function buildLibrary(){
+    var lib=document.getElementById('libList'); if(!lib)return; lib.innerHTML='';
+    pages().forEach(function(p){
+      if(p.id==='library')return;
+      var ps=[].slice.call(p.querySelectorAll('.prompt'));if(!ps.length)return;
+      var h=document.createElement('h2');h.textContent=p.dataset.title;lib.appendChild(h);
+      ps.forEach(function(orig){var c=orig.cloneNode(true);[].forEach.call(c.querySelectorAll('.copy'),function(x){x.remove();});
+        var t=c.querySelector('.ptitle');if(t)t.textContent=orig.dataset.title||t.textContent;lib.appendChild(c);});
+    });
+    var locked=document.querySelectorAll('.lockbox').length;
+    if(locked){var n=document.createElement('p');n.className='muted';n.textContent='Prompts from the next sessions appear here once you unlock them.';lib.appendChild(n);}
+    wireCopy(lib);
+  }
+
+  /* locks */
+  function b64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
+  function norm(p){return (p||'').trim().toLowerCase();}
+  function decrypt(box,pw){
+    var enc=new TextEncoder();
+    return crypto.subtle.importKey('raw',enc.encode(norm(pw)),'PBKDF2',false,['deriveKey']).then(function(base){
+      return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(box.dataset.salt),iterations:ITER,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    }).then(function(key){
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:b64(box.dataset.iv)},key,b64(box.dataset.ct));
+    }).then(function(pt){return new TextDecoder().decode(pt);});
+  }
+  function paintNav(){
+    navLinks.forEach(function(a){
+      var p=document.getElementById(a.getAttribute('href').slice(1));
+      var locked=!!(p&&p.querySelector('.lockbox'));
+      a.classList.toggle('locked',locked);
+      var dot=a.querySelector('.dot');
+      if(dot){if(!dot.dataset.orig)dot.dataset.orig=dot.textContent; dot.textContent=locked?'🔒':dot.dataset.orig;}
+    });
+  }
+  function open(box,html){
+    var page=box.closest('.page');
+    box.insertAdjacentHTML('afterend',html); box.remove();
+    wireSteps(page); wireCopy(page); buildLibrary(); progress(); paintNav();
+  }
+  document.addEventListener('submit',function(e){
+    var f=e.target.closest('.lockform'); if(!f)return; e.preventDefault();
+    var box=f.closest('.lockbox'), pw=f.querySelector('input').value, msg=box.querySelector('.lockmsg');
+    msg.style.color='var(--muted)'; msg.textContent='Checking…';
+    decrypt(box,pw).then(function(html){keys[box.dataset.sid]=norm(pw);store.set(PKEY,keys);open(box,html);},
+      function(){msg.style.color='';msg.textContent="That password didn't work. Check the spelling, or ask your teacher.";});
   });
-  [].forEach.call(document.querySelectorAll('.prompt'),addCopy);
 
-  /* mobile menu */
+  /* mobile menu + keyboard */
   document.getElementById('menuBtn').addEventListener('click',function(e){e.stopPropagation();document.body.classList.toggle('menu');});
   document.querySelector('.main').addEventListener('click',function(){document.body.classList.remove('menu');});
-
-  /* keyboard: arrows move between pages */
   document.addEventListener('keydown',function(e){
     if(e.target.closest('input,textarea'))return;
     var cur=document.querySelector('.page.on');if(!cur)return;
@@ -1077,7 +691,13 @@ Don't change anything yet; show me the list first.</pre></div>
     if(e.key==='ArrowLeft'){var a=pager.querySelector('a:not(.nx)');if(a)location.hash=a.getAttribute('href');}
   });
 
-  applyOS();applyCoach();progress();show();
+  applyOS(); wireSteps(document); wireCopy(document); buildLibrary(); progress(); paintNav(); show();
+
+  /* re-open sessions this browser already unlocked */
+  [].forEach.call(document.querySelectorAll('.lockbox'),function(box){
+    var pw=keys[box.dataset.sid]; if(!pw)return;
+    decrypt(box,pw).then(function(html){open(box,html);},function(){delete keys[box.dataset.sid];store.set(PKEY,keys);});
+  });
 })();
 </script>
 </body>
