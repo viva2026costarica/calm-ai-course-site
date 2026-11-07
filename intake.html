@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calm AI Intake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --card:#12161f; --card2:#181d29; --ink:#ffffff; --ink2:#e9ecf3; --muted:#aab2c3; --line:#252c3b; --line2:#323a4d;
+  --gold:#f5c76e; --sage:#7fe3b4; --sky:#7cc4ff; --violet:#b4a5ff; --coral:#ff8f70;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif; --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg);color:var(--ink2);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(800px 460px at 90% -10%,rgba(124,196,255,.12),transparent 60%),radial-gradient(700px 500px at 0% 110%,rgba(245,199,110,.08),transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:28px 16px 70px}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:1.2;margin:0;color:var(--ink)}
+h1{font-size:clamp(1.9rem,5vw,2.5rem);margin:.5rem 0 .6rem}
+h2{font-size:1.35rem;margin:0 0 1rem;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold);flex:none}
+.card:nth-of-type(6n+2) h2::before{background:var(--sky)} .card:nth-of-type(6n+3) h2::before{background:var(--sage)}
+.card:nth-of-type(6n+4) h2::before{background:var(--violet)} .card:nth-of-type(6n+5) h2::before{background:var(--coral)}
+p{margin:.3rem 0 .8rem} .muted{color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.brandrow{display:flex;align-items:center;gap:10px}
+.brandrow b{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.lang{display:flex;background:var(--card2);border-radius:99px;padding:3px}
+.lang button{border:0;background:transparent;color:var(--muted);border-radius:99px;padding:5px 12px;font:600 .8rem var(--sans);cursor:pointer}
+.lang button.on{background:var(--ink);color:#0a0c11}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin:18px 0}
+.q{margin:0 0 22px} .q:last-child{margin-bottom:0}
+.q > label:not(.opt), .q legend{display:block;font-weight:600;color:var(--ink);margin-bottom:6px;padding:0}
+fieldset{border:none;margin:0;padding:0}
+.hint{font-size:.88rem;color:var(--muted);margin:-2px 0 8px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:#070a0f;border:1px solid var(--line2);border-radius:12px;padding:11px 13px}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.opt{display:flex;gap:10px;align-items:flex-start;margin:6px 0;font-weight:normal;color:var(--ink2);background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer}
+.opt:hover{border-color:var(--line2)}
+.opt:has(input:checked){border-color:var(--sage);background:rgba(127,227,180,.08);color:var(--ink)}
+.opt input{width:19px;height:19px;margin-top:3px;accent-color:var(--sage);flex:none}
+.btn{border:none;border-radius:99px;padding:13px 22px;font:700 1rem var(--sans);cursor:pointer;background:var(--gold);color:#0a0c11}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line2)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+#summary{min-height:220px;font:13.5px/1.55 "JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;background:#070a0f;color:#dfe6f3}
+.msg{color:var(--sage);font-size:.95rem;min-height:1.4em;margin-top:8px}
+.hidden{display:none}
+@media (max-width:520px){ .btn{width:100%} .card{padding:18px 16px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brandrow"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#7cc4ff" stroke-width="2"/><path d="M20 7 L32 28 L8 28 Z" fill="none" stroke="#7cc4ff" stroke-width="1.6"/><path d="M20 33 L8 12 L32 12 Z" fill="none" stroke="#f5c76e" stroke-width="1.6"/><circle cx="20" cy="20" r="2.4" fill="#fff"/></svg><b>Calm AI</b></div>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="nl">NL</button></div></div>
+  <div class="kicker" style="margin-top:22px" data-t="kicker"></div>
+  <h1 data-t="title"></h1>
+  <p class="muted" data-t="intro"></p>
+  <form id="form" novalidate></form>
+  <div class="card">
+    <button class="btn" type="button" id="doneBtn" data-t="done"></button>
+    <div id="out" class="hidden">
+      <p style="margin-top:16px" data-t="outIntro"></p>
+      <textarea id="summary" readonly aria-label="Your answers"></textarea>
+      <div class="row"><button class="btn" type="button" id="copyBtn" data-t="copy"></button><button class="btn secondary" type="button" id="mailBtn" data-t="mail"></button></div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+    </div>
+  </div>
+  <p class="muted" style="font-size:.85rem;text-align:center" data-t="privacy"></p>
+</div>
+
+<script>
+/* ===== Edit this line before sharing ===== */
+const CONTACT_EMAIL = 'hello@yourdomain.com';
+/* ========================================= */
+
+const UI = {
+  en:{kicker:'Before we start', title:'A few questions before our first session (Wed 11 Nov)',
+      intro:'This takes about 10 minutes. There are no wrong answers, and short answers are fine. It helps me prepare sessions around your real work instead of theory.',
+      done:'I\'m done, show my answers', outIntro:'Thank you! Send your answers to me by copying them into WhatsApp, or by email.',
+      copy:'Copy my answers', mail:'Send by email', copied:'Copied. Paste it into WhatsApp and send it to me.',
+      mailNote:'Your email app should open. If the text is cut off, use Copy instead.',
+      privacy:'Your answers stay on this device until you send them. Only I will see them.',
+      subject:'My answers before the course', required:'Please fill in your name first.'},
+  nl:{kicker:'Voor we beginnen', title:'Een paar vragen voor onze eerste sessie (wo 11 nov)',
+      intro:'Dit duurt ongeveer 10 minuten. Er zijn geen foute antwoorden, en korte antwoorden zijn prima. Zo kan ik de sessies voorbereiden rond jouw echte werk in plaats van theorie.',
+      done:'Klaar, toon mijn antwoorden', outIntro:'Dankjewel! Stuur me je antwoorden door ze in WhatsApp te plakken, of via e-mail.',
+      copy:'Kopieer mijn antwoorden', mail:'Verstuur via e-mail', copied:'Gekopieerd. Plak het in WhatsApp en stuur het naar mij.',
+      mailNote:'Je e-mailprogramma zou moeten openen. Is de tekst afgeknipt? Gebruik dan Kopieer.',
+      privacy:'Je antwoorden blijven op dit toestel tot je ze verstuurt. Alleen ik zie ze.',
+      subject:'Mijn antwoorden voor de cursus', required:'Vul eerst je naam in.'}
+};
+
+const SECTIONS = [
+ {en:'About you', nl:'Over jou', qs:[
+  {id:'name', type:'text', en:'Your name', nl:'Je naam'},
+  {id:'work', type:'area', en:'What do you do? Describe your work or business in a few sentences.', nl:'Wat doe je? Beschrijf je werk of zaak in een paar zinnen.'},
+  {id:'projects', type:'area', en:'Are you running more than one business or project? Which ones?', nl:'Heb je meer dan één zaak of project? Welke?', opt:true}
+ ]},
+ {en:'Your week', nl:'Jouw week', qs:[
+  {id:'repeat', type:'area', en:'Which tasks do you do again and again, every week?', nl:'Welke taken doe je elke week opnieuw?',
+   hint:{en:'For example: answering the same emails, posting on social media, invoices, planning, updating lists.', nl:'Bijvoorbeeld: dezelfde e-mails beantwoorden, posten op sociale media, facturen, planning, lijsten bijwerken.'}},
+  {id:'annoy', type:'area', en:'Which three tasks annoy you most or take the most time?', nl:'Welke drie taken ergeren je het meest of kosten de meeste tijd?'},
+  {id:'hours', type:'radio', en:'Roughly how many hours a week go to these repetitive tasks?', nl:'Hoeveel uur per week gaat er ongeveer naar die herhalende taken?',
+   options:{en:['Less than 2','2 to 5','5 to 10','More than 10','No idea'], nl:['Minder dan 2','2 tot 5','5 tot 10','Meer dan 10','Geen idee']}}
+ ]},
+ {en:'You and AI', nl:'Jij en AI', qs:[
+  {id:'used', type:'radio', en:'Have you used ChatGPT, Claude or a similar AI?', nl:'Heb je al ChatGPT, Claude of een gelijkaardige AI gebruikt?',
+   options:{en:['Never','A few times','Regularly','Daily'], nl:['Nooit','Een paar keer','Regelmatig','Dagelijks']}},
+  {id:'tried', type:'area', en:'If yes: what did you use it for, and how did it go?', nl:'Zo ja: waarvoor gebruikte je het, en hoe ging het?', opt:true},
+  {id:'feel', type:'radio', en:'How do you feel about AI right now?', nl:'Hoe voel je je nu over AI?',
+   options:{en:['Curious and excited','Interested but unsure where to start','A bit overwhelmed','Sceptical or worried'], nl:['Nieuwsgierig en enthousiast','Geïnteresseerd maar weet niet waar te beginnen','Een beetje overweldigd','Sceptisch of bezorgd']}},
+  {id:'worry', type:'check', en:'What worries you most about using AI? (choose any)', nl:'Waar maak je je het meest zorgen over bij AI? (kies er zoveel je wil)',
+   options:{en:['Privacy and my data','It making mistakes','It being too technical','Falling behind if I don\'t learn it','Losing my personal touch','Nothing really'], nl:['Privacy en mijn gegevens','Dat het fouten maakt','Dat het te technisch is','Achterop raken als ik het niet leer','Mijn persoonlijke aanpak verliezen','Eigenlijk niets']}}
+ ]},
+ {en:'Your computer and tools', nl:'Je computer en tools', qs:[
+  {id:'computer', type:'radio', en:'Which computer will you use for the sessions?', nl:'Welke computer gebruik je tijdens de sessies?',
+   hint:{en:'Some tools we\'ll use need a laptop or desktop, not only a phone or tablet.', nl:'Sommige tools die we gebruiken hebben een laptop of computer nodig, niet enkel een gsm of tablet.'},
+   options:{en:['Mac','Windows','Chromebook','Only a tablet or phone','Not sure'], nl:['Mac','Windows','Chromebook','Enkel een tablet of gsm','Weet ik niet']}},
+  {id:'comfort', type:'check', en:'Which of these do you already do comfortably?', nl:'Wat doe je al zonder problemen?',
+   options:{en:['Email and attachments','Google Drive or Docs','Making folders and finding files on my computer','Installing a new program','Copying and pasting between apps'], nl:['E-mail en bijlagen','Google Drive of Docs','Mappen maken en bestanden terugvinden op mijn computer','Een nieuw programma installeren','Kopiëren en plakken tussen apps']}},
+  {id:'online', type:'area', en:'Where do you share your work online, and how often?', nl:'Waar deel je je werk online, en hoe vaak?',
+   hint:{en:'For example: Instagram, TikTok, YouTube, Facebook, a newsletter, a podcast, a website. Your handles are welcome.', nl:'Bijvoorbeeld: Instagram, TikTok, YouTube, Facebook, een nieuwsbrief, een podcast, een website. Je accountnamen zijn welkom.'}, opt:true},
+  {id:'clients', type:'area', en:'How do clients find you, book with you and stay in touch with you?', nl:'Hoe vinden klanten je, hoe boeken ze, en hoe blijf je met hen in contact?',
+   hint:{en:'For example: DMs, WhatsApp, a booking page, email, word of mouth.', nl:'Bijvoorbeeld: DM\'s, WhatsApp, een boekingspagina, e-mail, mond-tot-mondreclame.'}, opt:true},
+  {id:'tools', type:'area', en:'Which tools do you use for your work?', nl:'Welke tools gebruik je voor je werk?',
+   hint:{en:'For example: Gmail, Outlook, WhatsApp Business, Canva, Mailchimp, a website builder, a booking system, Excel.', nl:'Bijvoorbeeld: Gmail, Outlook, WhatsApp Business, Canva, Mailchimp, een websitebouwer, een boekingssysteem, Excel.'}, opt:true}
+ ]},
+ {en:'Your goals', nl:'Je doelen', qs:[
+  {id:'never', type:'area', en:'Which one task would you love to never do by hand again?', nl:'Welke ene taak zou je nooit meer met de hand willen doen?'},
+  {id:'voice', type:'area', en:'Which parts of your work must always sound and feel like you, never like a machine?', nl:'Welke delen van je werk moeten altijd als jou klinken en voelen, nooit als een machine?',
+   hint:{en:'For example: how you speak to clients, your session descriptions, your posts, personal follow-ups.', nl:'Bijvoorbeeld: hoe je met klanten praat, je sessiebeschrijvingen, je posts, persoonlijke opvolging.'}},
+  {id:'three', type:'area', en:'If this course goes really well, what is different for you in three months?', nl:'Als deze cursus echt goed loopt, wat is er dan anders voor jou over drie maanden?'},
+  {id:'vision', type:'area', en:'Is there a bigger project or idea you\'d love AI to help you with?', nl:'Is er een groter project of idee waar je graag hulp van AI bij zou krijgen?', opt:true},
+  {id:'knowledge', type:'area', en:'Where does your knowledge and experience live now?', nl:'Waar zit je kennis en ervaring nu?',
+   hint:{en:'For example: in your head, notebooks, documents, emails, courses you made, presentations, a website.', nl:'Bijvoorbeeld: in je hoofd, notitieboekjes, documenten, e-mails, cursussen die je maakte, presentaties, een website.'}, opt:true}
+ ]},
+ {en:'How you learn', nl:'Hoe je leert', qs:[
+  {id:'learn', type:'check', en:'How do you learn best? (choose any)', nl:'Hoe leer je het best? (kies er zoveel je wil)',
+   options:{en:['Watching someone do it first','Trying it myself right away','Clear written steps','Asking lots of questions','Hearing it explained'], nl:['Eerst iemand anders zien doen','Meteen zelf proberen','Duidelijke geschreven stappen','Veel vragen stellen','Het uitgelegd horen']}},
+  {id:'easier', type:'area', en:'Is there anything that would make the sessions easier for you?', nl:'Is er iets dat de sessies makkelijker zou maken voor jou?',
+   hint:{en:'For example: a slower pace, larger text, a language preference, or anything else.', nl:'Bijvoorbeeld: een trager tempo, grotere tekst, een taalvoorkeur, of iets anders.'}, opt:true},
+  {id:'record', type:'radio', en:'Is it okay if I record the sessions for my own learning? Nothing goes public without your permission.', nl:'Is het oké als ik de sessies opneem om zelf bij te leren? Niets wordt publiek zonder jouw toestemming.',
+   options:{en:['Yes, that\'s fine','I\'d like to talk about it first'], nl:['Ja, dat is prima','Ik wil er eerst over praten']}},
+  {id:'else', type:'area', en:'Anything else you\'d like me to know?', nl:'Nog iets dat je me wil laten weten?', opt:true}
+ ]}
+];
+
+const KEY = 'calm-ai-intake-v1';
+let lang = (navigator.language||'').toLowerCase().startsWith('nl') ? 'nl' : 'en', answers = {};
+try{ const s = JSON.parse(localStorage.getItem(KEY)); if (s){ answers = s.answers||{}; lang = s.lang||lang; } }catch(e){}
+const p = new URLSearchParams(location.search).get('lang'); if (p==='nl'||p==='en') lang = p;
+const save = ()=>{ try{ localStorage.setItem(KEY, JSON.stringify({lang, answers})); }catch(e){} };
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const optional = {en:'(optional)', nl:'(optioneel)'};
+
+function render(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('on', b.dataset.lang===lang));
+  document.querySelectorAll('[data-t]').forEach(el=>{ el.textContent = UI[lang][el.dataset.t]; });
+  document.getElementById('form').innerHTML = SECTIONS.map(sec=>`<div class="card"><h2>${esc(sec[lang])}</h2>${sec.qs.map(q=>{
+    const lab = esc(q[lang]) + (q.opt?` <span class="muted" style="font-weight:normal">${optional[lang]}</span>`:'');
+    const hint = q.hint ? `<p class="hint">${esc(q.hint[lang])}</p>` : '';
+    if (q.type==='text') return `<div class="q"><label for="q-${q.id}">${lab}</label>${hint}<input type="text" id="q-${q.id}" data-q="${q.id}" value="${esc(answers[q.id]||'')}"></div>`;
+    if (q.type==='area') return `<div class="q"><label for="q-${q.id}">${lab}</label>${hint}<textarea id="q-${q.id}" data-q="${q.id}">${esc(answers[q.id]||'')}</textarea></div>`;
+    const multi = q.type==='check', cur = answers[q.id];
+    return `<fieldset class="q"><legend>${lab}</legend>${hint}${q.options[lang].map((o,i)=>{
+      const on = multi ? Array.isArray(cur) && cur.includes(i) : cur===i;
+      return `<label class="opt"><input type="${multi?'checkbox':'radio'}" name="q-${q.id}" data-q="${q.id}" data-i="${i}" ${on?'checked':''}><span>${esc(o)}</span></label>`;}).join('')}</fieldset>`;
+  }).join('')}</div>`).join('');
+  if (!document.getElementById('out').classList.contains('hidden')) buildSummary();
+}
+
+document.addEventListener('input', e=>{
+  const t = e.target, id = t.dataset.q; if (!id) return;
+  if (t.type==='radio') answers[id] = +t.dataset.i;
+  else if (t.type==='checkbox'){ const arr = Array.isArray(answers[id]) ? answers[id] : []; const i = +t.dataset.i;
+    answers[id] = t.checked ? [...new Set([...arr, i])].sort() : arr.filter(x=>x!==i); }
+  else answers[id] = t.value;
+  save();
+});
+document.addEventListener('click', e=>{
+  const l = e.target.closest('[data-lang]');
+  if (l){ lang = l.dataset.lang; save(); render(); }
+});
+
+function buildSummary(){
+  let out = UI[lang].subject.toUpperCase() + '\n';
+  for (const sec of SECTIONS){
+    out += '\n== ' + sec[lang] + ' ==\n';
+    for (const q of sec.qs){
+      let a = answers[q.id];
+      if (q.type==='radio') a = (a===undefined) ? '' : q.options[lang][a];
+      else if (q.type==='check') a = Array.isArray(a) ? a.map(i=>q.options[lang][i]).join(', ') : '';
+      a = (a||'').toString().trim() || '-';
+      out += q[lang] + '\n' + a + '\n\n';
+    }
+  }
+  document.getElementById('summary').value = out.trim();
+}
+
+document.getElementById('doneBtn').addEventListener('click', ()=>{
+  const msg = document.getElementById('msg');
+  if (!(answers.name||'').trim()){ document.getElementById('out').classList.add('hidden'); alert(UI[lang].required); document.getElementById('q-name').focus(); return; }
+  document.getElementById('out').classList.remove('hidden'); msg.textContent = ''; buildSummary();
+  document.getElementById('summary').scrollIntoView({behavior:'smooth', block:'center'});
+});
+document.getElementById('copyBtn').addEventListener('click', ()=>{
+  const el = document.getElementById('summary'), msg = document.getElementById('msg');
+  const ok = ()=>{ msg.textContent = UI[lang].copied; };
+  const fb = ()=>{ el.focus(); el.select(); try{ document.execCommand('copy'); ok(); }catch(err){} };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(el.value).then(ok, fb); else fb();
+});
+document.getElementById('mailBtn').addEventListener('click', ()=>{
+  const body = document.getElementById('summary').value;
+  location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(UI[lang].subject + ' - ' + (answers.name||'')) + '&body=' + encodeURIComponent(body);
+  document.getElementById('msg').textContent = UI[lang].mailNote;
+});
+
+render();
+</script>
+</body>
+</html>
