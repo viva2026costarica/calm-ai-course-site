@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --card:#12161f; --card2:#181d29; --ink:#ffffff; --ink2:#e9ecf3; --muted:#aab2c3; --line:#252c3b; --line2:#323a4d;
+  --gold:#f5c76e; --sage:#7fe3b4; --sky:#7cc4ff; --violet:#b4a5ff; --coral:#ff8f70;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg);color:var(--ink2);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:110px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(800px 460px at 90% -10%,rgba(124,196,255,.12),transparent 60%),radial-gradient(700px 500px at 0% 110%,rgba(245,199,110,.08),transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:28px 16px 40px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);line-height:1.2;margin:0}
+h1{font-size:clamp(1.9rem,5vw,2.6rem);margin:.5rem 0 .6rem}
+h2{font-size:1.4rem;margin:0 0 .3rem;display:flex;align-items:center;gap:10px}
+h2 .dot{width:10px;height:10px;border-radius:50%;flex:none}
+h3{font-size:1.15rem}
+p{margin:.3rem 0 .8rem} .muted{color:var(--muted)}
+.brandrow{display:flex;align-items:center;gap:10px} .brandrow b{font-family:var(--serif);font-weight:600;color:var(--ink)}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;margin:18px 0}
+.intro-note{background:rgba(255,143,112,.08);border:1px solid rgba(255,143,112,.35);border-radius:14px;padding:12px 14px;font-size:.95rem;margin-top:14px}
+.intro-note b{color:var(--coral)}
+.q{margin:0 0 18px} .q:last-child{margin-bottom:0}
+label.l,.legend{display:block;font-weight:600;color:var(--ink);margin-bottom:6px}
+.hint{font-size:.88rem;color:var(--muted);margin:-3px 0 7px}
+input[type=text],input[type=number],textarea,select{width:100%;font:inherit;color:var(--ink);background:#070a0f;border:1px solid var(--line2);border-radius:12px;padding:10px 12px}
+textarea{min-height:80px;resize:vertical}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line2);background:var(--card2);color:var(--ink2);border-radius:99px;padding:7px 14px;font:500 .9rem var(--sans);cursor:pointer}
+.chip.on{border-color:var(--sage);background:rgba(127,227,180,.12);color:var(--ink)}
+.biz{border:1px solid var(--line2);border-radius:16px;margin:14px 0;background:var(--card2);overflow:hidden}
+.biz-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;border-left:4px solid var(--sky)}
+.biz-head h3{font-size:1.1rem}
+.biz-head .tools{display:flex;gap:6px;align-items:center}
+.biz-body{padding:4px 16px 16px}
+.biz.closed .biz-body{display:none}
+.biz.closed .arr{transform:rotate(-90deg)}
+.arr{transition:transform .2s;color:var(--muted)}
+.sub{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:18px 0 8px}
+.sub.s1{color:var(--sky)} .sub.s2{color:var(--sage)} .sub.s3{color:var(--gold)}
+.row{display:grid;grid-template-columns:1.2fr 1.6fr 1fr auto;gap:8px;align-items:center;margin:8px 0}
+.row.task{grid-template-columns:2fr 1.2fr 1fr .8fr auto}
+.x{border:1px solid var(--line2);background:transparent;color:var(--muted);border-radius:10px;width:38px;height:38px;cursor:pointer;font-size:1.1rem}
+.x:hover{color:var(--coral);border-color:var(--coral)}
+.add{border:1px dashed var(--line2);background:transparent;color:var(--ink2);border-radius:12px;padding:9px 14px;font:600 .9rem var(--sans);cursor:pointer;margin-top:6px}
+.add:hover{border-color:var(--gold);color:var(--gold)}
+.add.big{width:100%;padding:14px;font-size:1rem}
+.colhead{display:grid;gap:8px;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgba(10,12,17,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+.bar-in{max-width:780px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.status{font-size:.9rem;color:var(--muted)}
+.status.ok{color:var(--sage)} .status.err{color:var(--coral)} .status.busy{color:var(--gold)}
+.btn{border:none;border-radius:99px;padding:12px 22px;font:700 1rem var(--sans);cursor:pointer;background:var(--gold);color:#0a0c11;white-space:nowrap}
+.btn[disabled]{opacity:.6;cursor:default}
+.nolink{display:none;text-align:center;padding:60px 20px}
+body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{display:none}
+@media (max-width:620px){
+  .grid2{grid-template-columns:1fr}
+  .row,.row.task{grid-template-columns:1fr;background:#0e1219;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .row .x{justify-self:end}
+  .colhead{display:none}
+  .card{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brandrow"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#7cc4ff" stroke-width="2"/><path d="M20 7 L32 28 L8 28 Z" fill="none" stroke="#7cc4ff" stroke-width="1.6"/><path d="M20 33 L8 12 L32 12 Z" fill="none" stroke="#f5c76e" stroke-width="1.6"/><circle cx="20" cy="20" r="2.4" fill="#fff"/></svg><b>Calm AI</b></div>
+
+  
+
+  <div id="main">
+    <div class="kicker">Before we build your system</div>
+    <h1>Your Business Map</h1>
+    <p>Everything we'll organise, in one place: your businesses, where their information lives, the tools you use, and the work you repeat. Fill in what you know. When you're done, click <b>Download</b> and save the file in your <b>my-businesses</b> folder. Your answers also stay in this browser, so you can come back and add more.</p>
+    <div class="intro-note"><b>Never</b> write passwords, bank details or customers' personal information here. Names of tools and places are all we need.</div>
+
+    <div class="card">
+      <h2><span class="dot" style="background:var(--gold)"></span>About you</h2>
+      <div class="q" style="margin-top:12px"><label class="l" for="f-name">Your name</label><input type="text" id="f-name" data-k="name"></div>
+      <div class="q"><label class="l" for="f-overall">In a few sentences: what do you do, and what does a normal week look like?</label><textarea id="f-overall" data-k="overall"></textarea></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot" style="background:var(--sky)"></span>Your businesses and projects</h2>
+      <p class="muted">One card per business, property portfolio or project. Click a card's title to open or close it.</p>
+      <div id="bizList"></div>
+      <button type="button" class="add big" id="addBiz">+ Add a business or project</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot" style="background:var(--sage)"></span>Work you repeat</h2>
+      <p class="muted">Tasks you do again and again, in any business. Roughly is fine.</p>
+      <div class="colhead" style="grid-template-columns:2fr 1.2fr 1fr .8fr 38px"><span>Task</span><span>Business</span><span>How often</span><span>Minutes</span><span></span></div>
+      <div id="taskList"></div>
+      <button type="button" class="add" id="addTask">+ Add a task</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot" style="background:var(--violet)"></span>Where to start</h2>
+      <div class="q" style="margin-top:12px"><label class="l" for="f-first">Which business should we organise first, and why?</label><textarea id="f-first" data-k="first"></textarea></div>
+      <div class="q"><label class="l" for="f-success">If this goes really well, what's different for you in one month?</label><textarea id="f-success" data-k="success"></textarea></div>
+      <div class="q"><label class="l" for="f-never">Is there anything that should never go into AI?</label><div class="hint">For example: certain clients, contracts, or financial details.</div><textarea id="f-never" data-k="never"></textarea></div>
+      <div class="q"><label class="l" for="f-else">Anything else I should know?</label><textarea id="f-else" data-k="else"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<div class="bar"><div class="bar-in"><span class="status" id="status" aria-live="polite">Your answers are kept in this browser</span><button type="button" class="btn" id="saveBtn">Download business-map.md</button></div></div>
+
+<template id="bizTpl">
+  <div class="biz">
+    <div class="biz-head"><h3 class="biz-title">New business</h3><span class="tools"><button type="button" class="x" data-act="delbiz" title="Remove this business" aria-label="Remove this business">×</button><span class="arr">▾</span></span></div>
+    <div class="biz-body">
+      <div class="grid2" style="margin-top:8px">
+        <div class="q"><label class="l">Name</label><input type="text" data-b="name"></div>
+        <div class="q"><label class="l">Stage</label><select data-b="stage"><option value="">Choose…</option><option>Running, with clients</option><option>Early, few clients yet</option><option>Idea or planning</option><option>Winding down</option></select></div>
+      </div>
+      <div class="q"><label class="l">What it does, in one or two lines</label><input type="text" data-b="what"></div>
+      <div class="grid2">
+        <div class="q"><label class="l">Your role</label><input type="text" data-b="role" placeholder="e.g. owner, manager, investor"></div>
+        <div class="q"><label class="l">Who else works on it</label><input type="text" data-b="team" placeholder="e.g. a bookkeeper, a partner"></div>
+      </div>
+      <div class="q"><label class="l">The biggest headache in this business</label><textarea data-b="headache"></textarea></div>
+
+      <div class="sub s1">Where its information lives</div>
+      <div class="chips" data-chips="places"></div>
+      <div class="q" style="margin-top:10px"><input type="text" data-b="places_other" placeholder="Other places, or details (e.g. which Drive folder)"></div>
+
+      <div class="sub s2">Tools it uses</div>
+      <div class="colhead" style="grid-template-columns:1.2fr 1.6fr 1fr 38px"><span>Tool</span><span>Used for</span><span>Can you export?</span><span></span></div>
+      <div data-list="tools"></div>
+      <button type="button" class="add" data-act="addtool">+ Add a tool</button>
+
+      <div class="sub s3">Inventory or assets</div>
+      <div class="hint">Stock, properties, units, equipment: anything you keep a list of.</div>
+      <div class="grid2">
+        <div class="q"><label class="l">What do you keep track of?</label><input type="text" data-b="inv_what" placeholder="e.g. 3 rental properties, 200 products"></div>
+        <div class="q"><label class="l">Where is that list now?</label><input type="text" data-b="inv_where" placeholder="e.g. Excel on laptop, QuickBooks"></div>
+        <div class="q"><label class="l">How often is it updated?</label><select data-b="inv_often"><option value="">Choose…</option><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Rarely</option><option>Never really</option></select></div>
+        <div class="q"><label class="l">Who updates it?</label><input type="text" data-b="inv_who"></div>
+      </div>
+      <div class="q"><label class="l">What goes wrong with it now?</label><textarea data-b="inv_problem"></textarea></div>
+    </div>
+  </div>
+</template>
+
+<script>
+(function(){
+  var PLACES=['Email','Google Drive','Dropbox','OneDrive','Folders on my laptop','Excel / Sheets','WhatsApp','Paper','In my head','Accounting software','Website or shop'];
+  var FREQ=['Daily','Weekly','Monthly','Quarterly','Now and then'];
+  var LKEY='calm-ai-bizmap-local';
+  var data={name:'',overall:'',businesses:[],tasks:[],first:'',success:'',never:'',else:'',_local:0};
+  var dirty=false;
+
+  function $(s,r){return (r||document).querySelector(s);} function $$(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+  function setStatus(t,cls){var s=$('#status');s.textContent=t;s.className='status'+(cls?' '+cls:'');}
+  function saveLocal(){data._local=Date.now();try{localStorage.setItem(LKEY,JSON.stringify(data));}catch(e){}}
+  function loadLocal(){try{return JSON.parse(localStorage.getItem(LKEY));}catch(e){return null;}}
+  function blankBiz(){return {name:'',stage:'',what:'',role:'',team:'',headache:'',places:[],places_other:'',tools:[{tool:'',use:'',exp:''}],inv_what:'',inv_where:'',inv_often:'',inv_who:'',inv_problem:''};}
+
+  /* ---------- render ---------- */
+  function toolRow(t){
+    var r=document.createElement('div');r.className='row';
+    r.innerHTML='<input type="text" data-t="tool" placeholder="e.g. QuickBooks" aria-label="Tool"><input type="text" data-t="use" placeholder="e.g. invoices and expenses" aria-label="Used for"><select data-t="exp" aria-label="Can you export?"><option value="">Export?</option><option>Yes</option><option>No</option><option>Not sure</option></select><button type="button" class="x" data-act="deltool" aria-label="Remove tool">×</button>';
+    $('[data-t=tool]',r).value=t.tool||'';$('[data-t=use]',r).value=t.use||'';$('[data-t=exp]',r).value=t.exp||'';
+    return r;
+  }
+  function bizCard(b,i){
+    var el=$('#bizTpl').content.firstElementChild.cloneNode(true);
+    el.dataset.i=i;
+    $$('[data-b]',el).forEach(function(f){f.value=b[f.dataset.b]||'';});
+    $('.biz-title',el).textContent=b.name||'New business';
+    var chips=$('[data-chips=places]',el);
+    PLACES.forEach(function(p){var c=document.createElement('button');c.type='button';c.className='chip'+((b.places||[]).indexOf(p)>=0?' on':'');c.textContent=p;c.dataset.place=p;chips.appendChild(c);});
+    var tl=$('[data-list=tools]',el);(b.tools||[]).forEach(function(t){tl.appendChild(toolRow(t));});
+    if(b._closed)el.classList.add('closed');
+    return el;
+  }
+  function taskRow(t){
+    var r=document.createElement('div');r.className='row task';
+    var opts=FREQ.map(function(f){return '<option>'+f+'</option>';}).join('');
+    r.innerHTML='<input type="text" data-k2="task" placeholder="e.g. update stock list" aria-label="Task"><input type="text" data-k2="biz" placeholder="Business" aria-label="Business"><select data-k2="often" aria-label="How often"><option value="">How often?</option>'+opts+'</select><input type="number" min="0" data-k2="mins" placeholder="Min" aria-label="Minutes"><button type="button" class="x" data-act="deltask" aria-label="Remove task">×</button>';
+    $$('[data-k2]',r).forEach(function(f){f.value=t[f.dataset.k2]||'';});
+    return r;
+  }
+  function render(){
+    $$('[data-k]').forEach(function(f){f.value=data[f.dataset.k]||'';});
+    var bl=$('#bizList');bl.innerHTML='';data.businesses.forEach(function(b,i){bl.appendChild(bizCard(b,i));});
+    var tl=$('#taskList');tl.innerHTML='';data.tasks.forEach(function(t){tl.appendChild(taskRow(t));});
+  }
+
+  /* ---------- read form back into data ---------- */
+  function collect(){
+    $$('[data-k]').forEach(function(f){data[f.dataset.k]=f.value;});
+    data.businesses=$$('#bizList .biz').map(function(el){
+      var b={};$$('[data-b]',el).forEach(function(f){b[f.dataset.b]=f.value;});
+      b.places=$$('.chip.on',el).map(function(c){return c.dataset.place;});
+      b.tools=$$('[data-list=tools] .row',el).map(function(r){return {tool:$('[data-t=tool]',r).value,use:$('[data-t=use]',r).value,exp:$('[data-t=exp]',r).value};});
+      b._closed=el.classList.contains('closed');
+      return b;
+    });
+    data.tasks=$$('#taskList .row').map(function(r){var t={};$$('[data-k2]',r).forEach(function(f){t[f.dataset.k2]=f.value;});return t;});
+  }
+  function changed(){collect();saveLocal();dirty=true;setStatus('Kept in this browser · not downloaded yet','');}
+
+  /* ---------- events ---------- */
+  document.addEventListener('input',function(e){
+    if(e.target.matches('[data-b=name]')){var t=e.target.closest('.biz');$('.biz-title',t).textContent=e.target.value||'New business';}
+    if(e.target.closest('#main'))changed();
+  });
+  document.addEventListener('change',function(e){if(e.target.closest('#main'))changed();});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-act]'),chip=e.target.closest('.chip'),head=e.target.closest('.biz-head');
+    if(chip){chip.classList.toggle('on');changed();return;}
+    if(a){
+      var act=a.dataset.act;
+      if(act==='addtool'){$('[data-list=tools]',a.closest('.biz')).appendChild(toolRow({}));changed();}
+      else if(act==='deltool'){a.closest('.row').remove();changed();}
+      else if(act==='deltask'){a.closest('.row').remove();changed();}
+      else if(act==='delbiz'){e.stopPropagation();var n=$('[data-b=name]',a.closest('.biz')).value||'this business';if(window.confirm('Remove '+n+' and everything you wrote about it?')){a.closest('.biz').remove();changed();}}
+      return;
+    }
+    if(head){head.parentElement.classList.toggle('closed');changed();}
+  });
+  $('#addBiz').addEventListener('click',function(){collect();$$('#bizList .biz').forEach(function(b){b.classList.add('closed');});collect();data.businesses.push(blankBiz());render();var last=$$('#bizList .biz').pop();last.scrollIntoView({behavior:'smooth',block:'start'});$('[data-b=name]',last).focus();changed();});
+  $('#addTask').addEventListener('click',function(){$('#taskList').appendChild(taskRow({}));changed();});
+
+  /* ---------- download as a file ---------- */
+  function v(x){x=(typeof x==='string')?x.trim():x;return x?x:'–';}
+  function toMarkdown(a){
+    var d=new Date(),o=[];
+    o.push('# Business map'+(a.name?': '+a.name:''),'','_Written on '+d.toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'})+'_','');
+    o.push('## About','',v(a.overall),'');
+    (a.businesses||[]).forEach(function(b,i){
+      var filled=['name','what','stage','role','team','headache','places_other','inv_what','inv_where','inv_often','inv_who','inv_problem'].some(function(k){return (b[k]||'').trim();})||(b.places||[]).length||(b.tools||[]).some(function(t){return (t.tool||'').trim();});
+      if(!filled)return;
+      o.push('## '+(i+1)+'. '+v(b.name),'','- **What:** '+v(b.what),'- **Stage:** '+v(b.stage),'- **Role:** '+v(b.role),'- **Team:** '+v(b.team),'- **Biggest headache:** '+v(b.headache),'');
+      o.push('### Where its information lives','',((b.places||[]).join(', ')||'–')+((b.places_other||'').trim()?' ('+b.places_other.trim()+')':''),'');
+      var tools=(b.tools||[]).filter(function(t){return (t.tool||'').trim();});
+      o.push('### Tools','');
+      if(tools.length){o.push('| Tool | Used for | Export? |','|---|---|---|');tools.forEach(function(t){o.push('| '+v(t.tool)+' | '+v(t.use)+' | '+v(t.exp)+' |');});} else o.push('–');
+      o.push('','### Inventory or assets','','- **Tracks:** '+v(b.inv_what),'- **List lives in:** '+v(b.inv_where),'- **Updated:** '+v(b.inv_often)+' by '+v(b.inv_who),'- **What goes wrong:** '+v(b.inv_problem),'');
+    });
+    var tasks=(a.tasks||[]).filter(function(t){return (t.task||'').trim();});
+    o.push('## Work I repeat','');
+    if(tasks.length){o.push('| Task | Business | How often | Minutes |','|---|---|---|---|');tasks.forEach(function(t){o.push('| '+v(t.task)+' | '+v(t.biz)+' | '+v(t.often)+' | '+v(t.mins)+' |');});} else o.push('–');
+    o.push('','## Where to start','','- **First business:** '+v(a.first),'- **Success in one month:** '+v(a.success),'- **Never into AI:** '+v(a.never),'- **Anything else:** '+v(a['else']),'');
+    return o.join('\n');
+  }
+  function download(){
+    collect();saveLocal();
+    var blob=new Blob([toMarkdown(data)],{type:'text/markdown;charset=utf-8'});
+    var url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='business-map.md';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},2000);
+    dirty=false;setStatus('Downloaded ✓ Move business-map.md into your my-businesses folder','ok');
+  }
+  $('#saveBtn').addEventListener('click',download);
+
+  /* ---------- start ---------- */
+  var local=loadLocal();
+  if(local){data=Object.assign(data,local);}
+  if(!data.businesses.length)data.businesses.push(blankBiz());
+  if(!data.tasks.length)data.tasks.push({});
+  render();
+})();
+</script>
+</body>
+</html>
