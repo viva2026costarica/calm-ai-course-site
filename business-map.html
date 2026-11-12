@@ -72,6 +72,22 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
   .colhead{display:none}
   .card{padding:18px 16px}
 }
+
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 6px}
+.opt-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.opt-card b{display:block;color:var(--ink);font-size:1.05rem;margin-bottom:4px}
+.opt-card .n{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.opt-card.a .n{color:var(--sky)} .opt-card.b .n{color:var(--gold)}
+.opt-card a{color:var(--gold)}
+.iv{background:var(--card);border:1px solid rgba(245,199,110,.4);border-radius:18px;padding:20px;margin:18px 0}
+.iv h2 .dot{background:var(--gold)}
+.ivp{position:relative;margin:10px 0}
+.ivp pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#070a0f;border:1px solid var(--line2);border-radius:14px;padding:16px;color:#e8f0ff}
+.ivp .copy{position:absolute;top:8px;right:8px;border:1px solid var(--line2);background:var(--card2);color:var(--ink2);border-radius:8px;padding:4px 10px;font:600 .78rem var(--sans);cursor:pointer}
+.ivtabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.ivtabs button{border:1px solid var(--line2);background:var(--card2);color:var(--ink2);border-radius:99px;padding:7px 14px;font:600 .88rem var(--sans);cursor:pointer}
+.ivtabs button.on{border-color:var(--gold);color:var(--gold);background:rgba(245,199,110,.1)}
+@media (max-width:620px){.choose{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -84,7 +100,36 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
     <div class="kicker">Before we build your system</div>
     <h1>Your Business Map</h1>
     <p>Everything we'll organise, in one place: your businesses, where their information lives, the tools you use, and the work you repeat. Fill in what you know. When you're done, click <b>Download</b> and save the file in your <b>my-businesses</b> folder. Your answers also stay in this browser, so you can come back and add more.</p>
+    <div class="choose">
+      <div class="opt-card a"><div class="n">Option 1</div><b>Fill in the form</b>Below on this page. Click Download at the end.</div>
+      <div class="opt-card b"><div class="n">Option 2</div><b>Let Claude interview you</b>Prefer talking to typing? Claude asks you about 15 questions, one at a time, and writes your map. <a href="#interview">Jump to the interview →</a></div>
+    </div>
     <div class="intro-note"><b>Never</b> write passwords, bank details or customers' personal information here. Names of tools and places are all we need.</div>
+    <div class="iv" id="interview">
+      <h2><span class="dot"></span>Option 2 · Let Claude interview you</h2>
+      <p>Copy the prompt into Claude and answer one question at a time. Short answers are fine. Where are you working?</p>
+      <div class="ivtabs" id="ivtabs"><button type="button" class="on" data-iv="code">Claude Code (my folder)</button><button type="button" data-iv="chat">Claude chat</button></div>
+      <div class="ivp" data-ivp="code"><pre>Interview me to make my business map. Ask one question at a time, about 15 in total, about:
+- my businesses and projects: what each does, its stage, my role, who else works on it, and the biggest headache
+- where each one's information lives (email, Drive, Excel, paper, my head…)
+- which tools each one uses, what lives in each, and whether it can export
+- what inventory or assets I keep track of (stock, properties, equipment), where that list is and what goes wrong
+- the work I repeat, how often, and how long it takes
+- which business to organise first, and what success looks like in a month
+Never ask for passwords, bank or card numbers.
+When we're done, write everything to business-map.md in this folder with clear headings and tables, then show me the file.</pre></div>
+      <div class="ivp" data-ivp="chat" hidden><pre>Interview me to make my business map. Ask one question at a time, about 15 in total, about:
+- my businesses and projects: what each does, its stage, my role, who else works on it, and the biggest headache
+- where each one's information lives (email, Drive, Excel, paper, my head…)
+- which tools each one uses, what lives in each, and whether it can export
+- what inventory or assets I keep track of (stock, properties, equipment), where that list is and what goes wrong
+- the work I repeat, how often, and how long it takes
+- which business to organise first, and what success looks like in a month
+Never ask for passwords, bank or card numbers.
+When we're done, write everything as one Markdown document with clear headings and tables, so I can copy it and save it as business-map.md.</pre></div>
+      <p class="muted" style="margin:6px 0 0">In Claude chat: copy the final document, paste it into a new text file, and save it as <b>business-map.md</b> in your business folder.</p>
+    </div>
+    <h2 style="margin-top:26px"><span class="dot" style="background:var(--sky)"></span>Option 1 · The form</h2>
 
     <div class="card">
       <h2><span class="dot" style="background:var(--gold)"></span>About you</h2>
@@ -129,14 +174,14 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
       </div>
       <div class="q"><label class="l">What it does, in one or two lines</label><input type="text" data-b="what"></div>
       <div class="grid2">
-        <div class="q"><label class="l">Your role</label><input type="text" data-b="role" placeholder="e.g. owner, manager, investor"></div>
-        <div class="q"><label class="l">Who else works on it</label><input type="text" data-b="team" placeholder="e.g. a bookkeeper, a partner"></div>
+        <div class="q"><label class="l">Your role</label><input type="text" data-b="role"></div>
+        <div class="q"><label class="l">Who else works on it</label><input type="text" data-b="team"></div>
       </div>
       <div class="q"><label class="l">The biggest headache in this business</label><textarea data-b="headache"></textarea></div>
 
       <div class="sub s1">Where its information lives</div>
       <div class="chips" data-chips="places"></div>
-      <div class="q" style="margin-top:10px"><input type="text" data-b="places_other" placeholder="Other places, or details (e.g. which Drive folder)"></div>
+      <div class="q" style="margin-top:12px"><label class="l">Other places or details</label><input type="text" data-b="places_other"></div>
 
       <div class="sub s2">Tools it uses</div>
       <div class="colhead" style="grid-template-columns:1.2fr 1.6fr 1fr 38px"><span>Tool</span><span>Used for</span><span>Can you export?</span><span></span></div>
@@ -146,8 +191,8 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
       <div class="sub s3">Inventory or assets</div>
       <div class="hint">Stock, properties, units, equipment: anything you keep a list of.</div>
       <div class="grid2">
-        <div class="q"><label class="l">What do you keep track of?</label><input type="text" data-b="inv_what" placeholder="e.g. 3 rental properties, 200 products"></div>
-        <div class="q"><label class="l">Where is that list now?</label><input type="text" data-b="inv_where" placeholder="e.g. Excel on laptop, QuickBooks"></div>
+        <div class="q"><label class="l">What do you keep track of?</label><input type="text" data-b="inv_what"></div>
+        <div class="q"><label class="l">Where is that list now?</label><input type="text" data-b="inv_where"></div>
         <div class="q"><label class="l">How often is it updated?</label><select data-b="inv_often"><option value="">Choose…</option><option>Daily</option><option>Weekly</option><option>Monthly</option><option>Rarely</option><option>Never really</option></select></div>
         <div class="q"><label class="l">Who updates it?</label><input type="text" data-b="inv_who"></div>
       </div>
@@ -156,6 +201,20 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
   </div>
 </template>
 
+<script>
+(function(){
+  var tabs=document.getElementById('ivtabs');
+  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    [].forEach.call(tabs.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b);});
+    [].forEach.call(document.querySelectorAll('[data-ivp]'),function(p){p.hidden=p.dataset.ivp!==b.dataset.iv;});});
+  [].forEach.call(document.querySelectorAll('.ivp'),function(box){
+    var pre=box.querySelector('pre'),btn=document.createElement('button');btn.type='button';btn.className='copy';btn.textContent='Copy';
+    btn.addEventListener('click',function(){var t=pre.textContent,ok=function(){btn.textContent='Copied ✓';setTimeout(function(){btn.textContent='Copy';},1500);};
+      var fb=function(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(err){}a.remove();};
+      if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(ok,fb);else fb();});
+    box.appendChild(btn);});
+})();
+</script>
 <script>
 (function(){
   var PLACES=['Email','Google Drive','Dropbox','OneDrive','Folders on my laptop','Excel / Sheets','WhatsApp','Paper','In my head','Accounting software','Website or shop'];
@@ -173,7 +232,7 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
   /* ---------- render ---------- */
   function toolRow(t){
     var r=document.createElement('div');r.className='row';
-    r.innerHTML='<input type="text" data-t="tool" placeholder="e.g. QuickBooks" aria-label="Tool"><input type="text" data-t="use" placeholder="e.g. invoices and expenses" aria-label="Used for"><select data-t="exp" aria-label="Can you export?"><option value="">Export?</option><option>Yes</option><option>No</option><option>Not sure</option></select><button type="button" class="x" data-act="deltool" aria-label="Remove tool">×</button>';
+    r.innerHTML='<input type="text" data-t="tool" placeholder="Tool" aria-label="Tool"><input type="text" data-t="use" placeholder="Used for" aria-label="Used for"><select data-t="exp" aria-label="Can you export?"><option value="">Export?</option><option>Yes</option><option>No</option><option>Not sure</option></select><button type="button" class="x" data-act="deltool" aria-label="Remove tool">×</button>';
     $('[data-t=tool]',r).value=t.tool||'';$('[data-t=use]',r).value=t.use||'';$('[data-t=exp]',r).value=t.exp||'';
     return r;
   }
@@ -191,7 +250,7 @@ body.no-code .nolink{display:block} body.no-code #main, body.no-code .bar{displa
   function taskRow(t){
     var r=document.createElement('div');r.className='row task';
     var opts=FREQ.map(function(f){return '<option>'+f+'</option>';}).join('');
-    r.innerHTML='<input type="text" data-k2="task" placeholder="e.g. update stock list" aria-label="Task"><input type="text" data-k2="biz" placeholder="Business" aria-label="Business"><select data-k2="often" aria-label="How often"><option value="">How often?</option>'+opts+'</select><input type="number" min="0" data-k2="mins" placeholder="Min" aria-label="Minutes"><button type="button" class="x" data-act="deltask" aria-label="Remove task">×</button>';
+    r.innerHTML='<input type="text" data-k2="task" placeholder="Task" aria-label="Task"><input type="text" data-k2="biz" placeholder="Business" aria-label="Business"><select data-k2="often" aria-label="How often"><option value="">How often?</option>'+opts+'</select><input type="number" min="0" data-k2="mins" placeholder="Minutes" aria-label="Minutes"><button type="button" class="x" data-act="deltask" aria-label="Remove task">×</button>';
     $$('[data-k2]',r).forEach(function(f){f.value=t[f.dataset.k2]||'';});
     return r;
   }
