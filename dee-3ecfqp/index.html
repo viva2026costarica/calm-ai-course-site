@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dee · Private lessons · locked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c11;--ink:#ffffff;--ink2:#e9ecf3;--muted:#aab2c3;--gold:#f5c76e;--line:#252c3b;--line2:#323a4d;--panel:#12161f}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink2);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;display:grid;place-items:center;padding:20px}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(800px 500px at 50% -10%,rgba(124,196,255,.12),transparent 60%)}
+.wrap{position:relative;width:100%;max-width:420px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center}
+.ic{font-size:2.2rem;line-height:1;margin-bottom:10px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:400;color:var(--ink);font-size:1.7rem;margin:0 0 8px}
+p{color:var(--muted);margin:0 0 18px}
+form{display:flex;gap:8px}
+input{flex:1;font:inherit;color:var(--ink);background:#070a0f;border:1px solid var(--line2);border-radius:12px;padding:11px 14px;min-width:0}
+input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+button{background:var(--gold);color:#0a0c11;border:0;border-radius:12px;padding:11px 18px;font-weight:700;font-size:.95rem;cursor:pointer}
+button:hover{filter:brightness(1.05)}
+.msg{min-height:1.4em;color:#ff8f70;font-size:.9rem;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="card" style="display:none">
+    <div class="ic">🔒</div>
+    <h1>Dee</h1>
+    <p>Private lessons. Enter the password to open this page.</p>
+    <form id="f">
+      <input type="password" id="pw" placeholder="Password" autocomplete="off" aria-label="Password">
+      <button type="submit">Unlock</button>
+    </form>
+    <p class="msg" id="msg" aria-live="polite"></p>
+  </div>
+</div>
+<script>
+(function(){
+  var SALT="uZonlXsTm//ZtjZzWrNqzQ==", IV="i9oZZV86OyRaHOkD", CT="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", ITER=200000;
+  var KEY='calm-ai-private-dee';
+  function b64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
+  function norm(p){return (p||'').trim().toLowerCase();}
+  function decrypt(pw){
+    var enc=new TextEncoder();
+    return crypto.subtle.importKey('raw',enc.encode(norm(pw)),'PBKDF2',false,['deriveKey']).then(function(base){
+      return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(SALT),iterations:ITER,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    }).then(function(key){
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:b64(IV)},key,b64(CT));
+    }).then(function(pt){return new TextDecoder().decode(pt);});
+  }
+  function openDoc(html){ document.open(); document.write(html); document.close(); }
+  function show(){ var c=document.getElementById('card'); if(c)c.style.display=''; }
+  function fail(){ try{localStorage.removeItem(KEY);}catch(e){} show(); var m=document.getElementById('msg'); if(m)m.textContent="That password didn't work. Check the spelling, or ask Viva."; }
+  function trypw(pw,store){
+    decrypt(pw).then(function(html){ if(store){try{localStorage.setItem(KEY,pw);}catch(e){}} openDoc(html); }, fail);
+  }
+  document.getElementById('f').addEventListener('submit',function(e){ e.preventDefault(); trypw(document.getElementById('pw').value, true); });
+  var stored=null; try{ stored=localStorage.getItem(KEY); }catch(e){}
+  if(stored){ trypw(stored,false); } else { show(); }
+})();
+</script>
+</body>
+</html>
