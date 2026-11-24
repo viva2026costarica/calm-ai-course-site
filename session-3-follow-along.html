@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session 3 · Your business, in one folder · Calm AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c11; --panel:#12161f; --panel2:#181d29; --line:#252c3b; --line2:#323a4d;
+  --ink:#ffffff; --ink2:#e9ecf3; --muted:#aab2c3;
+  --gold:#f5c76e; --sage:#7fe3b4; --coral:#ff8f70; --sky:#7cc4ff; --violet:#b4a5ff;
+  --gold-soft:rgba(245,199,110,.12); --sage-soft:rgba(127,227,180,.11); --coral-soft:rgba(255,143,112,.12); --sky-soft:rgba(124,196,255,.11); --violet-soft:rgba(180,165,255,.12);
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box} html,body{margin:0} html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink2);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:40px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(900px 500px at 85% -10%,rgba(124,196,255,.11),transparent 60%),radial-gradient(700px 500px at 10% 110%,rgba(245,199,110,.07),transparent 60%)}
+a{color:var(--sky)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink);line-height:1.2;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.1rem)} h1 em{font-style:italic;color:var(--sky)}
+h2{font-size:1.6rem;margin:2.4rem 0 .8rem}
+h3{font-size:1.25rem;margin:0 0 .4rem}
+h4{font-family:var(--sans);font-size:.95rem;color:var(--ink);margin:16px 0 4px}
+p{margin:.35rem 0 .9rem} b,strong{color:var(--ink)} .muted{color:var(--muted)}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--gold)}
+ul,ol{margin:.3rem 0 .9rem;padding-left:1.25rem} li{margin:.35rem 0}
+kbd{font-family:var(--mono);font-size:.82em;background:var(--panel2);border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--ink)}
+
+.top{position:sticky;top:0;z-index:10;background:rgba(10,12,17,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:880px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:600;color:var(--ink);white-space:nowrap}
+.prog{flex:1;display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted)}
+.bar{flex:1;height:7px;background:var(--panel2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sage),var(--sky));border-radius:99px;transition:width .4s}
+.prog b{color:var(--sage);min-width:3.2em;text-align:right}
+.seg{display:flex;background:var(--panel2);border-radius:99px;padding:3px;flex:none}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 .8rem var(--sans);padding:5px 12px;border-radius:99px;cursor:pointer}
+.seg button.on{background:var(--ink);color:#0a0c11}
+body.os-mac .win{display:none!important} body.os-win .mac{display:none!important}
+
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:40px 20px 60px}
+.kicker{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.lead{font-size:1.15rem;max-width:700px;margin-top:14px}
+.goal{display:flex;gap:14px;background:linear-gradient(135deg,var(--sage-soft),transparent);border:1px solid rgba(127,227,180,.3);border-radius:18px;padding:18px 20px;margin:24px 0}
+.goal b.h{display:block;color:var(--sage);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin:16px 0}
+.agenda{list-style:none;padding:0;margin:0}
+.agenda li{display:grid;grid-template-columns:74px 1fr;gap:14px;padding:9px 0;border-top:1px solid var(--line);margin:0}
+.agenda li:first-child{border-top:0}
+.agenda .t{font-family:var(--mono);font-size:.82rem;color:var(--gold);padding-top:2px}
+.agenda a{color:var(--ink2);text-decoration:none} .agenda a:hover{color:var(--ink);text-decoration:underline}
+.bring{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:12px 0}
+.bring label{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line2);border-radius:14px;padding:12px 14px;cursor:pointer;font-size:.95rem}
+.bring input{accent-color:var(--sage);width:18px;height:18px;margin-top:3px;flex:none}
+
+.step{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 22px 18px;margin:18px 0;transition:border-color .3s;scroll-margin-top:70px}
+.step.done{border-color:rgba(127,227,180,.45)}
+.step-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:8px}
+.num{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-family:var(--serif);font-size:1.25rem;background:var(--gold-soft);color:var(--gold);border:1px solid rgba(245,199,110,.35)}
+.step.done .num{background:var(--sage);color:#06210f;border-color:var(--sage)}
+.time{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.check{background:var(--violet-soft);border-radius:12px;padding:10px 14px;margin:12px 0 6px;font-size:.95rem}
+.donebtn{margin-top:12px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink2);border-radius:99px;padding:7px 14px;font:600 .82rem var(--sans);cursor:pointer}
+.donebtn:hover{border-color:var(--sage)}
+.step.done .donebtn{background:var(--sage-soft);border-color:var(--sage);color:var(--sage)}
+
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.route{border:1px solid var(--line2);background:var(--panel2);border-radius:16px;padding:16px}
+.route .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.route.a .k{color:var(--sage)} .route.b .k{color:var(--sky)}
+
+details.sub{border:1px solid var(--line2);border-radius:16px;margin:12px 0;background:var(--panel2);overflow:hidden}
+details.sub>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:center;font-weight:600;color:var(--ink)}
+details.sub>summary::-webkit-details-marker{display:none}
+details.sub>summary .tag{font:700 .7rem var(--sans);letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:3px 9px;flex:none}
+details.sub>summary .arr{margin-left:auto;color:var(--muted);transition:transform .2s}
+details.sub[open]>summary .arr{transform:rotate(180deg)}
+details.sub .in{padding:2px 16px 14px}
+.tag.a{background:var(--sage-soft);color:var(--sage)} .tag.b{background:var(--sky-soft);color:var(--sky)} .tag.g{background:var(--gold-soft);color:var(--gold)}
+
+.prompt{position:relative;margin:10px 0}
+.ptitle{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.6 var(--mono);background:#070a0f;border:1px solid var(--line2);border-radius:14px;padding:14px 16px;color:#e8f0ff}
+.prompt.cmd pre{color:var(--sage)}
+.prompt.cmd pre::before{content:"> ";color:var(--muted)}
+.copy{position:absolute;top:24px;right:8px;border:1px solid var(--line2);background:var(--panel2);color:var(--ink2);border-radius:8px;padding:5px 12px;font:600 .78rem var(--sans);cursor:pointer}
+.copy:hover{border-color:var(--sky)} .copy.ok{color:var(--sage);border-color:var(--sage)}
+
+.box{border-radius:16px;padding:14px 18px;margin:14px 0;border:1px solid}
+.box h3{font-family:var(--sans);font-weight:700;font-size:.95rem;margin-bottom:4px}
+.box.sky{background:var(--sky-soft);border-color:rgba(124,196,255,.3)} .box.sky h3{color:var(--sky)}
+.box.gold{background:var(--gold-soft);border-color:rgba(245,199,110,.3)} .box.gold h3{color:var(--gold)}
+.box.coral{background:var(--coral-soft);border-color:rgba(255,143,112,.35)} .box.coral h3{color:var(--coral)}
+.box.sage{background:var(--sage-soft);border-color:rgba(127,227,180,.3)} .box.sage h3{color:var(--sage)}
+
+table{width:100%;border-collapse:collapse;font-size:.93rem;margin:10px 0}
+th{text-align:left;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line2)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+
+.tree{font:13.5px/1.75 var(--mono);background:#070a0f;border:1px solid var(--line2);border-radius:14px;padding:14px 18px;white-space:pre;overflow-x:auto;color:#dfe6f3}
+.tree .f{color:var(--sky)} .tree .m{color:var(--gold)} .tree .c{color:var(--muted)}
+
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:12px 0}
+.case{background:var(--panel2);border:1px solid var(--line2);border-radius:16px;padding:16px;border-top:3px solid var(--c)}
+.case .who{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--c);margin-bottom:4px}
+.case h4{margin:0 0 6px;font-size:1rem}
+.case p{font-size:.9rem;color:var(--muted);margin:0 0 6px}
+.case .first{font-size:.88rem;color:var(--ink2);border-left:3px solid var(--c);padding-left:10px;margin-top:8px}
+
+.spot{background:linear-gradient(135deg,rgba(255,143,112,.14),transparent);border:1px solid rgba(255,143,112,.35);border-radius:20px;padding:20px 22px;margin:22px 0;scroll-margin-top:70px}
+.spot .kicker{color:var(--coral)}
+.homework{background:linear-gradient(135deg,rgba(180,165,255,.14),rgba(124,196,255,.06));border:1px solid rgba(180,165,255,.35);border-radius:20px;padding:22px;margin:26px 0}
+.homework .kicker{color:var(--violet)}
+.foot{margin-top:36px;text-align:center;font-size:.82rem;color:var(--muted)}
+
+@media (max-width:640px){
+  .routes{grid-template-columns:1fr}
+  .step,.card,.homework,.spot{padding:18px 16px}
+  .agenda li{grid-template-columns:60px 1fr;gap:10px}
+  .brand span{display:none}
+}
+@media print{.top,.donebtn,.copy{display:none!important} details.sub{display:block} details.sub .in{display:block}}
+</style>
+</head>
+<body class="os-mac">
+
+<div class="top"><div class="top-in">
+  <div class="brand"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#7cc4ff" stroke-width="2"/><path d="M20 7 L32 28 L8 28 Z" fill="none" stroke="#7cc4ff" stroke-width="1.6"/><path d="M20 33 L8 12 L32 12 Z" fill="none" stroke="#f5c76e" stroke-width="1.6"/><circle cx="20" cy="20" r="2.4" fill="#fff"/></svg><span>Calm AI</span></div>
+  <div class="prog"><div class="bar"><i id="progBar"></i></div><b id="progTxt">0/7</b></div>
+  <div class="seg" id="osSeg"><button type="button" data-os="mac" class="on">Mac</button><button type="button" data-os="win">Windows</button></div>
+</div></div>
+
+<div class="wrap">
+  <div class="kicker">Session 3 · Wednesday 25 November · Follow along</div>
+  <h1>Your business, <em>in one folder</em></h1>
+  <p class="lead">Today the AI moves onto your own computer. We install everything together, step by step, make your business folder, and take the first real step of your case study.</p>
+
+  <div class="goal"><span style="font-size:1.4rem">◎</span><div><b class="h">By the end</b>Claude Code runs inside VS Code on your computer, your <code>my-business</code> folder has your business map and case study in it, Claude has proposed your folders, and you've made your <b>first save point</b>.</div></div>
+
+  <div class="box gold"><h3>First: pick your computer</h3>Click <b>Mac</b> or <b>Windows</b> at the top right. Every step below changes to match.</div>
+
+  <h2>Have these ready</h2>
+  <div class="bring" id="bring">
+    <label><input type="checkbox" data-b="plan"> A paid Claude plan (Pro or higher)</label>
+    <label><input type="checkbox" data-b="charger"> Laptop on its charger</label>
+    <label><input type="checkbox" data-b="map"> business-map.md (downloaded)</label>
+    <label><input type="checkbox" data-b="case"> case-study.md (downloaded)</label>
+    <label><input type="checkbox" data-b="skill"> Your session 2 skill (text)</label>
+  </div>
+  <p class="muted">Missing your business map or case study? No problem: step 4 has a prompt where Claude interviews you instead.</p>
+
+  <h2>Today</h2>
+  <div class="card">
+    <ol class="agenda">
+      <li><span class="t">0–5</span><a href="#st1"><b>Check-in:</b> your case study in one sentence</a></li>
+      <li><span class="t">5–35</span><a href="#st2"><b>Install together:</b> VS Code, Git, Claude Code</a></li>
+      <li><span class="t">35–42</span><a href="#st3"><b>First run</b> the safe way</a></li>
+      <li><span class="t">42–52</span><a href="#st4"><b>Your starter files</b> + five questions</a></li>
+      <li><span class="t">52–60</span><a href="#st5"><b>Your folders:</b> Claude proposes, you trim</a></li>
+      <li><span class="t">60–82</span><a href="#st6"><b>Case studies:</b> two live, everyone does theirs</a></li>
+      <li><span class="t">82–90</span><a href="#st7"><b>First save point</b> + homework</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="step" id="st1" data-key="1">
+    <div class="step-head"><div class="num">1</div><div><h3>Check-in: your case study in one sentence</h3><span class="time">0–5 min</span></div></div>
+    <p>Did your skill from session 2 work three times? Then say, in one sentence, the one task you're carrying through these last three sessions. Not sure yet? That's fine: step 6 has examples and a prompt to help you pick.</p>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 2 -->
+  <div class="step" id="st2" data-key="2">
+    <div class="step-head"><div class="num">2</div><div><h3>Install together</h3><span class="time">5–35 min</span></div></div>
+    <p>Three programs, each with one job:</p>
+    <table>
+      <tr><th>Program</th><th>What it does for you</th></tr>
+      <tr><td><b>VS Code</b></td><td>A window onto your folder: files on the left, the open file in the middle, a terminal at the bottom.</td></tr>
+      <tr><td><b>Git</b></td><td>Save points for your folder, like "save game". Made a mess? Go back.</td></tr>
+      <tr><td><b>Claude Code</b></td><td>Claude, working directly in your folder. It asks before it changes anything.</td></tr>
+    </table>
+
+    <div class="routes">
+      <div class="route b"><div class="k">Route B · today's main route</div>VS Code + Git + Claude Code. You see every file as the AI works. Follow 2a to 2d below.</div>
+      <div class="route a"><div class="k">Route A · plan B</div>The Claude desktop app, Code tab. No terminal. If an install gets stuck, switch to this so you don't fall behind. See 2e.</div>
+    </div>
+
+    <details class="sub" open>
+      <summary><span class="tag b">2a</span>Make your folder<span class="arr">▾</span></summary>
+      <div class="in">
+        <ol>
+          <li class="mac">On your <b>Desktop</b>, right-click → <b>New Folder</b>. Name it <code>my-business</code> (small letters, a dash, no spaces).</li>
+          <li class="win">On your <b>Desktop</b>, right-click → <b>New</b> → <b>Folder</b>. Name it <code>my-business</code> (small letters, a dash, no spaces).</li>
+          <li>Put <b>business-map.md</b> and <b>case-study.md</b> inside it. Rename business-map.md to <code>business.md</code>.</li>
+        </ol>
+        <div class="box sky mac"><h3>iCloud check (Mac)</h3>Apple menu → System Settings → your name → iCloud → iCloud Drive. If <b>"Desktop &amp; Documents Folders"</b> is on, your desktop syncs to the cloud, which can make duplicate copies. Tell us and we'll decide together.</div>
+        <div class="box sky win"><h3>OneDrive check (Windows)</h3>Click the OneDrive cloud icon (bottom right) → Settings → <b>Sync and back up</b> → <b>Manage back up</b>. If <b>Desktop</b> is on, your desktop syncs to the cloud, which can make duplicate copies. Tell us and we'll decide together.</div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary><span class="tag b">2b</span>Install VS Code<span class="arr">▾</span></summary>
+      <div class="in">
+        <ol>
+          <li>Go to <b>code.visualstudio.com</b> and click the big download button.</li>
+          <li class="mac">Open your <b>Downloads</b>, double-click the zip, and drag <b>Visual Studio Code</b> into <b>Applications</b>. Open it from Applications. If your Mac asks "downloaded from the internet, are you sure?", click <b>Open</b>.</li>
+          <li class="win">Run the installer. Accept the agreement. On the "Select additional tasks" screen, tick <b>"Add 'Open with Code' action"</b> (both boxes) and keep <b>"Add to PATH"</b> ticked. Click <b>Install</b>, then <b>Finish</b>.</li>
+          <li>In VS Code: <b>File → Open Folder…</b> → Desktop → <code>my-business</code> → Open. If it asks <b>"Do you trust the authors?"</b>, click <b>Yes</b> (it's your folder).</li>
+          <li>Open the terminal: menu <b>Terminal → New Terminal</b>. A panel appears at the bottom.</li>
+        </ol>
+        <div class="check">Done when you see <code>MY-BUSINESS</code> in the left sidebar, with your two files, and a terminal at the bottom.</div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary><span class="tag b">2c</span>Install Git<span class="arr">▾</span></summary>
+      <div class="in">
+        <div class="mac">
+          <p>Your Mac installs Git for you. Type this in the VS Code terminal and press Enter:</p>
+          <div class="prompt cmd"><div class="ptitle">Mac · terminal</div><pre>git --version</pre></div>
+          <ul>
+            <li>You see a version number, like <code>git version 2.x</code>? You already have it. Go to 2d.</li>
+            <li>A window pops up asking to install <b>"command line developer tools"</b>? Click <b>Install</b> and agree. It takes 5–10 minutes: carry on to 2d while it runs.</li>
+            <li>It says there isn't enough space? Tell us. A full Mac is the most common blocker, and we'll switch you to Route A for today.</li>
+          </ul>
+        </div>
+        <div class="win">
+          <ol>
+            <li>Go to <b>git-scm.com</b> → <b>Download for Windows</b> → the 64-bit installer.</li>
+            <li>Run it and click <b>Next</b> on every screen. The default choices are fine.</li>
+            <li><b>Close VS Code completely and open it again</b>, so it notices Git. Open the terminal again (Terminal → New Terminal) and check:</li>
+          </ol>
+          <div class="prompt cmd"><div class="ptitle">Windows · terminal</div><pre>git --version</pre></div>
+          <p>You should see <code>git version 2.x</code>. Claude Code on Windows needs Git, so do this before 2d.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary><span class="tag b">2d</span>Install Claude Code<span class="arr">▾</span></summary>
+      <div class="in">
+        <p>Click <b>Copy</b>, paste it into the VS Code terminal, and press Enter. It downloads Claude Code and keeps it up to date by itself.</p>
+        <div class="prompt cmd mac"><div class="ptitle">Mac · terminal</div><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+        <div class="prompt cmd win"><div class="ptitle">Windows · terminal (PowerShell)</div><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+        <p>When it's finished: close the terminal (the bin icon on the terminal panel), open a new one (Terminal → New Terminal) and check:</p>
+        <div class="prompt cmd"><div class="ptitle">Check</div><pre>claude --version</pre></div>
+        <div class="box coral"><h3>"command not found" or "not recognized"?</h3>Close VS Code completely and open it again, then try once more. If the installer printed a line telling you to add something to your PATH, show it to us. Never paste fixes from random websites, and never use <code>sudo</code>. Still stuck after 5 minutes? Switch to Route A (2e) and we'll fix it after class.</div>
+
+        <h4>Optional: Claude inside VS Code, as a panel</h4>
+        <p>Prefer clicking to typing? VS Code has an official <b>Claude Code</b> extension that puts Claude in a side panel.</p>
+        <ol>
+          <li>Click the <b>Extensions</b> icon in the left bar (four squares), or press <kbd class="mac">Cmd</kbd><kbd class="win">Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>.</li>
+          <li>Search <b>Claude Code</b>. Check that the publisher is <b>Anthropic</b>, then click <b>Install</b>.</li>
+          <li>A Claude icon appears in VS Code. Click it to open the panel. It works in the same folder, with the same permission questions.</li>
+        </ol>
+        <p class="muted">The terminal and the panel are two doors into the same Claude Code. Use whichever feels easier.</p>
+      </div>
+    </details>
+
+    <details class="sub">
+      <summary><span class="tag a">2e</span>Route A: the Claude desktop app (plan B)<span class="arr">▾</span></summary>
+      <div class="in">
+        <ol>
+          <li>Go to <b>claude.ai/download</b>, install the desktop app and log in. (Already have it? Use that one. Only one Claude app on your computer.)</li>
+          <li>Click the <b>Code</b> tab.</li>
+          <li>Choose to work on <b>your computer</b> (local) and select your <code>my-business</code> folder.</li>
+          <li>Find the permission setting and choose the one that <b>asks before every change</b>.</li>
+        </ol>
+        <p class="muted">Menus move often. If yours looks different, we'll find it together on screen. Everything from step 3 onwards works the same here: you type the same prompts.</p>
+      </div>
+    </details>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 3 -->
+  <div class="step" id="st3" data-key="3">
+    <div class="step-head"><div class="num">3</div><div><h3>First run, the safe way</h3><span class="time">35–42 min</span></div></div>
+    <p>Check you're in the right folder first. Type:</p>
+    <div class="prompt cmd"><div class="ptitle">Where am I?</div><pre>pwd</pre></div>
+    <p>The answer should end in <code>my-business</code>. If not, use <b>File → Open Folder</b> again. Then start Claude Code:</p>
+    <div class="prompt cmd"><div class="ptitle">Start</div><pre>claude</pre></div>
+    <ol>
+      <li>The first time, your browser opens. Log in with your <b>paid Claude account</b> and allow access. Go back to VS Code.</li>
+      <li>It may ask whether you trust this folder: choose <b>Yes</b>.</li>
+      <li>Look at the bottom line. If you see <b>"auto mode"</b>, press <kbd>Shift</kbd> + <kbd>Tab</kbd> until it's gone. Auto mode stops it asking you, and we always want it to ask.</li>
+    </ol>
+    <div class="prompt"><div class="ptitle">Your first question</div><pre>What's in this folder? Describe each file in one line. Don't change anything.</pre></div>
+    <div class="box gold"><h3>When it asks permission</h3>Claude Code asks before it creates, changes or runs anything. <b>Read what it wants to do</b>, then choose. If a choice says "Yes, and don't ask again", choose plain <b>Yes</b> for now. It asks, you read, you decide.</div>
+    <div class="check">Done when Claude has described your two files. To leave Claude Code later, type <code>/exit</code>.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 4 -->
+  <div class="step" id="st4" data-key="4">
+    <div class="step-head"><div class="num">4</div><div><h3>Your starter files, and five questions</h3><span class="time">42–52 min</span></div></div>
+    <p>Three files are the start of everything: <code>business.md</code> (what you do), <code>case-study.md</code> (your one task) and <code>needs.md</code> (what you want help with, in order). Claude writes the third one with you.</p>
+    <div class="prompt"><div class="ptitle">Improve my business map</div><pre>Read business.md and case-study.md in this folder.
+Ask me five questions, one at a time, to make business.md better. Wait for each answer.
+Then update business.md with what I told you, and write needs.md: what I want help with, in order of importance.
+Mark anything you're unsure about with [check].</pre></div>
+    <details class="sub">
+      <summary><span class="tag g">Stuck?</span>I didn't fill in my business map or case study<span class="arr">▾</span></summary>
+      <div class="in">
+        <div class="prompt"><div class="ptitle">Interview me instead</div><pre>I haven't written my business map yet. Interview me for about 10 minutes, one question at a time: what I do, for whom, my offers and prices, my tools, where my information lives, and the tasks I repeat.
+Then write business.md and needs.md in this folder. Only use what I tell you; mark anything unclear with [check].</pre></div>
+      </div>
+    </details>
+    <div class="check">Done when business.md answers: what you do, for whom, your offers and prices, your tools, and where your information lives.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 5 -->
+  <div class="step" id="st5" data-key="5">
+    <div class="step-head"><div class="num">5</div><div><h3>Your folders: Claude proposes, you trim</h3><span class="time">52–60 min</span></div></div>
+    <p>Four simple ideas decide where things go: <b>business.md</b> (the facts about you), <b>skills/</b> (how you do each kind of job), <b>scripts/</b> (steps that never change, session 5), and your <b>tools</b> (written in tools.md). Everything else is a room for one kind of work.</p>
+    <div class="prompt"><div class="ptitle">Propose my folders</div><pre>Read business.md, needs.md and case-study.md. Propose a simple folder structure for my work:
+- business.md, needs.md, case-study.md stay at the top
+- skills/ for how I do each kind of job, one file each
+- one numbered room folder per kind of work (01_, 02_...), each with a short CONTEXT.md
+- a room for my case study task
+- _inbox/ for new files, archive/ for old ones, tools.md listing the apps I use
+Start small: only rooms my work needs now. Show me the plan as a tree and wait for my OK. Don't create anything until I say yes.</pre></div>
+    <p>Example of what it might look like:</p>
+<div class="tree"><span class="f">my-business/</span>
+  <span class="m">business.md</span>      <span class="c">← what you do, for whom, prices</span>
+  <span class="m">needs.md</span>         <span class="c">← what you want help with</span>
+  <span class="m">case-study.md</span>    <span class="c">← your one task</span>
+  tools.md          <span class="c">← apps you use, where exports land</span>
+  <span class="f">skills/</span>          <span class="c">← your session 2 skill goes here</span>
+  <span class="f">01_clients/</span>
+  <span class="f">02_content/</span>      <span class="c">← e.g. your monthly check lives here</span>
+  <span class="f">_inbox/</span>   <span class="f">archive/</span></div>
+    <div class="check">Rename, merge or remove until it feels like <i>your</i> work. Only then say yes. A few clear rooms beat a big plan you'll never use.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 6 -->
+  <div class="spot step" id="st6" data-key="6">
+    <div class="kicker">Case studies · 60–82 min</div>
+    <h3>The first real step of your task</h3>
+    <p>We work on two people's case studies live, on screen. <b>Everyone else does the same steps on their own task at the same time.</b> Find the example closest to yours below, or use the "I'm stuck" prompt.</p>
+
+    <div class="cases">
+      <div class="case" style="--c:var(--sky)"><div class="who">Online trainer or creator</div><h4>My monthly Instagram and ads check</h4><p>Instead of reading the analytics yourself: one clear table and three suggestions every month.</p><div class="first"><b>Today:</b> put last month's export or a few screenshots of your insights into <code>_inbox/</code>. Ask Claude what a good monthly check should show, and save that as a skill.</div></div>
+      <div class="case" style="--c:var(--sage)"><div class="who">Online trainer or creator</div><h4>My welcome messages and freebie</h4><p>The messages new followers get (for example through ManyChat), written once, in your voice.</p><div class="first"><b>Today:</b> paste the welcome message you use now. Ask Claude to improve it with your skill and save three versions in a <code>messages/</code> room.</div></div>
+      <div class="case" style="--c:var(--gold)"><div class="who">Coach</div><h4>Follow-up after every session</h4><p>A warm, personal follow-up with the next step, ready within minutes of each session.</p><div class="first"><b>Today:</b> paste two follow-ups you were happy with (no client names). Turn them into <code>skills/session-follow-up.md</code>.</div></div>
+      <div class="case" style="--c:var(--violet)"><div class="who">Events, classes, healing</div><h4>Announcing an event</h4><p>One event file becomes the post, the email and the reminder.</p><div class="first"><b>Today:</b> make <code>events/next-event.md</code> with date, place, price and what to bring. Ask Claude for a caption and an email from it.</div></div>
+      <div class="case" style="--c:var(--coral)"><div class="who">Several businesses</div><h4>Finding anything in seconds</h4><p>One home for every fact, so you stop searching across email, Drive and accounts.</p><div class="first"><b>Today:</b> ask Claude to make one room per business and a <code>where-things-live.md</code> list: which information is where now.</div></div>
+      <div class="case" style="--c:var(--sky)"><div class="who">Research-heavy work</div><h4>A research brief, same shape every time</h4><p>Your research comes back in one fixed template, with sources, ready to decide on.</p><div class="first"><b>Today:</b> describe one research question you had recently. Ask Claude to design your brief template and save it as a skill.</div></div>
+      <div class="case" style="--c:var(--sage)"><div class="who">Lots of email</div><h4>Tidy my dictated emails and proposals</h4><p>You talk, Claude turns it into a clean email or proposal that sounds like you.</p><div class="first"><b>Today:</b> paste 3 emails you're proud of. Ask Claude to write <code>voice.md</code> from them, then tidy one dictated draft.</div></div>
+      <div class="case" style="--c:var(--gold)"><div class="who">Money</div><h4>My monthly money overview</h4><p>Where money came in and went out, per business, in one table.</p><div class="first"><b>Today:</b> make a <code>money/</code> room and describe what the overview should show. The script that builds it comes in session 5.</div></div>
+    </div>
+
+    <div class="prompt"><div class="ptitle">The first step of my case study</div><pre>Read case-study.md and business.md. My case study is: [your task].
+Help me take the first step today:
+1. Tell me which room it belongs in, and which files it needs.
+2. Ask me for the material you need (an example, an export, my notes), one thing at a time.
+3. Make the first file, show it to me, and wait for my OK before saving.</pre></div>
+
+    <details class="sub">
+      <summary><span class="tag g">Stuck?</span>I don't know what my case study should be<span class="arr">▾</span></summary>
+      <div class="in">
+        <div class="prompt"><div class="ptitle">Help me pick</div><pre>Read business.md. I'm not sure which task to pick as my case study.
+Ask me 5 short questions about my week: what I repeat, what takes long, what I dread, and what has real material I can bring.
+Then suggest three case studies. For each one: why it's a good pick and what the first step would be. I'll choose one, then write case-study.md for it.</pre></div>
+      </div>
+    </details>
+    <details class="sub">
+      <summary><span class="tag g">Stuck?</span>Claude did something I didn't expect<span class="arr">▾</span></summary>
+      <div class="in">
+        <div class="prompt"><div class="ptitle">Explain and undo</div><pre>Stop. Explain in plain words what you just did and which files you changed. Then help me undo it, and ask before you change anything.</pre></div>
+      </div>
+    </details>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <!-- 7 -->
+  <div class="step" id="st7" data-key="7">
+    <div class="step-head"><div class="num">7</div><div><h3>Your first save point, and your skill</h3><span class="time">82–90 min</span></div></div>
+    <p>A save point (a <b>commit</b>) remembers exactly how your folder looks now. Made a mess next week? You can go back. Git only needs your name and email once:</p>
+    <div class="prompt cmd"><div class="ptitle">Once · your name</div><pre>git config --global user.name "Your Name"</pre></div>
+    <div class="prompt cmd"><div class="ptitle">Once · your email</div><pre>git config --global user.email "you@example.com"</pre></div>
+    <p class="muted">Type these in the terminal <i>outside</i> Claude Code (type <code>/exit</code> first, then <code>claude</code> again after), or simply ask Claude Code to do it for you.</p>
+    <div class="prompt"><div class="ptitle">Ask Claude Code</div><pre>Save my session 2 skill as skills/[name].md. Here it is:
+[paste your skill]
+
+Then make this folder a git repository and make a first save point called "start: my business folder".
+Explain each command before you run it.</pre></div>
+    <div class="box sky"><h3>Online backup comes next week</h3>In session 4 we put your save points on GitHub (private), plus a copy on an external hard drive. Today they live on your computer.</div>
+    <div class="check">Done when your skill is in <code>skills/</code> and Claude has made the first save point.</div>
+    <button type="button" class="donebtn">○ Mark step done</button>
+  </div>
+
+  <div class="homework" id="homework">
+    <div class="kicker">Homework · before 2 December</div>
+    <h3>Live in your folder</h3>
+    <ul>
+      <li><b>Open your folder at least three times</b> and take your case study one step further each time.</li>
+      <li><b>Run two real tasks</b> through it. After each, ask: <i>"Make a save point called '[what I did]'."</i></li>
+      <li><b>Notice where it breaks:</b> a file in the wrong place, a fact in two places, a chat that got too long. Write it down; those become next week's habits.</li>
+      <li>Install didn't finish in class? Message me and we'll sort it before next week.</li>
+      <li>Next week: create a free account at <b>github.com</b> and bring your laptop with its charger.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Before we close: two questions</h3>
+    <p style="margin:0">What was the most useful thing today? And what was confusing?</p>
+  </div>
+
+  <div class="foot">Calm AI · Structure first, AI last.<br>Method: Interpretable Context Methodology (ICM) by Jake Van Clief and McDermott, MIT licence.</div>
+</div>
+
+<script>
+(function(){
+  var KEY='calm-ai-s3-follow';
+  var state={done:{},bring:{},os:'mac'};
+  try{var s=JSON.parse(localStorage.getItem(KEY));if(s)state=Object.assign(state,s);}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+  function $(s){return document.querySelector(s);} function $$(s){return [].slice.call(document.querySelectorAll(s));}
+
+  if(!localStorage||!state._osSet){try{if(/Win/i.test(navigator.platform||navigator.userAgent))state.os='win';}catch(e){}}
+  function applyOS(){document.body.classList.toggle('os-mac',state.os==='mac');document.body.classList.toggle('os-win',state.os==='win');$$('#osSeg button').forEach(function(b){b.classList.toggle('on',b.dataset.os===state.os);});}
+  $('#osSeg').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;state.os=b.dataset.os;state._osSet=true;save();applyOS();});
+
+  var steps=$$('.step[data-key]');
+  function paint(){
+    var n=0;
+    steps.forEach(function(s){var d=!!state.done[s.dataset.key];if(d)n++;s.classList.toggle('done',d);var b=s.querySelector('.donebtn');b.textContent=d?'✓ Done':'○ Mark step done';});
+    $('#progTxt').textContent=n+'/'+steps.length;$('#progBar').style.width=Math.round(n/steps.length*100)+'%';
+  }
+  steps.forEach(function(s){s.querySelector('.donebtn').addEventListener('click',function(){var k=s.dataset.key;if(state.done[k])delete state.done[k];else state.done[k]=true;save();paint();});});
+
+  $$('#bring input').forEach(function(c){c.checked=!!state.bring[c.dataset.b];c.addEventListener('change',function(){state.bring[c.dataset.b]=c.checked;save();});});
+
+  $$('.prompt').forEach(function(p){
+    var pre=p.querySelector('pre');var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';
+    b.addEventListener('click',function(){
+      var txt=pre.textContent;
+      function ok(){b.textContent='Copied ✓';b.classList.add('ok');setTimeout(function(){b.textContent='Copy';b.classList.remove('ok');},1600);}
+      function fb(){var t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(t);}
+      if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(ok,fb);else fb();
+    });
+    p.appendChild(b);
+  });
+
+  applyOS();paint();
+})();
+</script>
+</body>
+</html>
